@@ -55,7 +55,7 @@ PalletTown_ProfessorOaksLab_EventScript_ReadyPlayerForStarterScene::
 	end
 
 PalletTown_ProfessorOaksLab_OnFrame::
-	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1, PalletTown_ProfessorOaksLab_ChooseStarterScene
+	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1, PalletTown_FastStarterScene
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 7, PalletTown_ProfessorOaksLab_EventScript_EnterForNationalDexScene
 	.2byte 0
 

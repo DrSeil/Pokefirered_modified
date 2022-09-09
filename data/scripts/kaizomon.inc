@@ -20,6 +20,28 @@ PalletTown_MomToOak::
 	waitstate
 	return
 
+PalletTown_FastStarterScene::
+	lockall
+	textcolor NPC_TEXT_COLOR_MALE
+	applymovement LOCALID_PROF_OAK, PalletTown_ProfessorOaksLab_Movement_OakEnter
+	waitmovement 0
+	removeobject LOCALID_PROF_OAK
+	setobjectxyperm LOCALID_PROF_OAK, 6, 3
+	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
+	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_ProfessorOaksLab_Movement_PlayerEnter
+	waitmovement 0
+	clearflag FLAG_DONT_TRANSITION_MUSIC
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	msgbox PalletTown_Text_ChatPicked
+	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 2
+	releaseall
+	end
+
+PalletTown_Text_ChatPicked::
+	.string "Hope chat picked correctly!$"
+
 EventScript_ReuseRepel::
 	msgbox Text_RepelWoreOffUseAnother, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, EventScript_TryUseRepel
