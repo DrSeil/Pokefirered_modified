@@ -17,7 +17,7 @@ gNameChoice_Gary::
     .string "GARY$"
 
 gNameChoice_Kaz::
-    .string "KAZ$"
+    .string "POO$"
 
 gNameChoice_Toru::
     .string "TORU$"
@@ -47,7 +47,7 @@ gNameChoice_Karl::
     .string "KARL$"
 
 gNameChoice_Taylor::
-    .string "TAYLOR$"
+    .string "XWATER$"
 
 gNameChoice_Oscar::
     .string "OSCAR$"

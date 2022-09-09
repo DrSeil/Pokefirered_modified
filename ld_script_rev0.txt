@@ -89,12 +89,11 @@ SECTIONS {
         src/play_time.o(.text);
         } = 0
         
-        . = 0x8054bdc;
+        . = 0x80589c4;
 
-        destinationwarpf :
-               ALIGN(4)
+        fieldmaptext :
+        ALIGN(4)
         {
-            src/overworld.o(.text)
         src/fieldmap.o(.text);
         src/metatile_behavior.o(.text);
         src/field_camera.o(.text);
@@ -130,7 +129,7 @@ SECTIONS {
 
       
 
-            .textbattlesetup  0x807f634 :
+            .textbattlesetup  0x807f620 :
     {
         src/battle_setup.o(.text);
         src/cable_club.o(.text);
@@ -173,7 +172,7 @@ SECTIONS {
 
         } = 0
 
-        . = 0x80bd0b0;
+        . = 0x80bd09c;
 
             .textbike :
     ALIGN(4)
@@ -264,7 +263,7 @@ SECTIONS {
         src/menu2.o(.text);
 } = 0
 
-. = 0x812faf0;
+. = 0x812fa78;
 
 .textoak13 :
 ALIGN(4)
@@ -272,7 +271,7 @@ ALIGN(4)
     src/oak_speech.o(.speech13);
 }
 
-. = 0x8130fa4;
+. = 0x8130f2c;
 
 .textnidoran :
 ALIGN(4)
@@ -280,7 +279,7 @@ ALIGN(4)
     src/oak_speech.o(.nidoranfsprite);
 }
 
-. = 0x813104c;
+. = 0x8130fd4;
 
 .textnidoran :
 ALIGN(4)
@@ -288,7 +287,7 @@ ALIGN(4)
     src/oak_speech.o(.othersprite);
 }
 
-. = 0x8131870;
+. = 0x81317f8;
 
 
     .textfollowoak :
@@ -308,7 +307,7 @@ ALIGN(4)
 
 
 
-        .textroamer  0x8141ccc : 
+        .textroamer  0x8141c54 : 
         {
         src/roamer.o(.text);
         src/mystery_gift_menu.o(.text);
@@ -338,7 +337,7 @@ ALIGN(4)
 
     } =0
 
-. = 0x815fa2c;
+. = 0x815f9b4;
 
     script_data :
     ALIGN(4)
@@ -438,7 +437,7 @@ ALIGN(4)
         src/main_menu.o(.rodata);
     } =0
 
-    . = 0x8234708;
+    . = 0x8234698;
 
     .rodatadata :
     SUBALIGN(4)
@@ -447,7 +446,7 @@ ALIGN(4)
         src/battle_bg.o(.rodata);
     } = 0
 
-    . = 0x824f054 ;
+    . = 0x824efe4 ;
 
     .rodatabattlemain :
     SUBALIGN(4)
@@ -461,7 +460,7 @@ ALIGN(4)
         src/battle_controller_link_opponent.o(.rodata);
     } =0
 
-    . = 0x8250c74;
+    . = 0x8250c04;
 
     .rodata2 :
     SUBALIGN(4)
@@ -471,7 +470,7 @@ ALIGN(4)
         src/util.o(.rodata);
     } =0
 
-    . = 0x825ef7c;
+    . = 0x825ef0c;
 
     .rodata3 :
     SUBALIGN(4)
@@ -483,7 +482,7 @@ ALIGN(4)
         src/trade.o(.rodata);
         } = 0
 
-    . = 0x82620cc;
+    . = 0x826205c;
 
     .rodatatradescene :
     SUBALIGN(4)
@@ -530,7 +529,7 @@ ALIGN(4)
         src/map_name_popup.o(.rodata);
 } = 0
 
-. = 0x83d41dc;
+. = 0x83d416c;
 
 .rodataitemmenu :
     SUBALIGN(4)
@@ -588,7 +587,7 @@ ALIGN(4)
         src/battle_controller_oak_old_man.o(.rodata);
         } = 0
 
-        . = 0x840224c;
+        . = 0x84021dc;
 
         .rodatapcdata :
         SUBALIGN(4)
@@ -605,7 +604,7 @@ ALIGN(4)
         src/evolution_graphics.o(.rodata);
         } = 0
 
-        . = 0x841efb8;
+        . = 0x841ef48;
 
         .rodatanewhelpers :
     SUBALIGN(4)
@@ -640,7 +639,7 @@ ALIGN(4)
         src/pokemon_special_anim_scene.o(.rodata);
         } = 0
 
-    . = 0x8459bc0;
+    . = 0x8459b60;
 
     .rodatapartymenu :
     SUBALIGN(4)
@@ -660,7 +659,7 @@ ALIGN(4)
         src/help_system_util.o(.rodata);
     } = 0
 
-    . = 0x84641a8;
+    . = 0x8464148;
 
     .rodatawildarea :
     SUBALIGN(4)
@@ -703,7 +702,7 @@ ALIGN(4)
         src/trainer_tower_sets.o(.rodata);
     } =0
 
-    . = 0x8482894;
+    . = 0x8482834;
 
     rodatamovedescrp :
     SUBALIGN(4)
