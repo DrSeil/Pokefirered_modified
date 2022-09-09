@@ -19,3 +19,54 @@ PalletTown_MomToOak::
 	clearflag FLAG_0x0AF 
 	waitstate
 	return
+
+EventScript_ReuseRepel::
+	msgbox Text_RepelWoreOffUseAnother, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, EventScript_TryUseRepel
+	closemessage
+	end
+
+EventScript_TryUseRepel::
+	removeitem ITEM_MAX_REPEL 1
+	goto_if_eq VAR_RESULT, TRUE, EventScript_FinishUseMaxRepel
+	removeitem ITEM_SUPER_REPEL 1
+	goto_if_eq VAR_RESULT, TRUE, EventScript_FinishUseSuperRepel
+	removeitem ITEM_REPEL 1
+	goto_if_eq VAR_RESULT, TRUE, EventScript_FinishUseRepel
+	msgbox Text_OutOfRepels, MSGBOX_SIGN
+	closemessage
+	end
+	
+EventScript_FinishUseMaxRepel::
+	setvar VAR_REPEL_STEP_COUNT, 250
+	msgbox Text_UsedMaxRepel, MSGBOX_SIGN
+	closemessage
+	end
+
+EventScript_FinishUseSuperRepel::
+	setvar VAR_REPEL_STEP_COUNT, 200
+	msgbox Text_UsedSuperRepel, MSGBOX_SIGN
+	closemessage
+	end
+
+EventScript_FinishUseRepel::
+	setvar VAR_REPEL_STEP_COUNT, 100
+	msgbox Text_UsedRepel, MSGBOX_SIGN
+	closemessage
+	end
+
+Text_RepelWoreOffUseAnother::
+	.string "REPEL's effect wore off…\n"
+	.string "Use another?$"
+
+Text_OutOfRepels::
+	.string "You are out of REPELs!$"
+
+Text_UsedRepel::
+    .string "A REPEL was used.$"
+
+Text_UsedSuperRepel::
+    .string "A SUPER REPEL was used.$"
+
+Text_UsedMaxRepel::
+    .string "A MAX REPEL was used.$"

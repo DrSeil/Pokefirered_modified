@@ -593,7 +593,7 @@ bool8 UpdateRepelCounter(void)
         VarSet(VAR_REPEL_STEP_COUNT, steps);
         if (steps == 0)
         {
-            ScriptContext_SetupScript(EventScript_RepelWoreOff);
+            ScriptContext_SetupScript(EventScript_ReuseRepel);
             return TRUE;
         }
     }
