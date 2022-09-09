@@ -48,7 +48,7 @@ static void Task_OakSpeech10(u8 taskId);
 static void Task_OakSpeech10(u8 taskId);
 static void Task_OakSpeech11(u8 taskId);
 static void Task_OakSpeech12(u8 taskId);
-static void Task_OakSpeech13(u8 taskId);
+static void Task_OakSpeech13(u8 taskId) __attribute__((section(".speech13")));
 static void Task_OakSpeech14(u8 taskId);
 static void Task_OakSpeech15(u8 taskId);
 static void Task_OakSpeech16(u8 taskId);
@@ -83,8 +83,8 @@ static void Task_OakSpeech41(u8 taskId);
 static void Task_OakSpeech42(u8 taskId);
 
 static void CB2_ReturnFromNamingScreen(void);
-static void CreateNidoranFSprite(u8 taskId);
-static void CreatePikaOrGrassPlatformSpriteAndLinkToCurrentTask(u8 taskId, u8 state);
+static void CreateNidoranFSprite(u8 taskId) __attribute__((section(".nidoranfsprite")));
+static void CreatePikaOrGrassPlatformSpriteAndLinkToCurrentTask(u8 taskId, u8 state) __attribute__((section(".othersprite")));
 static void DestroyLinkedPikaOrGrassPlatformSprites(u8 taskId, u8 state);
 static void LoadOaksSpeechTrainerPic(u16 whichPic, u16 tileOffset);
 static void DestroyOaksSpeechTrainerPic(void);
@@ -492,7 +492,7 @@ void StartNewGameScene(void)
     gPlttBufferUnfaded[0] = RGB_BLACK;
     gPlttBufferFaded[0]   = RGB_BLACK;
     CreateTask(Task_OaksSpeech1, 0);
-    SetMainCallback2(CB2_NewGameOaksSpeech);
+    SetMainCallback2(CB2_NewGame);
 }
 
 #define tTrainerPicPosX data[1]

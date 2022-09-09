@@ -87,8 +87,6 @@ SECTIONS {
         src/trade.o(.text);
         src/trade_scene.o(.text);
         src/play_time.o(.text);
-        src/new_game.o(.text);
-        src/overworld.o(.text);
         src/fieldmap.o(.text);
         src/metatile_behavior.o(.text);
         src/field_camera.o(.text);
@@ -119,7 +117,14 @@ SECTIONS {
         src/field_weather_util.o(.text);
         src/field_weather_effects.o(.text);
         src/field_fadetransition.o(.text);
-        src/field_screen_effect.o(.text);
+
+        } = 0
+
+        . = 0x807f634;
+
+            .textbattlesetup :
+    ALIGN(4)
+    {
         src/battle_setup.o(.text);
         src/cable_club.o(.text);
         src/trainer_see.o(.text);
@@ -177,6 +182,13 @@ SECTIONS {
         src/battle_anim_normal.o(.text);
         src/battle_anim_utility_funcs.o(.text);
         src/battle_intro.o(.text);
+        } = 0
+
+        . = 0x80bd0b0;
+
+            .textbike :
+    ALIGN(4)
+    {
         src/bike.o(.text);
         src/easy_chat.o(.text);
         src/mon_markings.o(.text);
@@ -261,7 +273,39 @@ SECTIONS {
         src/quest_log_battle.o(.text);
         src/fame_checker.o(.text);
         src/menu2.o(.text);
-        src/oak_speech.o(.text);
+} = 0
+
+. = 0x812faf0;
+
+.textoak13 :
+ALIGN(4)
+{
+    src/oak_speech.o(.speech13);
+}
+
+. = 0x8130fa4;
+
+.textnidoran :
+ALIGN(4)
+{
+    src/oak_speech.o(.nidoranfsprite);
+}
+
+. = 0x813104c;
+
+.textnidoran :
+ALIGN(4)
+{
+    src/oak_speech.o(.othersprite);
+}
+
+. = 0x8131870;
+
+
+    .textfollowoak :
+    ALIGN(4)
+    {
+
         src/tm_case.o(.text);
         src/menu_indicators.o(.text);
         src/pokedex_area_markers.o(.text);
@@ -273,6 +317,13 @@ SECTIONS {
         src/itemfinder.o(.text);
         src/buy_menu_helpers.o(.text);
         src/slot_machine.o(.text);
+        } = 0
+
+. = 0x8141ccc;
+
+        .textroamer : 
+        ALIGN(4)
+        {
         src/roamer.o(.text);
         src/mystery_gift_menu.o(.text);
         src/mevent.o(.text);
@@ -304,6 +355,8 @@ SECTIONS {
         src/minigame_countdown.o(.text);
         src/berry_fix_program.o(.text);
     } =0
+
+. = 0x815fa2c;
 
     script_data :
     ALIGN(4)
@@ -401,8 +454,22 @@ SECTIONS {
         src/string_util.o(.rodata);
         src/link.o(.rodata);
         src/main_menu.o(.rodata);
+    } =0
+
+    . = 0x8234708;
+
+    .rodatadata :
+    SUBALIGN(4)
+    {
         src/data.o(.rodata);
         src/battle_bg.o(.rodata);
+    } = 0
+
+    . = 0x824f054 ;
+
+    .rodatabattlemain :
+    SUBALIGN(4)
+    {
         src/battle_main.o(.rodata);
         src/battle_util.o(.rodata);
         src/battle_script_commands.o(.rodata);
@@ -410,14 +477,35 @@ SECTIONS {
         src/battle_anim_smokescreen.o(.rodata);
         src/battle_controller_opponent.o(.rodata);
         src/battle_controller_link_opponent.o(.rodata);
+    } =0
+
+    . = 0x8250c74;
+
+    .rodata2 :
+    SUBALIGN(4)
+    {
         src/pokemon.o(.rodata);
         src/trig.o(.rodata);
         src/util.o(.rodata);
+    } =0
+
+    . = 0x825ef7c;
+
+    .rodata3 :
+    SUBALIGN(4)
+    {
         src/daycare.o(.rodata);
         src/battle_gfx_sfx_util.o(.rodata);
         src/battle_interface.o(.rodata);
         src/pokeball.o(.rodata);
         src/trade.o(.rodata);
+        } = 0
+
+    . = 0x82620cc;
+
+    .rodatatradescene :
+    SUBALIGN(4)
+    {
         src/trade_scene.o(.rodata);
         src/overworld.o(.rodata);
         data/tilesets.o(.rodata);
@@ -458,6 +546,13 @@ SECTIONS {
         src/pokemon_icon.o(.rodata);
         src/fldeff_cut.o(.rodata);
         src/map_name_popup.o(.rodata);
+} = 0
+
+. = 0x83d41dc;
+
+.rodataitemmenu :
+    SUBALIGN(4)
+    {
         src/item_menu_icons.o(.rodata);
         src/battle_anim_mon_movement.o(.rodata);
         src/item.o(.rodata);
@@ -509,6 +604,13 @@ SECTIONS {
         src/learn_move.o(.rodata);
         src/battle_tower.o(.rodata);
         src/battle_controller_oak_old_man.o(.rodata);
+        } = 0
+
+        . = 0x840224c;
+
+        .rodatapcdata :
+        SUBALIGN(4)
+        {
         src/player_pc.o(.rodata);
         src/intro.o(.rodata);
         src/battle_anim_special.o(.rodata);
@@ -519,6 +621,13 @@ SECTIONS {
         src/save_failed_screen.o(.rodata);
         src/clear_save_data_screen.o(.rodata);
         src/evolution_graphics.o(.rodata);
+        } = 0
+
+        . = 0x841efb8;
+
+        .rodatanewhelpers :
+    SUBALIGN(4)
+    {
         src/new_menu_helpers.o(.rodata);
         src/tilemap_util.o(.rodata);
         src/map_preview_screen.o(.rodata);
@@ -547,6 +656,13 @@ SECTIONS {
         src/union_room_message.o(.rodata);
         src/pokemon_special_anim.o(.rodata);
         src/pokemon_special_anim_scene.o(.rodata);
+        } = 0
+
+    . = 0x8459bc0;
+
+    .rodatapartymenu :
+    SUBALIGN(4)
+    {
         src/party_menu.o(.rodata);
         src/union_room_chat.o(.rodata);
         src/union_room_chat_display.o(.rodata);
@@ -560,6 +676,13 @@ SECTIONS {
         src/pokedex_area_markers.o(.rodata);
         src/pokemon_summary_screen.o(.rodata);
         src/help_system_util.o(.rodata);
+    } = 0
+
+    . = 0x84641a8;
+
+    .rodatawildarea :
+    SUBALIGN(4)
+    {
         src/wild_pokemon_area.o(.rodata);
         src/dynamic_placeholder_text_util.o(.rodata);
         src/berry_pouch.o(.rodata);
@@ -596,6 +719,13 @@ SECTIONS {
         src/berry_fix_program.o(.rodata);
         src/keyboard_text.o(.rodata);
         src/trainer_tower_sets.o(.rodata);
+    } =0
+
+    . = 0x8482894;
+
+    rodatamovedescrp :
+    SUBALIGN(4)
+    {
         src/move_descriptions.o(.rodata);
 
         /* These should not be moved to C files */
@@ -1017,6 +1147,23 @@ SECTIONS {
         data/multiboot_berry_glitch_fix.o(.rodata);
         data/multiboot_pokemon_colosseum.o(.rodata);
     } =0
+    . = 0x08800000;
+
+    moved_code :
+    ALIGN(4)
+    {
+                src/field_screen_effect.o(.text);
+    }=0
+
+    modified_code :
+    ALIGN(4)
+    {
+        src/oak_speech.o(.text);
+        src/new_game.o(.text);
+        src/overworld.o(.text);
+
+    } =0
+
 
     . = 0x08D00000;
     gfx_data :
@@ -1024,6 +1171,7 @@ SECTIONS {
     {
         src/graphics.o(.rodata);
     } =0
+
 
     /* DWARF 2 sections */
     .debug_aranges  0 : { *(.debug_aranges) }
