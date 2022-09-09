@@ -108,7 +108,6 @@ void NewGameInitData(void)
 {
     u8 rivalName[PLAYER_NAME_LENGTH + 1];
 
-    StringCopy(gSaveBlock1Ptr->rivalName, gNameChoice_Taylor);
     gDifferentSaveFile = TRUE;
     gSaveBlock2Ptr->encryptionKey = 0;
     ZeroPlayerPartyMons();
@@ -147,6 +146,7 @@ void NewGameInitData(void)
     SetAllRenewableItemFlags();
     WarpToPlayersRoom();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
+    StringCopy(gSaveBlock1Ptr->rivalName, gNameChoice_Taylor);
     StringCopy(gSaveBlock2Ptr->playerName, gNameChoice_Kaz);
     gSaveBlock2Ptr->playerGender = (Random() & 1);
     ResetTrainerTowerResults();

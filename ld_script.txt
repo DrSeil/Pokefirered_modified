@@ -349,7 +349,7 @@ ALIGN(4)
         data/field_effect_scripts.o(script_data);
         data/battle_scripts_2.o(script_data);
         data/battle_ai_scripts.o(script_data);
-        data/mystery_event_script_cmd_table.o(script_data);
+
     } =0
 
     lib_text :
@@ -435,7 +435,7 @@ ALIGN(4)
         src/bg_regs.o(.rodata);
         src/string_util.o(.rodata);
         src/link.o(.rodata);
-        src/main_menu.o(.rodata);
+
     } =0
 
     . = 0x8234708;
@@ -1162,6 +1162,9 @@ ALIGN(4)
         src/berry_powder.o(.text);
         src/minigame_countdown.o(.text);
         src/berry_fix_program.o(.text);
+        data/mystery_event_script_cmd_table.o(script_data);
+        src/main_menu.o(.rodata);
+        
     }=0
 
     modified_code :
