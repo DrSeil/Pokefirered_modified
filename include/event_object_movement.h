@@ -66,7 +66,6 @@ void SetObjectEventDirection(struct ObjectEvent *, u8);
 void RemoveObjectEventByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup);
 u16 GetBoulderRevealFlagByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup);
 void LoadPlayerObjectReflectionPalette(u16, u8);
-void LoadSpecialObjectReflectionPalette(u16, u8);
 void TryMoveObjectEventToMapCoords(u8, u8, u8, s16, s16);
 void PatchObjectPalette(u16, u8);
 void ReloadMapObjectsWithOffset(s16 x, s16 y);
@@ -118,7 +117,6 @@ u8 GetFishingDirectionAnimNum(u8 direction);
 u8 GetFishingNoCatchDirectionAnimNum(u8 a0);
 void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u8 a1);
 u8 sub_805EB44(u8, u8, s16, s16);
-void InitObjectEventPalettes(u8 mode);
 bool8 ObjectEventIsMovementOverridden(struct ObjectEvent *objectEvent);
 u8 ObjectEventCheckHeldMovementStatus(struct ObjectEvent *objectEvent);
 u8 GetWalkNormalMovementAction(u32);
@@ -194,7 +192,6 @@ extern const struct SpriteTemplate * const gFieldEffectObjectTemplatePointers[];
 extern const struct OamData gObjectEventBaseOam_32x32;
 extern const u16 gFieldEffectObjectPic_CutGrass[];
 extern const u16 gFieldEffectPal_CutGrass[];
-extern const u8 gReflectionEffectPaletteMap[];
 u8 GetLedgeJumpDirection(s16 x, s16 y, u8 z);
 u8 sub_8063FDC(u32 direction);
 u8 GetRideWaterCurrentMovementAction(u32 direction);
@@ -216,5 +213,7 @@ u8 GetJumpSpecialWithEffectMovementAction(u32 direction);
 u8 GetFishingBiteDirectionAnimNum(u8 direction);
 void TrySpawnObjectEvents(s16 cameraX, s16 cameraY);
 void ResetObjectEvents(void);
+void LoadObjectEventPalette(u16 paletteTag);
+
 
 #endif // GUARD_EVENT_OBJECT_MOVEMENT_H

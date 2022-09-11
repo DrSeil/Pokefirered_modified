@@ -111,6 +111,15 @@ struct Weather
 
 extern struct Weather *const gWeatherPtr;
 
+enum
+{
+    GAMMA_NONE,
+    GAMMA_NORMAL,
+    GAMMA_ALT,
+};
+
+void UpdatePaletteGammaType(u8 index, u8 gammaType);
+
 void FadeScreen(u8 mode, s8 delay);
 
 void SetSavedWeather(u32);
@@ -134,7 +143,7 @@ void SetCurrentAndNextWeather(u8 weather);
 void Weather_SetBlendCoeffs(u8 eva, u8 evb);
 void Weather_SetTargetBlendCoeffs(u8 eva, u8 evb, int delay);
 bool8 Weather_UpdateBlend(void);
-void LoadCustomWeatherSpritePalette(const u16 *palette);
+void LoadCustomWeatherSpritePalette(const struct SpritePalette *palette);
 void ResetDroughtWeatherPaletteLoading(void);
 bool8 LoadDroughtWeatherPalettes(void);
 void DroughtStateInit(void);
