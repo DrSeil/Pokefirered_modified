@@ -449,7 +449,7 @@ static void Intro_WaitForShinyAnimAndHealthbox(void)
         FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
         CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
         HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
-        gBattlerControllerFuncs[gActiveBattler] = PrintOakText_ForPetesSake;
+        OakOldManBufferExecCompleted();
     }
 }
 
@@ -718,12 +718,20 @@ static void PrintOakText_ForPetesSake(void)
 
 void PrintOakText_InflictingDamageIsKey(void)
 {
-    PrintOakTextWithMainBgDarkened(gText_InflictingDamageIsKey, 1);
+   // PrintOakTextWithMainBgDarkened(gText_InflictingDamageIsKey, 1);
+               if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+                OakOldManBufferExecCompleted();
+            else
+                OpponentBufferExecCompleted();
 }
 
 static void PrintOakText_LoweringStats(void)
 {
-    PrintOakTextWithMainBgDarkened(gText_LoweringStats, 64);
+   // PrintOakTextWithMainBgDarkened(gText_LoweringStats, 64);
+        if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+                OakOldManBufferExecCompleted();
+            else
+                OpponentBufferExecCompleted();
 }
 
 void PrintOakText_OakNoRunningFromATrainer(void)
@@ -733,12 +741,20 @@ void PrintOakText_OakNoRunningFromATrainer(void)
 
 static void PrintOakText_WinEarnsPrizeMoney(void)
 {
-    PrintOakTextWithMainBgDarkened(gText_WinEarnsPrizeMoney, 64);
+//    PrintOakTextWithMainBgDarkened(gText_WinEarnsPrizeMoney, 64);
+            if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+                OakOldManBufferExecCompleted();
+            else
+                OpponentBufferExecCompleted();
 }
 
 void PrintOakText_HowDisappointing(void)
 {
-    PrintOakTextWithMainBgDarkened(gText_HowDissapointing, 64);
+//    PrintOakTextWithMainBgDarkened(gText_HowDissapointing, 64);
+            if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+                OakOldManBufferExecCompleted();
+            else
+                OpponentBufferExecCompleted();
 }
 
 static void PrintOakTextWithMainBgDarkened(const u8 *text, u8 delay)
