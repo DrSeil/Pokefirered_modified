@@ -75,6 +75,37 @@ Route1_Warp::
 	release
 	end
 
+ViridianCity_EventScript_DoRandomTutorialBattle::
+	msgbox ViridianCity_Text_ShowYouHowToCatchMons
+	closemessage
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	random 2
+	copyvar VAR_0x8008, VAR_RESULT
+	special StartOldManTutorialBattle
+	waitstate
+	lock
+	faceplayer
+	call_if_eq VAR_0x8008, 0, ViridianCity_EventScript_Educational
+	call_if_eq VAR_0x8008, 1, ViridanCity_EventScript_HmmmYouGetTheIdea
+	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2
+	giveitem ITEM_TEACHY_TV
+	msgbox ViridianCity_Text_WatchThatToLearnBasics
+	return
+
+ViridianCity_EventScript_Educational::
+	msgbox ViridianCity_Text_ThatWasEducationalTakeThis
+	return
+
+ViridanCity_EventScript_HmmmYouGetTheIdea::
+	msgbox ViridianCity_Text_HmmYouGetTheIdea
+	return
+
+ViridianCity_Text_HmmYouGetTheIdea::
+    .string "Hmmm... Well you get the idea!\n"
+    .string "And here, take this, too.$"
+
+
 EventScript_ReuseRepel::
 	msgbox Text_RepelWoreOffUseAnother, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, EventScript_TryUseRepel

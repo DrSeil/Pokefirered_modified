@@ -102,6 +102,13 @@ BattleScript_OldMan_Pokedude_CaughtMessage::
 	endlinkbattle
 	finishturn
 
+BattleScript_OldMan_Pokedude_MissedMessage::
+	printstring STRINGID_SHOOTSOCLOSE
+	waitmessage B_WAIT_TIME_LONG
+	setbyte gBattleOutcome, B_OUTCOME_CAUGHT
+	endlinkbattle
+	finishturn
+
 BattleScript_ShakeBallThrow::
 	printfromtable gBallEscapeStringIds
 	waitmessage B_WAIT_TIME_LONG

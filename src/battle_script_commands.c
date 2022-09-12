@@ -9484,9 +9484,18 @@ static void Cmd_handleballthrow(void)
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_POKEDUDE | BATTLE_TYPE_OLD_MAN_TUTORIAL))
     {
+        if( gSpecialVar_0x8008)
+        {
+        BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_FAIL);
+        MarkBattlerForControllerExec(gActiveBattler);
+        gBattlescriptCurrInstr = BattleScript_OldMan_Pokedude_MissedMessage;
+
+
+        } else {
         BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_SUCCESS);
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = BattleScript_OldMan_Pokedude_CaughtMessage;
+        }
     }
     else
     {

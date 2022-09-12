@@ -125,7 +125,7 @@ ViridianCity_EventScript_TutorialCompleted::
 	end
 
 ViridianCity_EventScript_TutorialStart::
-	call ViridianCity_EventScript_DoTutorialBattle
+	call ViridianCity_EventScript_DoRandomTutorialBattle
 	release
 	end
 
@@ -210,7 +210,7 @@ ViridianCity_EventScript_TutorialTriggerLeft::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	call ViridianCity_EventScript_DoTutorialBattle
+	call ViridianCity_EventScript_DoRandomTutorialBattle
 	release
 	end
 
@@ -221,7 +221,7 @@ ViridianCity_EventScript_TutorialTriggerRight::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
-	call ViridianCity_EventScript_DoTutorialBattle
+	call ViridianCity_EventScript_DoRandomTutorialBattle
 	release
 	end
 
