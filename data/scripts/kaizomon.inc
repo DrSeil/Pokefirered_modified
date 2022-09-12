@@ -42,6 +42,39 @@ PalletTown_FastStarterScene::
 PalletTown_Text_ChatPicked::
 	.string "Hope chat picked correctly!$"
 
+PalletTown_ReturnPackage::
+	message PalletTown_ProfessorOaksLab_Text_DeliveredOaksParcel
+	waitmessage
+	removeitem ITEM_OAKS_PARCEL
+	message PalletTown_ProfessorOaksLab_Text_ReceivedPokedexFromOak
+	waitmessage
+	setflag FLAG_SYS_POKEDEX_GET
+	special SetUnlockedPokedexFlags
+	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
+	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
+	famechecker FAMECHECKER_OAK, 1
+	closemessage
+	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6
+	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 2
+	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 1
+	setvar VAR_MAP_SCENE_PALLET_TOWN_RIVALS_HOUSE, 1
+	setvar VAR_MAP_SCENE_ROUTE22, 1
+	release
+	end
+
+Route1_EventScript_TryGetPackage::
+	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1
+	giveitem_msg ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk, ITEM_OAKS_PARCEL, 1, MUS_OBTAIN_KEY_ITEM
+	closemessage
+	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 5
+	end
+
+Route1_Warp::
+	warp MAP_ROUTE1, 255, 12, 34
+	waitstate
+	release
+	end
+
 EventScript_ReuseRepel::
 	msgbox Text_RepelWoreOffUseAnother, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, EventScript_TryUseRepel

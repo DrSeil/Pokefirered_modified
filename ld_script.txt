@@ -520,9 +520,7 @@ ALIGN(4)
         src/pokemon_storage_system_graphics.o(.rodata);
         src/pokemon_storage_system_data.o(.rodata);
         src/pokemon_storage_system_misc.o(.rodata);
-        src/pokemon_icon.o(.rodata);
-        src/fldeff_cut.o(.rodata);
-        src/map_name_popup.o(.rodata);
+
 } = 0
 
 . = 0x83d41dc;
@@ -1164,6 +1162,9 @@ ALIGN(4)
         src/bg_regs.o(.rodata);
         src/string_util.o(.rodata);
         src/link.o(.rodata);
+                src/pokemon_icon.o(.rodata);
+        src/fldeff_cut.o(.rodata);
+        src/map_name_popup.o(.rodata);
         
     }=0
 

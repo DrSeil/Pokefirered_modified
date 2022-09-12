@@ -15,18 +15,19 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE1",
+      "direction": "up",
       "offset": 0,
-      "direction": "up"
+      "map": "MAP_ROUTE1"
     },
     {
-      "map": "MAP_ROUTE21_NORTH",
+      "direction": "down",
       "offset": 0,
-      "direction": "down"
+      "map": "MAP_ROUTE21_NORTH"
     }
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "x": 3,
       "y": 10,
@@ -40,6 +41,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "x": 13,
       "y": 17,
@@ -53,6 +55,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
       "x": 10,
       "y": 8,
@@ -116,6 +119,24 @@
       "var": "VAR_TEMP_2",
       "var_value": "1",
       "script": "PalletTown_EventScript_SignLadyTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 0,
+      "elevation": 3,
+      "var": "VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB",
+      "var_value": "5",
+      "script": "PalletTown_ReturnPackage"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 0,
+      "elevation": 3,
+      "var": "VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB",
+      "var_value": "5",
+      "script": "PalletTown_ReturnPackage"
     }
   ],
   "bg_events": [
