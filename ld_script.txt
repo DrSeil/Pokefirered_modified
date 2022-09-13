@@ -449,7 +449,6 @@ ALIGN(4)
     {
         src/battle_main.o(.rodata);
         src/battle_util.o(.rodata);
-        src/battle_script_commands.o(.rodata);
         src/battle_controller_player.o(.rodata);
         src/battle_anim_smokescreen.o(.rodata);
         src/battle_controller_opponent.o(.rodata);
@@ -566,7 +565,6 @@ ALIGN(4)
         src/image_processing_effects.o(.rodata);
         src/battle_ai_script_commands.o(.rodata);
         src/fldeff_flash.o(.rodata);
-        src/field_specials.o(.rodata);
         src/battle_records.o(.rodata);
         src/evolution_scene.o(.rodata);
         src/battle_transition.o(.rodata);
@@ -1174,6 +1172,10 @@ ALIGN(4)
         src/oak_speech.o(.text);
         src/new_game.o(.text);
         src/overworld.o(.text);
+        src/battle_script_commands.o(.rodata);
+        src/field_specials.o(.rodata);
+
+
 
     } =0
 

@@ -1136,7 +1136,7 @@ PalletTown_ProfessorOaksLab_EventScript_ChoseStarter::
 	waitfanfare
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, EventScript_GiveNicknameToStarter
-	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter
+	goto_if_eq VAR_RESULT, NO, EventScript_NameStarterIllegalRun
 	end
 
 EventScript_GiveNicknameToStarter::

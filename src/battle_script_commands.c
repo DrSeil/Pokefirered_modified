@@ -9797,6 +9797,8 @@ void BattleDestroyYesNoCursorAt(void)
 
 static void Cmd_trygivecaughtmonnick(void)
 {
+    const u8 IllegalMon[] = _(
+    "ILLEGALRUN");
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
     case 0:
@@ -9831,12 +9833,20 @@ static void Cmd_trygivecaughtmonnick(void)
             }
             else
             {
+                GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+                StringCopy(gBattleStruct->caughtMonNick, IllegalMon);
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+
                 gBattleCommunication[MULTIUSE_STATE] = 4;
             }
         }
         else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
+            GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+            StringCopy(gBattleStruct->caughtMonNick, IllegalMon);
+            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+
             gBattleCommunication[MULTIUSE_STATE] = 4;
         }
         break;
@@ -9844,6 +9854,8 @@ static void Cmd_trygivecaughtmonnick(void)
         if (!gPaletteFade.active)
         {
             GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+            StringCopy(gBattleStruct->caughtMonNick, IllegalMon);
+
             FreeAllWindowBuffers();
 
             DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gBattleStruct->caughtMonNick,

@@ -62,6 +62,12 @@ PalletTown_ReturnPackage::
 	release
 	end
 
+EventScript_NameStarterIllegalRun::
+	setvar VAR_0x8004, 0
+	special NicknameIllegalRun
+	goto PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter
+	end
+
 Route1_EventScript_TryGetPackage::
 	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1
 	giveitem_msg ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk, ITEM_OAKS_PARCEL, 1, MUS_OBTAIN_KEY_ITEM

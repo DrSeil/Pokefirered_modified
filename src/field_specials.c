@@ -1648,14 +1648,23 @@ static void ChangeBoxPokemonNickname_CB(void)
     CB2_ReturnToFieldContinueScriptPlayMapMusic();
 }
 
+void NicknameIllegalRun(void)
+{
+        const u8 IllegalMon[] = _(
+    "ILLEGALRUN");
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, IllegalMon);
+}
+
 void ChangePokemonNickname(void)
 {
+    const u8 IllegalMon[] = _(
+    "ILLEGALRUN");
     u16 species;
     u8 gender;
     u32 personality;
 
     GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar3);
-    GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar2);
+    StringCopy(gStringVar2,IllegalMon);
     species = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL);
     gender = GetMonGender(&gPlayerParty[gSpecialVar_0x8004]);
     personality = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PERSONALITY, NULL);
