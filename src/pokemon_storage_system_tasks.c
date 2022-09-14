@@ -25,6 +25,7 @@
 #include "constants/items.h"
 #include "constants/help_system.h"
 #include "constants/songs.h"
+#include "random.h"
 
 EWRAM_DATA struct PokemonStorageSystemData *gStorage = NULL;
 static EWRAM_DATA bool8 sInPartyMenu = 0;
@@ -32,6 +33,7 @@ static EWRAM_DATA u8 sCurrentBoxOption = 0;
 static EWRAM_DATA u8 sDepositBoxId = 0;
 static EWRAM_DATA u8 sWhichToReshow = 0;
 static EWRAM_DATA u8 sLastUsedBox = 0;
+static EWRAM_DATA u8 sReleaseText = 0;
 static EWRAM_DATA u16 sMovingItemId = ITEM_NONE;
 
 static void Task_InitPokeStorage(u8 taskId);
@@ -96,6 +98,7 @@ static void SetUpDoShowPartyMenu(void);
 static bool8 DoShowPartyMenu(void);
 static void InitPokeStorageBg0(void);
 static void PrintStorageMessage(u8 textId);
+static void PrintReleaseMessage(u8 textId);
 static void ShowYesNoWindow(s8 cursorPos);
 static void ClearBottomWindow(void);
 static void AddWallpaperSetsMenu(void);
@@ -304,6 +307,174 @@ static const struct StorageMessage sMessages[] = {
     [MSG_ITEM_IS_HELD]         = {gText_ItemIsNowHeld,           MSG_FMT_ITEM_NAME},
     [MSG_CHANGED_TO_ITEM]      = {gText_ChangedToNewItem,        MSG_FMT_ITEM_NAME},
     [MSG_CANT_STORE_MAIL]      = {gText_MailCantBeStored,        MSG_FMT_NONE},
+};
+
+static const struct StorageMessage sReleaseMessages[] = {
+[0] = {gText_Release1, MSG_FMT_RELEASE_MON_3},
+[1] = {gText_Release2, MSG_FMT_RELEASE_MON_3},
+[2] = {gText_Release3, MSG_FMT_RELEASE_MON_3},
+[3] = {gText_Release4, MSG_FMT_RELEASE_MON_3},
+[4] = {gText_Release5, MSG_FMT_RELEASE_MON_3},
+[5] = {gText_Release6, MSG_FMT_RELEASE_MON_3},
+[6] = {gText_Release7, MSG_FMT_RELEASE_MON_3},
+[7] = {gText_Release8, MSG_FMT_RELEASE_MON_3},
+[8] = {gText_Release9, MSG_FMT_RELEASE_MON_3},
+[9] = {gText_Release10, MSG_FMT_RELEASE_MON_3},
+[10] = {gText_Release11, MSG_FMT_RELEASE_MON_3},
+[11] = {gText_Release12, MSG_FMT_RELEASE_MON_3},
+[12] = {gText_Release13, MSG_FMT_RELEASE_MON_3},
+[13] = {gText_Release14, MSG_FMT_RELEASE_MON_3},
+[14] = {gText_Release15, MSG_FMT_RELEASE_MON_3},
+[15] = {gText_Release16, MSG_FMT_RELEASE_MON_3},
+[16] = {gText_Release17, MSG_FMT_RELEASE_MON_3},
+[17] = {gText_Release18, MSG_FMT_RELEASE_MON_3},
+[18] = {gText_Release19, MSG_FMT_RELEASE_MON_3},
+[19] = {gText_Release20, MSG_FMT_RELEASE_MON_3},
+[20] = {gText_Release21, MSG_FMT_RELEASE_MON_3},
+[21] = {gText_Release22, MSG_FMT_RELEASE_MON_3},
+[22] = {gText_Release23, MSG_FMT_RELEASE_MON_3},
+[23] = {gText_Release24, MSG_FMT_RELEASE_MON_3},
+[24] = {gText_Release25, MSG_FMT_RELEASE_MON_3},
+[25] = {gText_Release26, MSG_FMT_RELEASE_MON_3},
+[26] = {gText_Release27, MSG_FMT_RELEASE_MON_3},
+[27] = {gText_Release28, MSG_FMT_RELEASE_MON_3},
+[28] = {gText_Release29, MSG_FMT_RELEASE_MON_3},
+[29] = {gText_Release30, MSG_FMT_RELEASE_MON_3},
+[30] = {gText_Release31, MSG_FMT_RELEASE_MON_3},
+[31] = {gText_Release32, MSG_FMT_RELEASE_MON_3},
+[32] = {gText_Release33, MSG_FMT_RELEASE_MON_3},
+[33] = {gText_Release34, MSG_FMT_RELEASE_MON_3},
+[34] = {gText_Release35, MSG_FMT_RELEASE_MON_3},
+[35] = {gText_Release36, MSG_FMT_RELEASE_MON_3},
+[36] = {gText_Release37, MSG_FMT_RELEASE_MON_3},
+[37] = {gText_Release38, MSG_FMT_RELEASE_MON_3},
+[38] = {gText_Release39, MSG_FMT_RELEASE_MON_3},
+[39] = {gText_Release40, MSG_FMT_RELEASE_MON_3},
+[40] = {gText_Release41, MSG_FMT_RELEASE_MON_3},
+[41] = {gText_Release42, MSG_FMT_RELEASE_MON_3},
+[42] = {gText_Release43, MSG_FMT_RELEASE_MON_3},
+[43] = {gText_Release44, MSG_FMT_RELEASE_MON_3},
+[44] = {gText_Release45, MSG_FMT_RELEASE_MON_3},
+[45] = {gText_Release46, MSG_FMT_RELEASE_MON_3},
+[46] = {gText_Release47, MSG_FMT_RELEASE_MON_3},
+[47] = {gText_Release48, MSG_FMT_RELEASE_MON_3},
+[48] = {gText_Release49, MSG_FMT_RELEASE_MON_3},
+[49] = {gText_Release50, MSG_FMT_RELEASE_MON_3},
+[50] = {gText_Release51, MSG_FMT_RELEASE_MON_3},
+[51] = {gText_Release52, MSG_FMT_RELEASE_MON_3},
+[52] = {gText_Release53, MSG_FMT_RELEASE_MON_3},
+[53] = {gText_Release54, MSG_FMT_RELEASE_MON_3},
+[54] = {gText_Release55, MSG_FMT_RELEASE_MON_3},
+[55] = {gText_Release56, MSG_FMT_RELEASE_MON_3},
+[56] = {gText_Release57, MSG_FMT_RELEASE_MON_3},
+[57] = {gText_Release58, MSG_FMT_RELEASE_MON_3},
+[58] = {gText_Release59, MSG_FMT_RELEASE_MON_3},
+[59] = {gText_Release60, MSG_FMT_RELEASE_MON_3},
+[60] = {gText_Release61, MSG_FMT_RELEASE_MON_3},
+[61] = {gText_Release62, MSG_FMT_RELEASE_MON_3},
+[62] = {gText_Release63, MSG_FMT_RELEASE_MON_3},
+[63] = {gText_Release64, MSG_FMT_RELEASE_MON_3},
+[64] = {gText_Release65, MSG_FMT_RELEASE_MON_3},
+[65] = {gText_Release66, MSG_FMT_RELEASE_MON_3},
+[66] = {gText_Release67, MSG_FMT_RELEASE_MON_3},
+[67] = {gText_Release68, MSG_FMT_RELEASE_MON_3},
+[68] = {gText_Release69, MSG_FMT_RELEASE_MON_3},
+[69] = {gText_Release70, MSG_FMT_RELEASE_MON_3},
+[70] = {gText_Release71, MSG_FMT_RELEASE_MON_3},
+[71] = {gText_Release72, MSG_FMT_RELEASE_MON_3},
+[72] = {gText_Release73, MSG_FMT_RELEASE_MON_3},
+[73] = {gText_Release74, MSG_FMT_RELEASE_MON_3},
+[74] = {gText_Release75, MSG_FMT_RELEASE_MON_3},
+[75] = {gText_Release76, MSG_FMT_RELEASE_MON_3},
+[76] = {gText_Release77, MSG_FMT_RELEASE_MON_3},
+[77] = {gText_Release78, MSG_FMT_RELEASE_MON_3},
+[78] = {gText_Release79, MSG_FMT_RELEASE_MON_3},
+[79] = {gText_Release80, MSG_FMT_RELEASE_MON_3},
+[80] = {gText_Release81, MSG_FMT_RELEASE_MON_3},
+[81] = {gText_Release82, MSG_FMT_RELEASE_MON_3},
+[82] = {gText_Release83, MSG_FMT_RELEASE_MON_3},
+[83] = {gText_Release84, MSG_FMT_RELEASE_MON_3},
+[84] = {gText_Release85, MSG_FMT_RELEASE_MON_3},
+[85] = {gText_Release86, MSG_FMT_RELEASE_MON_3},
+[86] = {gText_Release87, MSG_FMT_RELEASE_MON_3},
+[87] = {gText_Release88, MSG_FMT_RELEASE_MON_3},
+[88] = {gText_Release89, MSG_FMT_RELEASE_MON_3},
+[89] = {gText_Release90, MSG_FMT_RELEASE_MON_3},
+[90] = {gText_Release91, MSG_FMT_RELEASE_MON_3},
+[91] = {gText_Release92, MSG_FMT_RELEASE_MON_3},
+[92] = {gText_Release93, MSG_FMT_RELEASE_MON_3},
+[93] = {gText_Release94, MSG_FMT_RELEASE_MON_3},
+[94] = {gText_Release95, MSG_FMT_RELEASE_MON_3},
+[95] = {gText_Release96, MSG_FMT_RELEASE_MON_3},
+[96] = {gText_Release97, MSG_FMT_RELEASE_MON_3},
+[97] = {gText_Release98, MSG_FMT_RELEASE_MON_3},
+[98] = {gText_Release99, MSG_FMT_RELEASE_MON_3},
+[99] = {gText_Release100, MSG_FMT_RELEASE_MON_3},
+[100] = {gText_Release101, MSG_FMT_RELEASE_MON_3},
+[101] = {gText_Release102, MSG_FMT_RELEASE_MON_3},
+[102] = {gText_Release103, MSG_FMT_RELEASE_MON_3},
+[103] = {gText_Release104, MSG_FMT_RELEASE_MON_3},
+[104] = {gText_Release105, MSG_FMT_RELEASE_MON_3},
+[105] = {gText_Release106, MSG_FMT_RELEASE_MON_3},
+[106] = {gText_Release107, MSG_FMT_RELEASE_MON_3},
+[107] = {gText_Release108, MSG_FMT_RELEASE_MON_3},
+[108] = {gText_Release109, MSG_FMT_RELEASE_MON_3},
+[109] = {gText_Release110, MSG_FMT_RELEASE_MON_3},
+[110] = {gText_Release111, MSG_FMT_RELEASE_MON_3},
+[111] = {gText_Release112, MSG_FMT_RELEASE_MON_3},
+[112] = {gText_Release113, MSG_FMT_RELEASE_MON_3},
+[113] = {gText_Release114, MSG_FMT_RELEASE_MON_3},
+[114] = {gText_Release115, MSG_FMT_RELEASE_MON_3},
+[115] = {gText_Release116, MSG_FMT_RELEASE_MON_3},
+[116] = {gText_Release117, MSG_FMT_RELEASE_MON_3},
+[117] = {gText_Release118, MSG_FMT_RELEASE_MON_3},
+[118] = {gText_Release119, MSG_FMT_RELEASE_MON_3},
+[119] = {gText_Release120, MSG_FMT_RELEASE_MON_3},
+[120] = {gText_Release121, MSG_FMT_RELEASE_MON_3},
+[121] = {gText_Release122, MSG_FMT_RELEASE_MON_3},
+[122] = {gText_Release123, MSG_FMT_RELEASE_MON_3},
+[123] = {gText_Release124, MSG_FMT_RELEASE_MON_3},
+[124] = {gText_Release125, MSG_FMT_RELEASE_MON_3},
+[125] = {gText_Release126, MSG_FMT_RELEASE_MON_3},
+[126] = {gText_Release127, MSG_FMT_RELEASE_MON_3},
+[127] = {gText_Release128, MSG_FMT_RELEASE_MON_3},
+[128] = {gText_Release129, MSG_FMT_RELEASE_MON_3},
+[129] = {gText_Release130, MSG_FMT_RELEASE_MON_3},
+[130] = {gText_Release131, MSG_FMT_RELEASE_MON_3},
+[131] = {gText_Release132, MSG_FMT_RELEASE_MON_3},
+[132] = {gText_Release133, MSG_FMT_RELEASE_MON_3},
+[133] = {gText_Release134, MSG_FMT_RELEASE_MON_3},
+[134] = {gText_Release135, MSG_FMT_RELEASE_MON_3},
+[135] = {gText_Release136, MSG_FMT_RELEASE_MON_3},
+[136] = {gText_Release137, MSG_FMT_RELEASE_MON_3},
+[137] = {gText_Release138, MSG_FMT_RELEASE_MON_3},
+[138] = {gText_Release139, MSG_FMT_RELEASE_MON_3},
+[139] = {gText_Release140, MSG_FMT_RELEASE_MON_3},
+[140] = {gText_Release141, MSG_FMT_RELEASE_MON_3},
+[141] = {gText_Release142, MSG_FMT_RELEASE_MON_3},
+[142] = {gText_Release143, MSG_FMT_RELEASE_MON_3},
+[143] = {gText_Release144, MSG_FMT_RELEASE_MON_3},
+[144] = {gText_Release145, MSG_FMT_RELEASE_MON_3},
+[145] = {gText_Release146, MSG_FMT_RELEASE_MON_3},
+[146] = {gText_Release147, MSG_FMT_RELEASE_MON_3},
+[147] = {gText_Release148, MSG_FMT_RELEASE_MON_3},
+[148] = {gText_Release149, MSG_FMT_RELEASE_MON_3},
+[149] = {gText_Release150, MSG_FMT_RELEASE_MON_3},
+[150] = {gText_Release151, MSG_FMT_RELEASE_MON_3},
+[151] = {gText_Release152, MSG_FMT_RELEASE_MON_3},
+[152] = {gText_Release153, MSG_FMT_RELEASE_MON_3},
+[153] = {gText_Release154, MSG_FMT_RELEASE_MON_3},
+[154] = {gText_Release155, MSG_FMT_RELEASE_MON_3},
+[155] = {gText_Release156, MSG_FMT_RELEASE_MON_3},
+[156] = {gText_Release157, MSG_FMT_RELEASE_MON_3},
+[157] = {gText_Release158, MSG_FMT_RELEASE_MON_3},
+[158] = {gText_Release159, MSG_FMT_RELEASE_MON_3},
+[159] = {gText_Release160, MSG_FMT_RELEASE_MON_3},
+[160] = {gText_Release161, MSG_FMT_RELEASE_MON_3},
+[161] = {gText_Release162, MSG_FMT_RELEASE_MON_3},
+[162] = {gText_Release163, MSG_FMT_RELEASE_MON_3},
+[163] = {gText_Release164, MSG_FMT_RELEASE_MON_3},
+[164] = {gText_Release165, MSG_FMT_RELEASE_MON_3},
 };
 
 static const struct WindowTemplate sYesNoWindowTemplate = {
@@ -1292,7 +1463,7 @@ static void Task_ReleaseMon(u8 taskId)
                 }
                 else if (canReleaseStatus == RELEASE_MON_NOT_ALLOWED)
                 {
-                    gStorage->state = 8; // Can't release the mon.
+                    gStorage->state = 9; // Can't release the mon.
                     break;
                 }
             }
@@ -1301,17 +1472,42 @@ static void Task_ReleaseMon(u8 taskId)
     case 3:
         ReleaseMon();
         RefreshDisplayMonData();
-        PrintStorageMessage(MSG_WAS_RELEASED);
+        sReleaseText = Random()>>10;
+        while (sReleaseText > 55) {
+            sReleaseText = Random()>>10;
+        }
+        sReleaseText *=3;
+        PrintReleaseMessage(sReleaseText);
+        sReleaseText++;
         gStorage->state++;
         break;
     case 4:
+        if(StringLength(sReleaseMessages[sReleaseText].text)==0)
+        {
+            gStorage->state++;
+            break;
+        }
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
-            PrintStorageMessage(MSG_BYE_BYE);
+            PrintReleaseMessage(sReleaseText);
+            sReleaseText++;
             gStorage->state++;
         }
         break;
     case 5:
+        if(StringLength(sReleaseMessages[sReleaseText].text)==0)
+        {
+            gStorage->state++;
+            break;
+        }
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
+        {
+            PrintReleaseMessage(sReleaseText);
+            sReleaseText++;
+            gStorage->state++;
+        }
+        break;
+    case 6:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
@@ -1322,10 +1518,10 @@ static void Task_ReleaseMon(u8 taskId)
                 gStorage->state++;
             }
             else
-                gStorage->state = 7;
+                gStorage->state = 8;
         }
         break;
-    case 6:
+    case 7:
         if (GetNumPartySpritesCompacting() == 0)
         {
             DoTrySetDisplayMonData();
@@ -1334,22 +1530,22 @@ static void Task_ReleaseMon(u8 taskId)
             gStorage->state++;
         }
         break;
-    case 7:
+    case 8:
         SetPokeStorageTask(Task_PokeStorageMain);
         break;
-    case 8:
+    case 9:
         // Start "can't release" sequence
         PrintStorageMessage(MSG_WAS_RELEASED);
         gStorage->state++;
         break;
-    case 9:
+    case 10:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PrintStorageMessage(MSG_SURPRISE);
             gStorage->state++;
         }
         break;
-    case 10:
+    case 11:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
@@ -1357,7 +1553,7 @@ static void Task_ReleaseMon(u8 taskId)
             gStorage->state++;
         }
         break;
-    case 11:
+    case 12:
         if (!ResetReleaseMonSpritePtr())
         {
             TrySetCursorFistAnim();
@@ -1365,14 +1561,14 @@ static void Task_ReleaseMon(u8 taskId)
             gStorage->state++;
         }
         break;
-    case 12:
+    case 13:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PrintStorageMessage(MSG_WORRIED);
             gStorage->state++;
         }
         break;
-    case 13:
+    case 14:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
@@ -2584,6 +2780,48 @@ static void PrintStorageMessage(u8 id)
     }
 
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStorage->actionText, sMessages[id].text);
+    FillWindowPixelBuffer(1, PIXEL_FILL(1));
+    AddTextPrinterParameterized(1, FONT_1, gStorage->actionText, 0, 2, TEXT_SKIP_DRAW, NULL);
+    DrawTextBorderOuter(1, 2, 13);
+    PutWindowTilemap(1);
+    CopyWindowToVram(1, COPYWIN_GFX);
+    ScheduleBgCopyTilemapToVram(0);
+}
+
+static void PrintReleaseMessage(u8 id)
+{
+    u8 *txtPtr;
+
+    DynamicPlaceholderTextUtil_Reset();
+    switch (sReleaseMessages[id].format)
+    {
+    case MSG_FMT_NONE:
+        break;
+    case MSG_FMT_MON_NAME_1:
+    case MSG_FMT_MON_NAME_2:
+    case MSG_FMT_MON_NAME_3:
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStorage->displayMonNickname);
+        break;
+    case MSG_FMT_RELEASE_MON_1:
+    case MSG_FMT_RELEASE_MON_2:
+    case MSG_FMT_RELEASE_MON_3:
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStorage->releaseMonName);
+        break;
+    case MSG_FMT_ITEM_NAME:
+        if (IsActiveItemMoving())
+            txtPtr = StringCopy(gStorage->itemName, GetMovingItemName());
+        else
+            txtPtr = StringCopy(gStorage->itemName, gStorage->displayMonTexts[3]);
+
+        while (*(txtPtr - 1) == CHAR_SPACE)
+            txtPtr--;
+
+        *txtPtr = EOS;
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStorage->itemName);
+        break;
+    }
+
+    DynamicPlaceholderTextUtil_ExpandPlaceholders(gStorage->actionText, sReleaseMessages[id].text);
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     AddTextPrinterParameterized(1, FONT_1, gStorage->actionText, 0, 2, TEXT_SKIP_DRAW, NULL);
     DrawTextBorderOuter(1, 2, 13);
