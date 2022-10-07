@@ -1839,6 +1839,16 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
     u8 text[30];
     u8 multiplayerId;
     s32 i;
+    u8 chad[] = _("Chad");
+    u8 legendary[] = _("Legendary");
+    u8 wife[] = _("Wife");
+    u8 ladypoo[] = _("LADYPOO");
+    u8 powerlifter[] = _("Powerlifter");
+    u8 laser[] = _("LASERBELCH");
+    u8 coach[] = _("Coach");
+    u8 sky[] = _("SKYBILZ");
+    u8 trailblazer[] = _("Trailblazer");
+    u8 pie[] = _("IATEYOURPIE");
 
     multiplayerId = GetMultiplayerId();
 
@@ -2050,8 +2060,18 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     toCpy = gTrainerClassNames[GetTrainerTowerOpponentClass()];
                 else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
                     toCpy = gTrainerClassNames[GetEreaderTrainerClassId()];
-                else
-                    toCpy = gTrainerClassNames[gTrainers[gTrainerBattleOpponent_A].trainerClass];
+                else if (gTrainerBattleOpponent_A == TRAINER_BUG_CATCHER_RICK)
+                    toCpy = legendary;
+                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
+                    toCpy = wife;
+                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
+                    toCpy = powerlifter;
+                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
+                    toCpy = coach;
+                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
+                    toCpy = trailblazer;
+                 else
+                     toCpy = gTrainerClassNames[gTrainers[gTrainerBattleOpponent_A].trainerClass];
                 break;
             case B_TXT_TRAINER1_NAME: // trainer1 name
                 if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
@@ -2084,9 +2104,22 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_EARLY
                      || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_LATE
                      || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
+                     {
                         toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
-                    else
-                        toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;
+                     }
+                    else if (gTrainerBattleOpponent_A == TRAINER_BUG_CATCHER_RICK){
+                        toCpy = chad;
+                    }
+                    else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
+                        toCpy = ladypoo;
+                    else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
+                        toCpy = laser;
+                    else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
+                        toCpy = sky;
+                    else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
+                        toCpy = pie;
+                    else {
+                        toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;}
                 }
                 break;
             case B_TXT_LINK_PLAYER_NAME: // link player name

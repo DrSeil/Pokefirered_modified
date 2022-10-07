@@ -61,29 +61,29 @@ PokemonLeague_AgathasRoom_EventScript_Agatha::
 	end
 
 PokemonLeague_AgathasRoom_EventScript_Intro::
-	msgbox PokemonLeague_AgathasRoom_Text_Intro
+	msgbox kaizo_PokemonLeague_AgathasRoom_Text_Intro
 	return
 
 PokemonLeague_AgathasRoom_EventScript_RematchIntro::
-	msgbox PokemonLeague_AgathasRoom_Text_RematchIntro
+	msgbox kaizo_PokemonLeague_AgathasRoom_Text_RematchIntro
 	return
 
 PokemonLeague_AgathasRoom_EventScript_Battle::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA, PokemonLeague_AgathasRoom_Text_Defeat
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA, kaizo_PokemonLeague_AgathasRoom_Text_Defeat
 	return
 
 PokemonLeague_AgathasRoom_EventScript_Rematch::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA_2, PokemonLeague_AgathasRoom_Text_Defeat
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA_2, kaizo_PokemonLeague_AgathasRoom_Text_Defeat
 	return
 
 PokemonLeague_AgathasRoom_EventScript_PostBattle::
-	msgbox PokemonLeague_AgathasRoom_Text_PostBattle
+	msgbox kaizo_PokemonLeague_AgathasRoom_Text_PostBattle
 	release
 	end
 
 PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha::
 	setflag FLAG_DEFEATED_AGATHA
 	call PokemonLeague_EventScript_OpenDoor
-	msgbox PokemonLeague_AgathasRoom_Text_PostBattle
+	msgbox kaizo_PokemonLeague_AgathasRoom_Text_PostBattle
 	release
 	end

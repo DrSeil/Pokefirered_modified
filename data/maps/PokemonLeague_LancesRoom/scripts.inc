@@ -116,23 +116,23 @@ PokemonLeague_LancesRoom_EventScript_Lance::
 	end
 
 PokemonLeague_LancesRoom_EventScript_Intro::
-	msgbox PokemonLeague_LancesRoom_Text_Intro
+	msgbox kaizo_PokemonLeague_LancesRoom_Text_Intro
 	return
 
 PokemonLeague_LancesRoom_EventScript_RematchIntro::
-	msgbox PokemonLeague_LancesRoom_Text_RematchIntro
+	msgbox kaizo_PokemonLeague_LancesRoom_Text_RematchIntro
 	return
 
 PokemonLeague_LancesRoom_EventScript_Battle::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_LANCE, PokemonLeague_LancesRoom_Text_Defeat
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_LANCE, kaizo_PokemonLeague_LancesRoom_Text_Defeat
 	return
 
 PokemonLeague_LancesRoom_EventScript_Rematch::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_LANCE_2, PokemonLeague_LancesRoom_Text_Defeat
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_LANCE_2, kaizo_PokemonLeague_LancesRoom_Text_Defeat
 	return
 
 PokemonLeague_LancesRoom_EventScript_PostBattle::
-	msgbox PokemonLeague_LancesRoom_Text_PostBattle
+	msgbox kaizo_PokemonLeague_LancesRoom_Text_PostBattle
 	release
 	end
 
@@ -141,7 +141,7 @@ PokemonLeague_LancesRoom_EventScript_DefeatedLance::
 	special Script_TryGainNewFanFromCounter
 	setflag FLAG_DEFEATED_LANCE
 	call PokemonLeague_EventScript_OpenDoorLance
-	msgbox PokemonLeague_LancesRoom_Text_PostBattle
+	msgbox kaizo_PokemonLeague_LancesRoom_Text_PostBattle
 	closemessage
 	release
 	end

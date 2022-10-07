@@ -65,29 +65,29 @@ PokemonLeague_LoreleisRoom_EventScript_Lorelei::
 	end
 
 PokemonLeague_LoreleisRoom_EventScript_Intro::
-	msgbox PokemonLeague_LoreleisRoom_Text_Intro
+	msgbox kaizo_PokemonLeague_LoreleisRoom_Text_Intro
 	return
 
 PokemonLeague_LoreleisRoom_EventScript_RematchIntro::
-	msgbox PokemonLeague_LoreleisRoom_Text_RematchIntro
+	msgbox kaizo_PokemonLeague_LoreleisRoom_Text_RematchIntro
 	return
 
 PokemonLeague_LoreleisRoom_EventScript_Battle::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_LORELEI, PokemonLeague_LoreleisRoom_Text_Defeat
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_LORELEI, kaizo_PokemonLeague_LoreleisRoom_Text_Defeat
 	return
 
 PokemonLeague_LoreleisRoom_EventScript_Rematch::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_LORELEI_2, PokemonLeague_LoreleisRoom_Text_Defeat
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_LORELEI_2, kaizo_PokemonLeague_LoreleisRoom_Text_Defeat
 	return
 
 PokemonLeague_LoreleisRoom_EventScript_PostBattle::
-	msgbox PokemonLeague_LoreleisRoom_Text_PostBattle
+	msgbox kaizo_PokemonLeague_LoreleisRoom_Text_PostBattle
 	release
 	end
 
 PokemonLeague_LoreleisRoom_EventScript_DefeatedLorelei::
 	setflag FLAG_DEFEATED_LORELEI
 	call PokemonLeague_EventScript_OpenDoor
-	msgbox PokemonLeague_LoreleisRoom_Text_PostBattle
+	msgbox kaizo_PokemonLeague_LoreleisRoom_Text_PostBattle
 	release
 	end

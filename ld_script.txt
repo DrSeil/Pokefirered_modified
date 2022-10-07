@@ -439,7 +439,6 @@ ALIGN(4)
     SUBALIGN(4)
     {
         src/data.o(.rodata);
-        src/battle_bg.o(.rodata);
     } = 0
 
     . = 0x824f054 ;
@@ -502,23 +501,7 @@ ALIGN(4)
         src/battle_anim_mons.o(.rodata);
         data/map_events.o(.rodata);
         src/battle_anim_status_effects.o(.rodata);
-        src/title_screen.o(.rodata);
-        src/field_weather.o(.rodata);
-        src/field_weather_util.o(.rodata);
-        src/field_weather_effects.o(.rodata);
-        src/field_screen_effect.o(.rodata);
-        src/battle_setup.o(.rodata);
-        src/cable_club.o(.rodata);
-        src/trainer_see.o(.rodata);
-        src/wild_encounter.o(.rodata);
-        src/field_effect.o(.rodata);
-        src/option_menu.o(.rodata);
-        src/trainer_card.o(.rodata);
-        src/pokemon_storage_system_menu.o(.rodata);
-        src/pokemon_storage_system_tasks.o(.rodata);
-        src/pokemon_storage_system_graphics.o(.rodata);
-        src/pokemon_storage_system_data.o(.rodata);
-        src/pokemon_storage_system_misc.o(.rodata);
+
 
 } = 0
 
@@ -683,14 +666,7 @@ ALIGN(4)
         src/battle_controller_pokedude.o(.rodata);
         src/teachy_tv.o(.rodata);
         src/digit_obj_util.o(.rodata);
-        src/ss_anne.o(.rodata);
-        src/cereader_tool.o(.rodata);
-        src/renewable_hidden_items.o(.rodata);
-        src/trainer_tower.o(.rodata);
-        src/minigame_countdown.o(.rodata);
-        src/berry_fix_program.o(.rodata);
-        src/keyboard_text.o(.rodata);
-        src/trainer_tower_sets.o(.rodata);
+
     } =0
 
     . = 0x8482894;
@@ -1162,6 +1138,33 @@ ALIGN(4)
                 src/pokemon_icon.o(.rodata);
         src/fldeff_cut.o(.rodata);
         src/map_name_popup.o(.rodata);
+                src/title_screen.o(.rodata);
+        src/field_weather.o(.rodata);
+        src/field_weather_util.o(.rodata);
+        src/field_weather_effects.o(.rodata);
+        src/field_screen_effect.o(.rodata);
+        src/battle_setup.o(.rodata);
+        src/cable_club.o(.rodata);
+        src/trainer_see.o(.rodata);
+        src/wild_encounter.o(.rodata);
+        src/field_effect.o(.rodata);
+        src/option_menu.o(.rodata);
+        src/trainer_card.o(.rodata);
+        src/pokemon_storage_system_menu.o(.rodata);
+        src/pokemon_storage_system_tasks.o(.rodata);
+        src/pokemon_storage_system_graphics.o(.rodata);
+        src/pokemon_storage_system_data.o(.rodata);
+        src/pokemon_storage_system_misc.o(.rodata);
+        src/battle_bg.o(.rodata);
+                src/ss_anne.o(.rodata);
+        src/cereader_tool.o(.rodata);
+        src/renewable_hidden_items.o(.rodata);
+        src/trainer_tower.o(.rodata);
+        src/minigame_countdown.o(.rodata);
+        src/berry_fix_program.o(.rodata);
+        src/keyboard_text.o(.rodata);
+        src/trainer_tower_sets.o(.rodata);
+
         
     }=0
 

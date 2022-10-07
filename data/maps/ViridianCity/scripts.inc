@@ -15,11 +15,11 @@ ViridianCity_OnTransition::
 	end
 
 ViridianCity_EventScript_SetOldManNormal::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_1
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_BARB
 	return
 
 ViridianCity_EventScript_SetOldManStandingByRoad::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_1
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_BARB	
 	setobjectxyperm LOCALID_TUTORIAL_MAN, 21, 8
 	setobjectmovementtype LOCALID_TUTORIAL_MAN, MOVEMENT_TYPE_LOOK_AROUND
 	return

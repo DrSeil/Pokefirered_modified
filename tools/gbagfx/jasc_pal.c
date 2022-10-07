@@ -22,7 +22,7 @@
 // Blue  - "0 0 255\r\n"
 // Brown - "150 75 0\r\n"
 
-#define MAX_LINE_LENGTH 11
+#define MAX_LINE_LENGTH 15
 
 void ReadJascPaletteLine(FILE *fp, char *line)
 {
@@ -46,7 +46,11 @@ void ReadJascPaletteLine(FILE *fp, char *line)
         }
 
         if (c == '\n')
-            FATAL_ERROR("LF line endings aren't supported.\n");
+        {
+            line[length] = 0;
+            return;
+           // FATAL_ERROR("LF line endings aren't supported.\n");
+        }
 
         if (c == EOF)
             FATAL_ERROR("Unexpected EOF. No CRLF at end of file.\n");
@@ -132,7 +136,7 @@ void ReadJascPalette(char *path, struct Palette *palette)
             FATAL_ERROR("Failed to parse blue color component.\n");
 
         if (*end != 0)
-            FATAL_ERROR("Garbage after blue color component.\n");
+           // FATAL_ERROR("Garbage after blue color component.\n");
 
         if (red < 0 || red > 255)
             FATAL_ERROR("Red color component (%d) is outside the range [0, 255].\n", red);

@@ -34,18 +34,18 @@ Route25_SeaCottage_EventScript_Bill::
 	end
 
 Route25_SeaCottage_EventScript_BillAskForHelpMale::
-	msgbox Route25_SeaCottage_Text_ImBillHelpMeOutPal, MSGBOX_YESNO
+	msgbox kaizo_Route25_SeaCottage_Text_ImBillHelpMeOutPal, MSGBOX_YESNO
 	goto Route25_SeaCottage_EventScript_BillAskForHelp
 	end
 
 Route25_SeaCottage_EventScript_BillAskForHelpFemale::
-	msgbox Route25_SeaCottage_Text_ImBillHelpMeOutLady, MSGBOX_YESNO
+	msgbox kaizo_Route25_SeaCottage_Text_ImBillHelpMeOutLady, MSGBOX_YESNO
 	goto Route25_SeaCottage_EventScript_BillAskForHelp
 	end
 
 Route25_SeaCottage_EventScript_BillAskForHelp::
 	call_if_eq VAR_RESULT, NO, Route25_SeaCottage_EventScript_DeclineHelpBill
-	msgbox Route25_SeaCottage_Text_RunCellSeparationOnPC
+	msgbox kaizo_Route25_SeaCottage_Text_RunCellSeparationOnPC
 	closemessage
 	delay 10
 	call_if_eq VAR_FACING, DIR_SOUTH, Route25_SeaCottage_EventScript_BillWalkToTeleporterSouth
@@ -72,11 +72,11 @@ Route25_SeaCottage_EventScript_DeclineHelpBill::
 	return
 
 Route25_SeaCottage_EventScript_DeclineHelpBillMale::
-	msgbox Route25_SeaCottage_Text_NoPleaseChief
+	msgbox kaizo_Route25_SeaCottage_Text_NoPleaseChief
 	return
 
 Route25_SeaCottage_EventScript_DeclineHelpBillFemale::
-	msgbox Route25_SeaCottage_Text_NoPleaseBeautiful
+	msgbox kaizo_Route25_SeaCottage_Text_NoPleaseBeautiful
 	return
 
 Route25_SeaCottage_EventScript_BillWalkToTeleporterSouth::
@@ -90,7 +90,7 @@ Route25_SeaCottage_EventScript_BillWalkToTeleporter::
 	return
 
 Route25_SeaCottage_EventScript_BillGoToSSAnne::
-	msgbox Route25_SeaCottage_Text_SSAnnePartyYouGoInstead
+	msgbox kaizo_Route25_SeaCottage_Text_SSAnnePartyYouGoInstead
 	release
 	end
 
@@ -101,7 +101,7 @@ Route25_SeaCottage_EventScript_BillGiveSSTicket::
 	call_if_eq VAR_RESULT, FEMALE, Route25_SeaCottage_EventScript_BillThanksFemale
 	checkitemspace ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, FALSE, Route25_SeaCottage_EventScript_NoRoomForSSTicket
-	giveitem_msg Route25_SeaCottage_Text_ReceivedSSTicketFromBill, ITEM_SS_TICKET, 1, MUS_OBTAIN_KEY_ITEM
+	giveitem_msg kaizo_Route25_SeaCottage_Text_ReceivedSSTicketFromBill, ITEM_SS_TICKET, 1, MUS_OBTAIN_KEY_ITEM
 	setflag FLAG_GOT_SS_TICKET_DUP
 	setflag FLAG_HIDE_NUGGET_BRIDGE_ROCKET
 	setflag FLAG_GOT_SS_TICKET
@@ -110,20 +110,20 @@ Route25_SeaCottage_EventScript_BillGiveSSTicket::
 	end
 
 Route25_SeaCottage_EventScript_BillThanksMale::
-	msgbox Route25_SeaCottage_Text_ThanksBudTakeThis
+	msgbox kaizo_Route25_SeaCottage_Text_ThanksBudTakeThis
 	return
 
 Route25_SeaCottage_EventScript_BillThanksFemale::
-	msgbox Route25_SeaCottage_Text_ThanksLadyTakeThis
+	msgbox kaizo_Route25_SeaCottage_Text_ThanksLadyTakeThis
 	return
 
 Route25_SeaCottage_EventScript_NoRoomForSSTicket::
-	msgbox Route25_SeaCottage_Text_YouveGotTooMuchStuff
+	msgbox kaizo_Route25_SeaCottage_Text_YouveGotTooMuchStuff
 	release
 	end
 
 Route25_SeaCottage_EventScript_BillGoLookAtPC::
-	msgbox Route25_SeaCottage_Text_CheckOutRareMonsOnPC
+	msgbox kaizo_Route25_SeaCottage_Text_CheckOutRareMonsOnPC
 	release
 	end
 
@@ -148,13 +148,13 @@ Route25_SeaCottage_EventScript_Computer::
 	lockall
 	goto_if_set RETURN_AFTER_SS_TICKET, Route25_SeaCottage_EventScript_OpenBillsMonList
 	goto_if_set BILL_IN_TELEPORTER, Route25_SeaCottage_EventScript_RunCellSeparator
-	msgbox Route25_SeaCottage_Text_TeleporterIsDisplayed
+	msgbox kaizo_Route25_SeaCottage_Text_TeleporterIsDisplayed
 	releaseall
 	end
 
 Route25_SeaCottage_EventScript_RunCellSeparator::
 	fadeoutbgm 0
-	msgbox Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator
+	msgbox kaizo_Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator
 	closemessage
 	clearflag BILL_IN_TELEPORTER
 	setflag FLAG_HELPED_BILL_IN_SEA_COTTAGE
@@ -228,12 +228,12 @@ Route25_SeaCottage_Movement_CameraPanBackFromTeleporters::
 	step_end
 
 Route25_SeaCottage_EventScript_OpenBillsMonList::
-	msgbox Route25_SeaCottage_Text_BillsFavoriteMonList
+	msgbox kaizo_Route25_SeaCottage_Text_BillsFavoriteMonList
 	goto Route25_SeaCottage_EventScript_BillsMonList
 	end
 
 Route25_SeaCottage_EventScript_BillsMonList::
-	message Route25_SeaCottage_Text_SeeWhichMon
+	message kaizo_Route25_SeaCottage_Text_SeeWhichMon
 	waitmessage
 	multichoice 0, 0, MULTICHOICE_EEVEELUTIONS, FALSE
 	switch VAR_RESULT

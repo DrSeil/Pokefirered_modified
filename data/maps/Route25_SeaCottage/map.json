@@ -29,7 +29,7 @@
       "flag": "FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
+      "graphics_id": "OBJ_EVENT_GFX_BILL_MARIO",
       "x": 10,
       "y": 6,
       "elevation": 3,

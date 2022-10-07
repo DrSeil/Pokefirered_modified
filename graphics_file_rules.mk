@@ -506,7 +506,7 @@ $(ITEMPCGFXDIR)/unk_8E85090.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 82
 
 $(TITLESCREENGFXDIR)/firered/box_art_mon.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -num_tiles 135
+	$(GFX) $< $@
 
 $(TITLESCREENGFXDIR)/leafgreen/box_art_mon.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 123
@@ -655,7 +655,7 @@ $(MAPPREVIEWGFXDIR)/victory_road/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 375
 
 $(MAPPREVIEWGFXDIR)/viridian_forest/tiles.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -num_tiles 389
+	$(GFX) $< $@ 
 
 $(NAMINGGFXDIR)/cursor.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 5

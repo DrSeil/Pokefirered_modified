@@ -305,4 +305,11 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DEOXYS_A]                 = &gObjectEventGraphicsInfo_DeoxysA,
     [OBJ_EVENT_GFX_DEOXYS_N]                 = &gObjectEventGraphicsInfo_DeoxysN,
     [OBJ_EVENT_GFX_SS_ANNE]                  = &gObjectEventGraphicsInfo_SSAnne,
+    [OBJ_EVENT_GFX_OLD_MAN_BARB]                = &gObjectEventGraphicsInfo_OldManBarb,
+    [OBJ_EVENT_GFX_BILL_MARIO]               = &gObjectEventGraphicsInfo_BillMario,
+    [OBJ_EVENT_GFX_OAK_SWIM]                 = &gObjectEventGraphicsInfo_OakSwim,
+    [OBJ_EVENT_GFX_OAK_FANCY]                = &gObjectEventGraphicsInfo_OakFancy,
+    [OBJ_EVENT_GFX_MOM_SWIM]                 = &gObjectEventGraphicsInfo_MomSwim,
+    [OBJ_EVENT_GFX_MOM_FANCY]                = &gObjectEventGraphicsInfo_MomFancy
+
 };

@@ -3343,9 +3343,10 @@ static u8 CreateFlyBirdSprite(void)
 {
     u8 spriteId;
     struct Sprite *sprite;
-    spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 255, 180, 1);
+    LoadFieldEffectPalette(FLDEFFOBJ_BIRD);
+
+    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 255, 180, 1);
     sprite = &gSprites[spriteId];
-    sprite->oam.paletteNum = 0;
     sprite->oam.priority = 1;
     sprite->callback = SpriteCB_FlyBirdLeaveBall;
     return spriteId;
@@ -3422,7 +3423,7 @@ static void SpriteCB_FlyBirdLeaveBall(struct Sprite *sprite)
         sprite->x2 = Cos(sprite->data[1], 120);
         sprite->y2 = Sin(sprite->data[1], 120);
         if (sprite->data[2] < 2048)
-            sprite->data[2] += 96;
+            sprite->data[2] += 4;
         if (sprite->data[1] > 129)
         {
             sprite->sAnimCompleted++;

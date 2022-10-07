@@ -449,6 +449,22 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_RS_GROUDON                  0x1119
 #define OBJ_EVENT_PAL_TAG_RS_GROUDON_REFLECTION       0x111A
 #define OBJ_EVENT_PAL_TAG_RS_SUBMARINE_SHADOW         0x111B
+#define OBJ_EVENT_PAL_TAG_RED_NORMAL                  0x111C
+#define OBJ_EVENT_PAL_TAG_RIVAL                       0x111D
+#define OBJ_EVENT_PAL_TAG_NURSE                       0x111E
+#define OBJ_EVENT_PAL_TAG_OLDMAN                      0x111F
+#define OBJ_EVENT_PAL_TAG_OLDMAN_LYING                0x1120
+#define OBJ_EVENT_PAL_TAG_LADYPOO                     0x1121
+#define OBJ_EVENT_PAL_TAG_LASER                       0x1122
+#define OBJ_EVENT_PAL_TAG_SKY                         0x1123
+#define OBJ_EVENT_PAL_TAG_PIE                         0x1124
+#define OBJ_EVENT_PAL_TAG_SURF                        0x1125
+#define OBJ_EVENT_PAL_TAG_BIRD                        0x1126
+#define OBJ_EVENT_PAL_TAG_BILL_MARIO                  0x1127
+#define OBJ_EVENT_PAL_TAG_OAK_FANCY                  0x1128
+#define OBJ_EVENT_PAL_TAG_OAK_SWIM                  0x1129
+#define OBJ_EVENT_PAL_TAG_MOM_FANCY                  0x112A
+#define OBJ_EVENT_PAL_TAG_MOM_SWIM                  0x112B
 #define OBJ_EVENT_PAL_TAG_NONE                        0x11FF
 
 // Dynamic Overworld Palettes
@@ -512,11 +528,28 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_BridgeReflection,        OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION},
     {gObjectEventPal_RSQuintyPlump,           OBJ_EVENT_PAL_TAG_RS_QUINTY_PLUMP},
     {gObjectEventPal_RSQuintyPlumpReflection, OBJ_EVENT_PAL_TAG_RS_QUINTY_PLUMP_REFLECTION},
-    {gObjectEventPal_Player,                  OBJ_EVENT_PAL_TAG_PLAYER_GREEN},
+    {gObjectEventPal_GreenNormal,             OBJ_EVENT_PAL_TAG_PLAYER_GREEN},
     {gObjectEventPal_PlayerReflection,        OBJ_EVENT_PAL_TAG_PLAYER_GREEN_REFLECTION},
     {gObjectEventPal_Meteorite,               OBJ_EVENT_PAL_TAG_METEORITE},
     {gObjectEventPal_SSAnne,                  OBJ_EVENT_PAL_TAG_SS_ANNE},
     {gObjectEventPal_Seagallop,               OBJ_EVENT_PAL_TAG_SEAGALLOP},
+    {gObjectEventPal_RedNormal,               OBJ_EVENT_PAL_TAG_RED_NORMAL},
+    {gObjectEventPal_Rival,                   OBJ_EVENT_PAL_TAG_RIVAL},
+    {gObjectEventPal_Nurse,                   OBJ_EVENT_PAL_TAG_NURSE},
+    {gObjectEventPal_OldManLying,             OBJ_EVENT_PAL_TAG_OLDMAN_LYING},
+    {gObjectEventPal_OldMan,                  OBJ_EVENT_PAL_TAG_OLDMAN},
+    {gObjectEventPal_E4LadyPoo,               OBJ_EVENT_PAL_TAG_LADYPOO},
+    {gObjectEventPal_E4Sky,                   OBJ_EVENT_PAL_TAG_SKY},
+    {gObjectEventPal_E4Laser,                 OBJ_EVENT_PAL_TAG_LASER},
+    {gObjectEventPal_E4Pie,                   OBJ_EVENT_PAL_TAG_PIE},
+    {gObjectEventPal_Surf,                    OBJ_EVENT_PAL_TAG_SURF},
+    {gObjectEventPal_Bird,                     OBJ_EVENT_PAL_TAG_BIRD},
+    {gObjectEventPal_BillMario,                     OBJ_EVENT_PAL_TAG_BILL_MARIO},
+    {gObjectEventPal_OakFancy,                    OBJ_EVENT_PAL_TAG_OAK_FANCY},
+    {gObjectEventPal_OakSwim,                     OBJ_EVENT_PAL_TAG_OAK_SWIM},
+    {gObjectEventPal_MomFancy,                    OBJ_EVENT_PAL_TAG_MOM_FANCY},
+    {gObjectEventPal_MomSwim,                     OBJ_EVENT_PAL_TAG_MOM_SWIM},
+
     {},
 };
 
