@@ -237,7 +237,8 @@
     "BirthIsland_Exterior",
     "OneIsland_KindleRoad_EmberSpa",
     "BirthIsland_Harbor",
-    "NavelRock_Harbor"
+    "NavelRock_Harbor",
+    "Mausoleum"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PalletTown",

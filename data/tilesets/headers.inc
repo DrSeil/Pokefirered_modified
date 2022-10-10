@@ -747,3 +747,14 @@ gTileset_HallOfFame::
 	.4byte 0x0
 	.4byte gMetatileAttributes_HallOfFame
 
+
+	.align 2
+gTileset_mausoleum::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_mausoleum
+	.4byte gTilesetPalettes_mausoleum
+	.4byte gMetatiles_mausoleum
+	.4byte NULL
+	.4byte gMetatileAttributes_mausoleum

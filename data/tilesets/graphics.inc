@@ -1469,3 +1469,23 @@ gTilesetPalettes_HallOfFame::
 	.incbin "data/tilesets/secondary/hall_of_fame/palettes/13.gbapal"
 	.incbin "data/tilesets/secondary/hall_of_fame/palettes/14.gbapal"
 	.incbin "data/tilesets/secondary/hall_of_fame/palettes/15.gbapal"
+
+	.align 2
+gTilesetPalettes_mausoleum::
+	.incbin "data/tilesets/secondary/mausoleum/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/mausoleum/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_mausoleum::
+	.incbin "data/tilesets/secondary/mausoleum/tiles.4bpp.lz"

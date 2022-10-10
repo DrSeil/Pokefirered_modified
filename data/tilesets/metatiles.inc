@@ -541,3 +541,11 @@ gMetatiles_HallOfFame::
 	.align 1
 gMetatileAttributes_HallOfFame::
 	.incbin "data/tilesets/secondary/hall_of_fame/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_mausoleum::
+	.incbin "data/tilesets/secondary/mausoleum/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_mausoleum::
+	.incbin "data/tilesets/secondary/mausoleum/metatile_attributes.bin"

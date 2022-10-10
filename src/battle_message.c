@@ -1849,6 +1849,8 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
     u8 sky[] = _("SKYBILZ");
     u8 trailblazer[] = _("Trailblazer");
     u8 pie[] = _("IATEYOURPIE");
+    u8 streamer[] = _("Streamer");
+
 
     multiplayerId = GetMultiplayerId();
 
@@ -2070,6 +2072,8 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     toCpy = coach;
                 else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
                     toCpy = trailblazer;
+                else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
+                    toCpy = streamer;
                  else
                      toCpy = gTrainerClassNames[gTrainers[gTrainerBattleOpponent_A].trainerClass];
                 break;

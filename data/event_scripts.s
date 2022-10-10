@@ -1359,3 +1359,6 @@ Text_TestMsg::
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/pokedude.inc"
     .include "data/scripts/kaizomon.inc"
+
+	.include "data/maps/Mausoleum/scripts.inc"
+	.include "data/maps/Mausoleum/text.inc"

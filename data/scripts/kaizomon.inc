@@ -1,5 +1,49 @@
 .equ LOCALID_MOM, 1
 
+
+kaizo_quickwarp1::
+    warp MAP_CELADON_CITY_GAME_CORNER, 255, 10, 8
+	waitstate
+	release
+	end
+	
+kaizo_quickwarp2::
+    warp MAP_SSANNE_B1F_ROOM5, 255, 4, 5
+	waitstate
+	release
+	end
+
+kaizo_quickwarp3::
+    warp MAP_ROUTE20, 255, 73, 3
+	waitstate
+	release
+	end
+
+kaizo_quickwarp4::
+    warp MAP_POKEMON_LEAGUE_AGATHAS_ROOM, 255, 5, 11
+	waitstate
+	release
+	end
+
+kaizo_quickwarp5::
+    warp MAP_POKEMON_LEAGUE_LANCES_ROOM, 255, 22, 12
+	waitstate
+	release
+	end
+
+kaizo_quickwarp6::
+    warp MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM, 255, 5, 11
+	waitstate
+	release
+	end
+
+kaizo_quickwarp7::
+    warp MAP_POKEMON_LEAGUE_HALL_OF_FAME, 0
+	waitstate
+	release
+	end
+
+
 PalletTown_MomToOak::
 	lock
 	faceplayer
@@ -70,8 +114,6 @@ EventScript_NameStarterIllegalRun::
 
 Route1_EventScript_TryGetPackage::
 	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1
-	giveitem_msg Route16_House_Text_ReceivedHM02FromGirl, ITEM_HM02
-
 	giveitem_msg ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk, ITEM_OAKS_PARCEL, 1, MUS_OBTAIN_KEY_ITEM
 	closemessage
 	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 5
@@ -167,12 +209,13 @@ Text_UsedMaxRepel::
 
 kaizo_PokemonLeague_LoreleisRoom_Text_Intro::
     .string "Welcome to the IRONMON LEAGUE.\p"
-    .string "As you know, I am LADYPOO, your wife.\p"
+    .string "As you know, I am LADYPOO,\n"
+    .string "your wife.\p"
     .string "No one can best me when it comes\n"
     .string "to IRONMON battles!\p"
     .string "I've been practicing.\p"
-    .string "You've received enough healing snacks,\n"
-    .string "now taste DEFEAT!\p"
+    .string "You've received enough healing\n"
+    .string "snacks, now taste DEFEAT!\p"
     .string "Hahaha!\n"
     .string "Are you ready?{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
 
@@ -241,7 +284,8 @@ kaizo_PokemonLeague_AgathasRoom_Text_Intro::
     .string "Then decided to do it again…\n"
     .string "for FUN!\p"
     .string "What hope of victory do you have?\n"
-    .string "Let's get you back to the lab already\p"
+    .string "Let's get you back to the\l"
+    .string "lab already\p"
     .string "{PLAYER}! Repping Oxygen Esports,\n"
     .string "let's get this over with!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
 
@@ -269,14 +313,15 @@ kaizo_PokemonLeague_AgathasRoom_Text_PostBattle::
     .string "But you've got more\n"
     .string "battles ahead.\p"
     .string "If you don't have any cute otter\n"
-    .string "or raccoon videos, get outta my sight!$"
+    .string "or raccoon videos, get outta\l" 
+    .string "my sight!$"
 
 kaizo_PokemonLeague_LancesRoom_Text_Intro::
     .string "Ah! Another one, huh? Your name is…\n"
     .string "{PLAYER}?\p"
     .string "I lead the ELITE FOUR.\p"
-    .string "But more importantly, I'm the reason you're here\n"
-    .string "TRAINER.\p"
+    .string "But more importantly, I'm the reason\n"
+    .string "you're here TRAINER.\p"
     .string "I am IATEYOURPIE, creator of\n"
     .string "the IRONMON CHALLENGE!\p"
     .string "It's hard to beat,\n"
@@ -291,8 +336,8 @@ kaizo_PokemonLeague_LancesRoom_Text_RematchIntro::
     .string "Ah! Back again, huh\n"
     .string "{PLAYER}?\p"
     .string "I lead the ELITE FOUR.\p"
-    .string "But more importantly, I'm the reason you're here\n"
-    .string "TRAINER.\p"
+    .string "But more importantly, I'm the reason\n"
+    .string "you're here TRAINER.\p"
     .string "I am IATEYOURPIE, creator of\n"
     .string "the IRONMON CHALLENGE!\p"
     .string "It's hard to beat,\n"
@@ -331,9 +376,10 @@ kaizo_PokemonLeague_ChampionsRoom_Text_Intro::
     .string "me sharp.\p"
     .string "While building up my TWITCH, I\n"
     .string "looked all over for RIVALS.\p"
-    .string "Since you're the only one who responded,\n"
-    .string "that means it was meant to be you!\p"
-    .string "And now that\p"
+    .string "Since you're the only one who \n"
+    .string "responded, that means it was meant\l"
+    .string "to be you!\p"
+    .string "And now that\n"
     .string "I'm the IRONMON CHAMPION!\p"
     .string "{PLAYER}!\n"
     .string "Do you know what that means?\p"
@@ -351,7 +397,7 @@ kaizo_PokemonLeague_ChampionsRoom_Text_RematchIntro::
     .string "looked all over for RIVALS.\p"
     .string "Since you're the only one who responded,\n"
     .string "that means it was meant to be you!\p"
-    .string "And now that\p"
+    .string "And now that\n"
     .string "I'm the IRONMON CHAMPION!\p"
     .string "{PLAYER}!\n"
     .string "Do you know what that means?\p"
@@ -395,9 +441,10 @@ kaizo_PokemonLeague_ChampionsRoom_Text_OakCongratulations::
     .string "OAK: So, you've won!\n"
     .string "Sincerely, congratulations!\p"
     .string "You're the new IRONMON CHAMPION!\n"
-    .string "Honestly, I didn't think it was possible.\p"
-    .string "You've grown up so much since you first\n"
-    .string "left the LAB with {STR_VAR_1} at the start\l"
+    .string "Honestly, I didn't think it was\p"
+    .string "possible. You've grown up so much \n"
+    .string "since you first left the LAB with \l"
+	.string "{STR_VAR_1} at the start\l"
     .string "of this IRONMON CHALLENGE seed.\p"
     .string "{PLAYER}, you have really done it!$"
 
@@ -444,8 +491,8 @@ kaizo_Route25_SeaCottage_Text_ImBillHelpMeOutPal::
     .string "Boom! Big reveal: I'm a MARIO.\p"
     .string "What do you think about that?\n"
     .string "I turned myself into a MARIO!\p"
-    .string "W-what are you just staring at me for?\n"
-    .string "I turned myself into a MARIO!\p"
+    .string "W-what are you just staring at me\n"
+    .string "for? I turned myself into a MARIO!\p"
     .string "I'm MARIO BILL!\p"
     .string "This reference is tired and I think\n"
     .string "I'm actually over it…\p"
@@ -457,8 +504,8 @@ kaizo_Route25_SeaCottage_Text_ImBillHelpMeOutLady::
     .string "Boom! Big reveal: I'm a MARIO.\p"
     .string "What do you think about that?\n"
     .string "I turned myself into a MARIO!\p"
-    .string "W-what are you just staring at me for?\n"
-    .string "I turned myself into a MARIO!\p"
+    .string "W-what are you just staring at me\n"
+    .string "for? I turned myself into a MARIO!\p"
     .string "I'm MARIO BILL!\p"
     .string "This reference is tired and I think\n"
     .string "I'm actually over it…\p"
@@ -534,12 +581,12 @@ kaizo_Route25_SeaCottage_Text_CheckOutRareMonsOnPC::
     .string "Go on, check out my PC.$"
 
 kaizo_Route25_SeaCottage_Text_TeleporterIsDisplayed::
-    .string "MARIO UN-MAKER is displayed on the PC\n"
-    .string "monitor.$"
+    .string "MARIO UN-MAKER is displayed on \n"
+    .string "the PC monitor.$"
 
 kaizo_Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator::
-    .string "{PLAYER} initiated the MARIO UN-MAKER's\n"
-    .string "No Mo' Bros Protocol.$"
+    .string "{PLAYER} initiated the MARIO\n"
+    .string "UN-MAKER's No Mo' Bros Protocol.$"
 
 kaizo_Route25_SeaCottage_Text_BillsFavoriteMonList::
     .string "BILL's favorite POKéMON list!$"
@@ -568,3 +615,451 @@ kaizo_Text_RestoredPkmnToFullHealth::
     .string "We've restored you both to\l"
     .string "full nourishment.$"
 
+kaizo_oak_house::
+    lock
+    msgbox kaizo_oak_house_text, MSGBOX_NPC
+    release
+    end
+
+kaizo_oak_house_text::
+    .string "Oak: Is there a second bed,\n"
+	.string "around here somewhere?$"
+
+kaizo_game_corner_date_oak::
+	lock
+	faceplayer
+	msgbox kaizo_game_corner_oak_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_ss_anne_date_oak::
+	lock
+	faceplayer
+	msgbox kaizo_ss_anne_oak_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_swim_date_oak::
+	lock
+	faceplayer
+	msgbox kaizo_swim_oak_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_game_corner_date_mom::
+	lock
+	faceplayer
+	msgbox kaizo_game_corner_mom_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_ss_anne_date_mom::
+	lock
+	faceplayer
+	msgbox kaizo_ss_anne_mom_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_swim_date_mom::
+	lock
+	faceplayer
+	msgbox kaizo_swim_mom_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_game_corner_oak_text::
+	.string "Oak: Your mom is a natural,\n"
+	.string "{PLAYER}! She's got a keen eye\l"
+	.string "and excellent grip!$"
+
+kaizo_ss_anne_oak_text::
+	.string "Oak: What a pleasant surprise,\n"
+	.string "{PLAYER}! Doesn't your mother just\l"
+	.string "look gorgeous in that dress? I'm\l"
+	.string "fortunate to have such great company\l"
+	.string "for a few days at sea!$"
+
+kaizo_swim_oak_text::
+	.string "Oak: She's an incredible woman,\n"
+	.string "{PLAYER}. We're going to go\l"
+	.string "snorkeling later and she's going\l"
+	.string "to show me the Cloyster!\l"
+	.string "See ya at home, kiddo.$"
+
+kaizo_game_corner_mom_text::
+    .string "Mom: Oh hi, sweetheart! It's been a\n"
+	.string "while since I've seen you!\p"
+	.string "Prof. Oak was showing me how to\n"
+	.string "play the slots!$"
+
+kaizo_ss_anne_mom_text::
+    .string "Mom: Hello dear! How did you get a\n"
+	.string "ticket? I've never been on a cruise\l"
+	.string "before but Samuel-I mean, Prof. Oak\l"
+	.string "happened to have two tickets so he\l"
+	.string "invited me to join him!$"
+
+kaizo_swim_mom_text::
+	.string "Mom: Wow it is just beautiful here!\n"
+	.string "I hope you're having a great time on\l"
+	.string "your journey, dear. But Samuel has\l"
+	.string "been taking great care of me\l"
+	.string "while you're away!$"
+
+kaizo_racing_sim::
+	msgbox kaizo_racing_sim_text, MSGBOX_SIGN
+	end
+
+kaizo_racing_sim_text::
+	.string "A Racing Rig. Upgrading is\n"
+	.string "always intimidating,\p"
+	.string "but it's really really fun!$"
+
+Kaizo_MAUSO1::
+	msgbox Kaizo_MAUSO1_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO2::
+	msgbox Kaizo_MAUSO2_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO3::
+	msgbox Kaizo_MAUSO3_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO4::
+	msgbox Kaizo_MAUSO4_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO5::
+	msgbox Kaizo_MAUSO5_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO6::
+	msgbox Kaizo_MAUSO6_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO7::
+	msgbox Kaizo_MAUSO7_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO8::
+	msgbox Kaizo_MAUSO8_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO9::
+	msgbox Kaizo_MAUSO9_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO10::
+	msgbox Kaizo_MAUSO10_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO11::
+	msgbox Kaizo_MAUSO11_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO12::
+	msgbox Kaizo_MAUSO12_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO13::
+	msgbox Kaizo_MAUSO13_Text_0
+    closemessage
+	return
+
+
+Kaizo_MAUSO14::
+	msgbox Kaizo_MAUSO14_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO15::
+	msgbox Kaizo_MAUSO15_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO16::
+	msgbox Kaizo_MAUSO16_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO17::
+	msgbox Kaizo_MAUSO17_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO18::
+	msgbox Kaizo_MAUSO18_Text_0
+	closemessage
+    return
+
+
+
+Kaizo_MAUSO19::
+	msgbox Kaizo_MAUSO19_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO20::
+	msgbox Kaizo_MAUSO20_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO21::
+	msgbox Kaizo_MAUSO21_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO22::
+	msgbox Kaizo_MAUSO22_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO23::
+	msgbox Kaizo_MAUSO23_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO24::
+	msgbox Kaizo_MAUSO24_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO25::
+	msgbox Kaizo_MAUSO25_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO26::
+	msgbox Kaizo_MAUSO26_Text_0
+	closemessage
+    return
+
+
+Kaizo_MAUSO1_Text_0:
+	.string "Here lies BUTTMOUTH\n"
+	.string "Omastar - Lvl 26\p"
+	.string "Badly poisoned by a Foe's Ho-Oh on\n"
+	.string "Route 3.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO2_Text_0:
+	.string "In memory of POO\n"
+	.string "Snorlax (born Chansey) - Lvl 50\p"
+	.string "A Foe's Dragonite self destructed\n"
+	.string "in the Rock Tunnel.\l"
+	.string "3 Gym Badges$"
+
+Kaizo_MAUSO3_Text_0:
+	.string "Here lies HOPE JR\n"
+	.string "Lapras - Lvl 43\p"
+	.string "Succumbed to poisoning aboard the\n"
+	.string "S.S. Anne.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO4_Text_0:
+	.string "Here lies KOOKOCACHO\n"
+	.string "Walrein - Lvl 59\p"
+	.string "Botched a Hi Jump Kick in the\n"
+	.string "Pokémon Tower.\l"
+	.string "3 Gym Badges$"
+
+Kaizo_MAUSO5_Text_0:
+	.string "Here lies NOTADRAGON\n"
+	.string "Gyarados - Lvl 87\p"
+	.string "Burned and Crunched by Sabrina's\n"
+	.string "Exeggutor in Saffron City.\l"
+	.string "5 Gym Badges$"
+
+Kaizo_MAUSO6_Text_0:
+	.string "Here lies HOPE 4\n"
+	.string "Tauros (born Chansey) - Lvl 84\p"
+	.string "Destroyed by a Trainer's Steelix in\n"
+	.string "the Viridian City Gym.\l"
+	.string "7 Gym Badges$"
+
+Kaizo_MAUSO7_Text_0:
+	.string "Here lies LASTCHANCE\n"
+	.string "Magmar - Lvl 28\p"
+	.string "Heard the Rival's Cyndaquil sing\n"
+	.string "Perish Song in Cerulean City.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO8_Text_0:
+	.string "Here lies CLINTAZARD\n"
+	.string "Charizard - Lvl 27\p"
+	.string "Stoned to death by a Foe's Kyogre\n"
+	.string "on Route 4.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO9_Text_0:
+	.string "Here lies ZAPAPUPPY\n"
+	.string "Jolteon - Lvl 37\p"
+	.string "Bested by a Foe's Misdreavus on\n"
+	.string "Route 6.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO10_Text_0:
+	.string "Here lies JOKER\n"
+	.string "Lanturn - Lvl 23\p"
+	.string "Electrocuted by a Foe's Hariyama\n"
+	.string "on Route 3.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO11_Text_0:
+	.string "Here lies FAKEGOOD\n"
+	.string "Aggron - Lvl 26\p"
+	.string "TKO'd by a Foe's Pinsir on Route 3.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO12_Text_0:
+	.string "Here lies STEELEDUP\n"
+	.string "Steelix - Lvl 81\p"
+	.string "Blaine's Dodrio Mirror Coated her\n"
+	.string "Ice Punch on Cinnabar Island.\l"
+	.string "5 Gym Badges$"
+
+Kaizo_MAUSO13_Text_0:
+	.string "Here lies DARWIN\n"
+	.string "Ursaring - Lvl 78\p"
+	.string "He was kicked below the belt by a\n"
+	.string "Foe's Slowking in the Fighting\l"
+    .string "Dojo.\l"
+	.string "5 Gym Badges$"
+
+Kaizo_MAUSO14_Text_0:
+	.string "Here lies BADMAMA\n"
+	.string "Kangaskhan - Lvl 29\p"
+	.string "Shaken and Confused by the Rival's\n"
+	.string "Sudowoodo on the Cerulean City\l"
+    .string "bridge.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO15_Text_0:
+	.string "Here lies NOMVES\n"
+	.string "Ludicolo - Lvl 43\p"
+	.string "Misty's Mudkip Mirror Coated his\n"
+	.string "Flamethrower in the Cerulean City\l"
+    .string "Gym.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO16_Text_0:
+	.string "Here lies SNOWBALL\n"
+	.string "Glalie - Lvl 21\p"
+	.string "A Foe's enraged Flygon made short\n"
+	.string "work of her on Route 3.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO17_Text_0:
+	.string "Here lies POWERPUPPY\n"
+	.string "Flareon - Lvl 93\p"
+	.string "He struggled through the ethereal\n"
+	.string "into our hearts. But ultimately it\l"
+	.string "was a pooStomp that did him in on\l"
+	.string "the Indigo Plateau, courtesy of\l"
+    .string "Skybilz's Rhydon.\l"
+	.string "8 Gym Badges$"
+
+Kaizo_MAUSO18_Text_0:
+	.string "Here Lies IKILLDRGON\n"
+	.string "Typhlosion - Lvl 21\p"
+	.string "Lost to the ether in Pewter City\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO19_Text_0:
+	.string "Here lies ZORGON\n"
+	.string "Porygon2 - Lvl 93\p"
+	.string "Heard IATEYOURPIE's Aerodactyl sing\n"
+	.string "Perish Song on the Indigo Plateau.\l"
+	.string "Zor-gone but not forgotten.\l"
+	.string "8 Gym Badges$"
+
+Kaizo_MAUSO20_Text_0:
+	.string "Here lies 2ND CHANCE\n"
+	.string "Porygon2 - Lvl 27\p"
+	.string "Burned alive by a Foe's Masquerain\n"
+	.string "in a fight over a fossil in Mt.\l"
+	.string "Moon. A disappointing heir to\l"
+	.string "Zorgon's golden legacy.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO21_Text_0:
+	.string "Here lies JUSTOK\n"
+	.string "Charizard - Lvl 27\p"
+	.string "Watered down by a Foe's Scizor in a\n"
+	.string "fight over a fossil in Mt. Moon.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO22_Text_0:
+	.string "Here lies ZAPPER\n"
+	.string "Jolteon - Lvl 27\p"
+	.string "Outraged to the point of\n"
+	.string "self-injury in a fight over a\l"
+    .string "fossil in Mt. Moon.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO23_Text_0:
+	.string "Here lies BUSSY\n"
+	.string "Blissey - Lvl 24\p"
+	.string "Tricked into hurting herself by a\n"
+	.string "Foe's Flygon on Route 3.\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO24_Text_0:
+	.string "Here lies AMIAKAGARO\n"
+	.string "Blissey - Lvl 75\p"
+	.string "Had her own momentum used against\n"
+	.string "her by a Trainer's Nidoqueen in the\l"
+	.string "Fuchsia City Gym.\l"
+	.string "4 Gym Badges$"
+
+Kaizo_MAUSO25_Text_0:
+	.string "Rest in PETE\n"
+	.string "Flygon - Lvl 88\p"
+	.string "Frozen to death by LADYPOO's\n"
+	.string "Regirock with a Blizzard on the\l"
+    .string "Indigo Plateau.\l"
+	.string "8 Gym Badges$"
+
+Kaizo_MAUSO26_Text_0:
+	.string "Here lies BUSSY BOO\n"
+	.string "Blissey - Lvl 41\p"
+	.string "Pummeled in retaliation by a Foe's\n"
+	.string "biding Reigirock on Route 11.\l"
+	.string "1 Gym Badge$"

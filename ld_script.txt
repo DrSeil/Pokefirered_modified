@@ -605,12 +605,7 @@ ALIGN(4)
         src/help_message.o(.rodata);
         src/trainer_fan_club.o(.rodata);
         src/quest_log_events.o(.rodata);
-        src/union_room.o(.rodata);
-        src/rfu_union_tool.o(.rodata);
-        src/union_room_battle.o(.rodata);
-        src/union_room_message.o(.rodata);
-        src/pokemon_special_anim.o(.rodata);
-        src/pokemon_special_anim_scene.o(.rodata);
+
         } = 0
 
     . = 0x8459bc0;
@@ -1164,6 +1159,12 @@ ALIGN(4)
         src/berry_fix_program.o(.rodata);
         src/keyboard_text.o(.rodata);
         src/trainer_tower_sets.o(.rodata);
+                src/union_room.o(.rodata);
+        src/rfu_union_tool.o(.rodata);
+        src/union_room_battle.o(.rodata);
+        src/union_room_message.o(.rodata);
+        src/pokemon_special_anim.o(.rodata);
+        src/pokemon_special_anim_scene.o(.rodata);
 
         
     }=0

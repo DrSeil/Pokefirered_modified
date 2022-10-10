@@ -121,7 +121,7 @@ $(TILESETGFXDIR)/secondary/dummy_1/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 2
 
 $(TILESETGFXDIR)/secondary/generic_building_1/tiles.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -num_tiles 63
+	$(GFX) $< $@ 
 
 $(TILESETGFXDIR)/secondary/hoenn_building/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 383

@@ -1818,3 +1818,103 @@ static const struct SpriteFrameImage sPicTable_Mom[] = {
     overworld_frame(gObjectEventPic_Mom, 2, 4, 2),
     overworld_frame(gObjectEventPic_Mom, 2, 4, 2),
 };
+
+static const struct SpriteFrameImage sPicTable_Mauso1[] = {
+    overworld_frame(gObjectEventPic_Mauso1, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso2[] = {
+    overworld_frame(gObjectEventPic_Mauso2, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso3[] = {
+    overworld_frame(gObjectEventPic_Mauso3, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso4[] = {
+    overworld_frame(gObjectEventPic_Mauso4, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso5[] = {
+    overworld_frame(gObjectEventPic_Mauso5, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso6[] = {
+    overworld_frame(gObjectEventPic_Mauso6, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso7[] = {
+    overworld_frame(gObjectEventPic_Mauso7, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso8[] = {
+    overworld_frame(gObjectEventPic_Mauso8, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso9[] = {
+    overworld_frame(gObjectEventPic_Mauso9, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso10[] = {
+    overworld_frame(gObjectEventPic_Mauso10, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso11[] = {
+    overworld_frame(gObjectEventPic_Mauso11, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso12[] = {
+    overworld_frame(gObjectEventPic_Mauso12, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso13[] = {
+    overworld_frame(gObjectEventPic_Mauso13, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso14[] = {
+    overworld_frame(gObjectEventPic_Mauso14, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso15[] = {
+    overworld_frame(gObjectEventPic_Mauso15, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso16[] = {
+    overworld_frame(gObjectEventPic_Mauso16, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso17[] = {
+    overworld_frame(gObjectEventPic_Mauso17, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso18[] = {
+    overworld_frame(gObjectEventPic_Mauso18, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso19[] = {
+    overworld_frame(gObjectEventPic_Mauso19, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso20[] = {
+    overworld_frame(gObjectEventPic_Mauso20, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso21[] = {
+    overworld_frame(gObjectEventPic_Mauso21, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso22[] = {
+    overworld_frame(gObjectEventPic_Mauso22, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso23[] = {
+    overworld_frame(gObjectEventPic_Mauso23, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso24[] = {
+    overworld_frame(gObjectEventPic_Mauso24, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso25[] = {
+    overworld_frame(gObjectEventPic_Mauso25, 4, 16, 0),
+};
