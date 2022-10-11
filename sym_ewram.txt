@@ -19,6 +19,7 @@
 	.include "src/fieldmap.o"
 	.include "src/field_camera.o"
 	.include "src/field_player_avatar.o"
+	.space 4
 	.include "src/event_object_movement.o"
 	.include "src/field_message_box.o"
 	.include "src/script.o"
@@ -31,10 +32,10 @@
 	.include "src/battle_anim.o"
 	.include "src/battle_anim_mons.o"
 	.include "src/title_screen.o"
-	.include "src/field_weather.o"
+	.space 1914
 	.include "src/battle_setup.o"
 	.include "src/wild_encounter.o"
-	.include "src/field_effect.o"
+    .space 32
 	.include "src/scanline_effect.o"
 	.include "src/option_menu.o"
 	.include "src/trainer_card.o"
@@ -135,3 +136,5 @@
 	.include "src/digit_obj_util.o"
 	.include "src/trainer_tower.o"
 	.include "src/berry_powder.o"
+	.include "src/field_weather.o"
+	.include "src/field_effect.o"

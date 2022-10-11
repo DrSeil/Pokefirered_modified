@@ -1358,6 +1358,8 @@ Text_TestMsg::
 	.include "data/text/save.inc"
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/pokedude.inc"
+
+	.section script_data_kaizo, "aw", %progbits
     .include "data/scripts/kaizomon.inc"
 
 	.include "data/maps/Mausoleum/scripts.inc"

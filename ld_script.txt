@@ -16,7 +16,7 @@ SECTIONS {
         *libc.a:impure.o(.data);
         *libc.a:locale.o(.data);
         *libc.a:mallocr.o(.data);
-        . = 0x40000;
+        . = 0x50000;
     }
 
     . = 0x3000000;
@@ -67,9 +67,11 @@ SECTIONS {
         src/battle_bg.o(.text);
         src/battle_main.o(.text);
         src/battle_util.o(.text);
-        src/battle_script_commands.o(.text);
-        src/battle_util2.o(.text);
-        src/battle_controller_player.o(.text);
+} = 0
+
+
+.text_gfx_util 0x8033dcc :
+{
         src/battle_gfx_sfx_util.o(.text);
         src/battle_controller_opponent.o(.text);
         src/battle_ai_switch_items.o(.text);
@@ -91,16 +93,22 @@ SECTIONS {
         
         . = 0x8054bdc;
 
-        destinationwarpf :
+        destinationwarpf 0x8054bdc:
                ALIGN(4)
         {
             src/overworld.o(.text)
-        src/fieldmap.o(.text);
+        } = 0
+
+        metatile 0x8059b04:
+        {
         src/metatile_behavior.o(.text);
         src/field_camera.o(.text);
         src/field_door.o(.text);
         src/field_player_avatar.o(.text);
-        src/event_object_movement.o(.text);
+        } = 0
+
+        field_message_box 0x806935c:
+        {
         src/field_message_box.o(.text);
         src/event_object_lock.o(.text);
         src/text_window_graphics.o(.text);
@@ -134,16 +142,25 @@ SECTIONS {
     {
         src/battle_setup.o(.text);
         src/cable_club.o(.text);
-        src/trainer_see.o(.text);
+    } = 0
+    
+    .wild_encounter 0x8082754:
+    {
         src/wild_encounter.o(.text);
-        src/field_effect.o(.text);
+    } = 0
+
+    .scanline 0x8087e78:
+    {
         src/scanline_effect.o(.text);
         src/option_menu.o(.text);
         src/pokedex.o(.text);
         src/trainer_card.o(.text);
         src/pokemon_storage_system.o(.text);
         src/pokemon_storage_system_menu.o(.text);
-        src/pokemon_storage_system_tasks.o(.text);
+    } = 0
+
+    .pokemon_storage_system_graphics 0x808ffc0:
+    {
         src/pokemon_storage_system_graphics.o(.text);
         src/pokemon_storage_system_data.o(.text);
         src/pokemon_storage_system_misc.o(.text);
@@ -194,20 +211,29 @@ SECTIONS {
         src/post_battle_event_funcs.o(.text);
         src/prof_pc.o(.text);
         src/hof_pc.o(.text);
-        src/field_specials.o(.text);
+    } = 0
+
+    .battle_records 0x80cd23c:
+    {
         src/battle_records.o(.text);
         src/evolution_scene.o(.text);
         src/coins.o(.text);
         src/fldeff_strength.o(.text);
         src/battle_transition.o(.text);
         src/battle_controller_link_partner.o(.text);
-        src/battle_message.o(.text);
+    } = 0
+
+    .math_util 0x80d8ab4:
+    {
         src/math_util.o(.text);
         src/roulette_util.o(.text);
         src/cable_car_util.o(.text);
         src/save.o(.text);
         src/mystery_event_script.o(.text);
-        src/field_effect_helpers.o(.text);
+    } = 0
+
+    .battle_anim_sound 0x80dce24:
+    {
         src/battle_anim_sound_tasks.o(.text);
         src/battle_controller_safari.o(.text);
         src/fldeff_sweetscent.o(.text);
@@ -215,7 +241,10 @@ SECTIONS {
         src/learn_move.o(.text);
         src/fldeff_softboiled.o(.text);
         src/battle_tower.o(.text);
-        src/battle_controller_oak_old_man.o(.text);
+        } = 0
+
+    .player_pc 0x80eb66c:
+    {
         src/player_pc.o(.text);
         src/intro.o(.text);
         src/battle_anim_special.o(.text);
@@ -237,7 +266,10 @@ SECTIONS {
         src/easy_chat_3.o(.text);
         src/pokedex_screen.o(.text);
         src/list_menu.o(.text);
-        src/item_menu.o(.text);
+    } = 0
+
+    .save_location 0x810b76c:
+    {
         src/save_location.o(.text);
         src/bag.o(.text);
         src/trainer_pokemon_sprites.o(.text);
@@ -245,7 +277,10 @@ SECTIONS {
         src/item_pc.o(.text);
         src/mailbox_pc.o(.text);
         src/menu.o(.text);
-        src/quest_log.o(.text);
+    } = 0
+    
+    .help_message 0x8112f20:
+    {
         src/help_message.o(.text);
         src/trainer_fan_club.o(.text);
         src/quest_log_events.o(.text);
@@ -260,7 +295,10 @@ SECTIONS {
         src/union_room_chat_objects.o(.text);
         src/help_system.o(.text);
         src/quest_log_battle.o(.text);
-        src/fame_checker.o(.text);
+    } = 0
+
+    .menu2 0x812e594:
+    {
         src/menu2.o(.text);
 } = 0
 
@@ -347,12 +385,15 @@ ALIGN(4)
         data/battle_anim_scripts.o(script_data);
         data/battle_scripts_1.o(script_data);
         data/field_effect_scripts.o(script_data);
-        data/battle_scripts_2.o(script_data);
+    } = 0
+
+    battle_ai_script 0x81d9c64:
+    {
         data/battle_ai_scripts.o(script_data);
 
     } =0
 
-    lib_text :
+    lib_text 0x81dbda4 :
     ALIGN(4)
     {
         src/libgcnmultiboot.o(.text);
@@ -1165,6 +1206,13 @@ ALIGN(4)
         src/union_room_message.o(.rodata);
         src/pokemon_special_anim.o(.rodata);
         src/pokemon_special_anim_scene.o(.rodata);
+        src/battle_script_commands.o(.text);
+        src/battle_util2.o(.text);
+        src/battle_controller_player.o(.text);
+        src/fieldmap.o(.text);
+                src/field_specials.o(.text);
+
+        
 
         
     }=0
@@ -1178,6 +1226,29 @@ ALIGN(4)
         src/battle_script_commands.o(.rodata);
         src/field_specials.o(.rodata);
         src/strings.o(.rodata);
+        src/event_object_movement.o(.text);
+                src/trainer_see.o(.text);
+
+        src/field_effect.o(.text);
+        src/pokemon_storage_system_tasks.o(.text);
+        src/battle_message.o(.text);
+        src/field_effect_helpers.o(.text);
+        src/battle_controller_oak_old_man.o(.text);
+        src/item_menu.o(.text);
+        src/quest_log.o(.text);
+        src/fame_checker.o(.text);
+        data/event_scripts.o(script_data_kaizo);
+        data/battle_scripts_2.o(script_data);
+
+
+
+
+
+
+
+
+
+
 
 
 
