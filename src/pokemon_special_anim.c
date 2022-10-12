@@ -507,6 +507,7 @@ static void Task_MachineSet(u8 taskId)
         SetUseItemAnimCallback(taskId, Task_CleanUp);
         return;
     }
+    ptr->state = 9;
 
     switch (ptr->state)
     {
