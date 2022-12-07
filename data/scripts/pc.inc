@@ -60,7 +60,7 @@ EventScript_AccessSomeonesPC::
 	return
 
 EventScript_AccessBillsPC::
-	msgbox Text_AccessedBillsPC
+	msgbox Text_AccessedBillsPC_kaizo
 	return
 
 EventScript_TurnOffPC::

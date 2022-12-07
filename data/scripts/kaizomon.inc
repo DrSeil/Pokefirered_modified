@@ -539,7 +539,7 @@ kaizo_Route25_SeaCottage_Text_NoPleaseBeautiful::
     .string "All right!$"
 
 kaizo_Route25_SeaCottage_Text_ThanksBudTakeThis::
-    .string "BILL: Yeehah!\n"
+    .string "CHRIS: Yeehah!\n"
     .string "Thanks, bud! I owe you one!\p"
     .string "So, did you come to see my\n"
     .string "POKéMON collection?\p"
@@ -549,7 +549,7 @@ kaizo_Route25_SeaCottage_Text_ThanksBudTakeThis::
     .string "Oh, here, maybe this'll do.$"
 
 kaizo_Route25_SeaCottage_Text_ThanksLadyTakeThis::
-    .string "BILL: Yeehah!\n"
+    .string "CHRIS: Yeehah!\n"
     .string "Thanks, lady! I owe you one!\p"
     .string "So, did you come to see my\n"
     .string "POKéMON collection?\p"
@@ -560,7 +560,7 @@ kaizo_Route25_SeaCottage_Text_ThanksLadyTakeThis::
 
 kaizo_Route25_SeaCottage_Text_ReceivedSSTicketFromBill::
     .string "{PLAYER} received an S.S. TICKET\n"
-    .string "from BILL.$"
+    .string "from CHRIS.$"
 
 kaizo_Route25_SeaCottage_Text_YouveGotTooMuchStuff::
     .string "You've got too much stuff!$"
@@ -576,7 +576,7 @@ kaizo_Route25_SeaCottage_Text_SSAnnePartyYouGoInstead::
     .string "Go on and have a good time.$"
 
 kaizo_Route25_SeaCottage_Text_CheckOutRareMonsOnPC::
-    .string "BILL: Feel like checking out some\n"
+    .string "CHRIS: Feel like checking out some\n"
     .string "of my rare POKéMON on my PC?\p"
     .string "Go on, check out my PC.$"
 
@@ -589,7 +589,7 @@ kaizo_Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator::
     .string "UN-MAKER's No Mo' Bros Protocol.$"
 
 kaizo_Route25_SeaCottage_Text_BillsFavoriteMonList::
-    .string "BILL's favorite POKéMON list!$"
+    .string "CHRIS's favorite POKéMON list!$"
 
 kaizo_Route25_SeaCottage_Text_SeeWhichMon::
     .string "Which POKéMON do you want to see?$"
@@ -1063,3 +1063,21 @@ Kaizo_MAUSO26_Text_0:
 	.string "Pummeled in retaliation by a Foe's\n"
 	.string "biding Reigirock on Route 11.\l"
 	.string "1 Gym Badge$"
+
+CeruleanCity_Text_RivalPostBattle_kaizo::
+    .string "{RIVAL}: Hey, guess what?\p"
+    .string "I went to CHRIS's and got him to\n"
+    .string "show me his rare POKéMON.\p"
+    .string "That added a lot of pages to my\n"
+    .string "POKéDEX!\p"
+    .string "After all, CHRIS's world famous as a\n"
+    .string "POKéMANIAC.\p"
+    .string "He invented the POKéMON Storage\n"
+    .string "System on PC, too.\p"
+    .string "Since you're using his system,\n"
+    .string "you should go thank him.\p"
+    .string "Well, I better get rolling!\n"
+    .string "Smell ya later!$"
+
+Text_AccessedBillsPC_kaizo::
+	.string "Accessed CHRIS's PC.$"
