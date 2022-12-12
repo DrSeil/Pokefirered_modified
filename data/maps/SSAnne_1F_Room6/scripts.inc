@@ -7,7 +7,7 @@ SSAnne_1F_Room6_EventScript_Woman::
 	msgbox SSAnne_1F_Room6_Text_TakeAShortRest, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SSAnne_1F_Room6_EventScript_DeclineHeal
 	closemessage
-	call EventScript_OutOfCenterPartyHeal
+	call kaizo_EventScript_OutOfCenterPartyHeal
 	msgbox SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed
 	release
 	end

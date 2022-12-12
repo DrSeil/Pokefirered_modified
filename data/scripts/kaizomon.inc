@@ -1081,3 +1081,28 @@ CeruleanCity_Text_RivalPostBattle_kaizo::
 
 Text_AccessedBillsPC_kaizo::
 	.string "Accessed CHRIS's PC.$"
+
+kaizo_EventScript_OutOfCenterPartyHeal::
+	msgbox Text_IShouldNot
+	closemessage
+    return
+
+Text_IShouldNot::
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should NOT have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked THAT{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should not have CLICKED that{PAUSE 60}\p"
+	.string "I SHOULD not have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should NOT have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should NOT have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I SHOULD NOT HAVE CLICKED THAT{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}\p"
