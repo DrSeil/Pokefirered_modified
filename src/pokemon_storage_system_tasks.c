@@ -34,6 +34,7 @@ static EWRAM_DATA u8 sDepositBoxId = 0;
 static EWRAM_DATA u8 sWhichToReshow = 0;
 static EWRAM_DATA u8 sLastUsedBox = 0;
 static EWRAM_DATA u8 sReleaseText = 0;
+static EWRAM_DATA u8 sReleasedelay = 0;
 static EWRAM_DATA u16 sMovingItemId = ITEM_NONE;
 
 static void Task_InitPokeStorage(u8 taskId);
@@ -1425,6 +1426,11 @@ static void Task_DepositMenu(u8 taskId)
 
 static void Task_ReleaseMon(u8 taskId)
 {
+    if(sReleasedelay !=0)
+    {
+        sReleasedelay--;
+        return;
+    }
     switch (gStorage->state)
     {
     case 0:
@@ -1480,6 +1486,7 @@ static void Task_ReleaseMon(u8 taskId)
         PrintReleaseMessage(sReleaseText);
         sReleaseText++;
         gStorage->state++;
+        sReleasedelay = 120;
         break;
     case 4:
         if(StringLength(sReleaseMessages[sReleaseText].text)==0)
@@ -1492,6 +1499,7 @@ static void Task_ReleaseMon(u8 taskId)
             PrintReleaseMessage(sReleaseText);
             sReleaseText++;
             gStorage->state++;
+            sReleasedelay = 120;
         }
         break;
     case 5:
@@ -1505,6 +1513,7 @@ static void Task_ReleaseMon(u8 taskId)
             PrintReleaseMessage(sReleaseText);
             sReleaseText++;
             gStorage->state++;
+            sReleasedelay = 120; 
         }
         break;
     case 6:
