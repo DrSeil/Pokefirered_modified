@@ -278,5 +278,14 @@ const u16 gObjectEventPic_Mauso22[] = INCBIN_U16("graphics/object_events/pics/po
 const u16 gObjectEventPic_Mauso23[] = INCBIN_U16("graphics/object_events/pics/pokemon/23_bussy.4bpp");
 const u16 gObjectEventPic_Mauso24[] = INCBIN_U16("graphics/object_events/pics/pokemon/24_amiakagaro.4bpp");
 const u16 gObjectEventPic_Mauso25[] = INCBIN_U16("graphics/object_events/pics/pokemon/25_pete.4bpp");
+const u16 gObjectEventPic_Mauso27[] = INCBIN_U16("graphics/object_events/pics/pokemon/27_pupdatvape.4bpp");
+const u16 gObjectEventPic_Mauso28A[] = INCBIN_U16("graphics/object_events/pics/pokemon/28_420mon-A.4bpp");
+const u16 gObjectEventPic_Mauso28B[] = INCBIN_U16("graphics/object_events/pics/pokemon/28_420mon-B.4bpp");
+const u16 gObjectEventPic_Mauso28C[] = INCBIN_U16("graphics/object_events/pics/pokemon/28_420mon-C.4bpp");
+const u16 gObjectEventPic_Mauso29[] = INCBIN_U16("graphics/object_events/pics/pokemon/29_dogofflame.4bpp");
+const u16 gObjectEventPic_Mauso30[] = INCBIN_U16("graphics/object_events/pics/pokemon/30_flamerodnt.4bpp");
+const u16 gObjectEventPic_Mauso31[] = INCBIN_U16("graphics/object_events/pics/pokemon/31_wetpuppy.4bpp");
+const u16 gObjectEventPic_Mauso32[] = INCBIN_U16("graphics/object_events/pics/pokemon/32_daaaaaa.4bpp");
 const u16 gObjectEventPal_MausoGray[] = INCBIN_U16("graphics/object_events/palettes/maso_gray.gbapal");
+const u16 gObjectEventPal_MausoGold[] = INCBIN_U16("graphics/object_events/palettes/maso_gold.gbapal");
 

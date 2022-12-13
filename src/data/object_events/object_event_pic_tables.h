@@ -1918,3 +1918,27 @@ static const struct SpriteFrameImage sPicTable_Mauso24[] = {
 static const struct SpriteFrameImage sPicTable_Mauso25[] = {
     overworld_frame(gObjectEventPic_Mauso25, 4, 16, 0),
 };
+
+static const struct SpriteFrameImage sPicTable_Mauso27[] = {
+    overworld_frame(gObjectEventPic_Mauso27, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Mauso28[] = {
+    overworld_frame(gObjectEventPic_Mauso28A, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Mauso28B, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Mauso28A, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Mauso28C, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Mauso29[] = {
+    overworld_frame(gObjectEventPic_Mauso29, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso30[] = {
+    overworld_frame(gObjectEventPic_Mauso30, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Mauso31[] = {
+    overworld_frame(gObjectEventPic_Mauso31, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Mauso32[] = {
+    overworld_frame(gObjectEventPic_Mauso32, 4, 16, 0),
+};

@@ -184,9 +184,15 @@
 #define OBJ_EVENT_GFX_MAUSO23 180
 #define OBJ_EVENT_GFX_MAUSO24 181
 #define OBJ_EVENT_GFX_MAUSO25 182
+#define OBJ_EVENT_GFX_MAUSO27 183
+#define OBJ_EVENT_GFX_MAUSO28 184
+#define OBJ_EVENT_GFX_MAUSO29 185
+#define OBJ_EVENT_GFX_MAUSO30 186
+#define OBJ_EVENT_GFX_MAUSO31 187
+#define OBJ_EVENT_GFX_MAUSO32 188
 
 
-#define NUM_OBJ_EVENT_GFX     183
+#define NUM_OBJ_EVENT_GFX     189
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

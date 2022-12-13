@@ -871,6 +871,40 @@ Kaizo_MAUSO26::
 	closemessage
     return
 
+Kaizo_MAUSO27::
+	msgbox Kaizo_MAUSO27_Text_0
+	closemessage
+    return
+
+Kaizo_MAUSO28::
+	msgbox Kaizo_MAUSO28_Text_0
+	closemessage
+    return
+
+Kaizo_MAUSO29::
+	msgbox Kaizo_MAUSO29_Text_0
+	closemessage
+    return
+
+Kaizo_MAUSO30::
+	msgbox Kaizo_MAUSO30_Text_0
+	closemessage
+    return
+
+Kaizo_MAUSO31::
+	msgbox Kaizo_MAUSO31_Text_0
+	closemessage
+    return
+
+Kaizo_MAUSO32::
+	msgbox Kaizo_MAUSO32_Text_0
+	closemessage
+    return
+
+Kaizo_MAUSO33::
+	msgbox Kaizo_MAUSO33_Text_0
+	closemessage
+    return
 
 Kaizo_MAUSO1_Text_0:
 	.string "Here lies BUTTMOUTH\n"
@@ -1063,6 +1097,65 @@ Kaizo_MAUSO26_Text_0:
 	.string "Pummeled in retaliation by a Foe's\n"
 	.string "biding Reigirock on Route 11.{PAUSE 30}\l"
 	.string "1 Gym Badge$"
+
+Kaizo_MAUSO27_Text_0::
+	.string "Here lies PUPDATVAPE\n"
+	.string "Vaporeon - Lvl 90{PAUSE 60}\p"
+	.string "Felled by the slightest tap from\n"
+	.string "the Champion's Latias after burning{PAUSE 30}\l"
+	.string "through all of POO's heals.{PAUSE 30}\l"
+	.string "8 Gym Badges$"
+
+Kaizo_MAUSO28_Text_0::
+	.string "Here lies 420MON\n"
+	.string "Blaziken - Lvl 31{PAUSE 60}\p"
+	.string "Cursed by fate, Doom Desired by\n"
+	.string "the Rival's Hitmonchan in Cerulean{PAUSE 30}\l"
+	.string "City.{PAUSE 30}\l"
+	.string "1 Gym Badge{PAUSE 60}\p"
+	.string "They could have been anything, and\n"
+	.string "instead, they were this.{PAUSE 30}\l"
+	.string "Am I a little bitter?  Maybe{PAUSE 30}\l"
+	.string "-DrSeil{PAUSE 60}$"
+
+
+Kaizo_MAUSO29_Text_0::
+	.string "Here lies DOGOFFLAME\n"
+	.string "Arcanine - Lvl 27{PAUSE 60}\p"
+	.string "Frozen and splashed repeatedly by\n"
+	.string "a Foe's Whiscash in Mt Moon.{PAUSE 30}\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO30_Text_0::
+	.string "Here lies FLAMERODNT\n"
+	.string "Typhlosion - Lvl 34{PAUSE 60}\p"
+	.string "Low kicked into a grave he dug\n"
+	.string "himself by a Foe's sleepy, levitating{PAUSE 30}\l"
+	.string "Slowking on Route 25.{PAUSE 30}\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO31_Text_0::
+	.string "Here lies WETPUPPY\n"
+	.string "Vaporeon - Lvl 73{PAUSE 60}\p"
+	.string "Electrified by Koga's Murkrow in\n"
+	.string "the Fuchsia City Gym.{PAUSE 30}\l"
+	.string "4 Gym Badges$"
+
+Kaizo_MAUSO32_Text_0::
+	.string "Here lies DAAAAAA\n"
+	.string "Kingdra - Lvl 41{PAUSE 60}\p"
+	.string "Bludgeoned to death by Misty's\n"
+	.string "beefy Slowbro in the Cerulean {PAUSE 30}\l"
+	.string "City Gym.{PAUSE 30}\l"
+	.string "1 Gym Badge$"
+
+Kaizo_MAUSO33_Text_0::
+	.string "Here lies SPYRO\n"
+	.string "Charizard - Lvl 72{PAUSE 60}\p"
+	.string "Mirror Coated by Koga's Girafarig\n"
+	.string "in the Fuchsia City Gym.{PAUSE 30}\l"
+	.string "4 Gym Badges$"
+
 
 CeruleanCity_Text_RivalPostBattle_kaizo::
     .string "{RIVAL}: Hey, guess what?{PAUSE 60}\p"

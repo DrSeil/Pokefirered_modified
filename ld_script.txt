@@ -530,7 +530,6 @@ ALIGN(4)
         src/metatile_behavior.o(.rodata);
         src/field_door.o(.rodata);
         src/field_player_avatar.o(.rodata);
-        src/event_object_movement.o(.rodata);
         src/scrcmd.o(.rodata);
         src/coord_event_weather.o(.rodata);
         src/field_tasks.o(.rodata);
@@ -1131,7 +1130,7 @@ ALIGN(4)
         data/multiboot_berry_glitch_fix.o(.rodata);
         data/multiboot_pokemon_colosseum.o(.rodata);
     } =0
-    . = 0x08c00000;
+    . = 0x08b00000;
 
     moved_code :
     ALIGN(4)
@@ -1239,6 +1238,7 @@ ALIGN(4)
         src/fame_checker.o(.text);
         data/event_scripts.o(script_data_kaizo);
         data/battle_scripts_2.o(script_data);
+        src/event_object_movement.o(.rodata);
 
 
 

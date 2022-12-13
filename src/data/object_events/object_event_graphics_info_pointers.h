@@ -335,5 +335,11 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_MAUSO22]                   = &gObjectEventGraphicsInfo_Mauso22,
     [OBJ_EVENT_GFX_MAUSO23]                   = &gObjectEventGraphicsInfo_Mauso23,
     [OBJ_EVENT_GFX_MAUSO24]                   = &gObjectEventGraphicsInfo_Mauso24,
-    [OBJ_EVENT_GFX_MAUSO25]                   = &gObjectEventGraphicsInfo_Mauso25
+    [OBJ_EVENT_GFX_MAUSO25]                   = &gObjectEventGraphicsInfo_Mauso25,
+    [OBJ_EVENT_GFX_MAUSO27]                   = &gObjectEventGraphicsInfo_Mauso27,
+    [OBJ_EVENT_GFX_MAUSO28]                   = &gObjectEventGraphicsInfo_Mauso28,
+    [OBJ_EVENT_GFX_MAUSO29]                   = &gObjectEventGraphicsInfo_Mauso29,
+    [OBJ_EVENT_GFX_MAUSO30]                   = &gObjectEventGraphicsInfo_Mauso30,
+    [OBJ_EVENT_GFX_MAUSO31]                   = &gObjectEventGraphicsInfo_Mauso31,
+    [OBJ_EVENT_GFX_MAUSO32]                   = &gObjectEventGraphicsInfo_Mauso32
 };
