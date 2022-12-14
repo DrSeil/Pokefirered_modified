@@ -438,7 +438,7 @@
       "price": 300,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 60,
-      "description_english": "A fizzy soda drink.\\nIt restores the HP of one POKéMON\\nby 60 points.",
+      "description_english": "A fizzy Red Bull.\\nIt restores the HP of one POKéMON\\nby 60 points.",
       "importance": 0,
       "exitsBagOnUse": 0,
       "pocket": "POCKET_ITEMS",
