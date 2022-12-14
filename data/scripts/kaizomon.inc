@@ -1198,4 +1198,36 @@ Text_IShouldNot::
 	.string "I SHOULD NOT HAVE CLICKED THAT{PAUSE 60}\p"
 	.string "I should not have clicked that{PAUSE 60}\p"
 	.string "I should not have clicked that{PAUSE 60}\p"
-	.string "I should not have clicked that{PAUSE 60}\p"
+	.string "I should not have clicked that{PAUSE 60}$"
+
+kaizo_PickABall::
+	lock
+	faceplayer
+	msgbox kaizo_IThinkYouShouldPickThisOne
+	release
+	end
+
+kaizo_IThinkYouShouldPickThisOne::
+	.string "This one is a winner!\n"
+	.string "I can feel it!$"
+
+Kaizo_PalletTown_ProfessorOaksLab_EventScript_ReadyOakForStarterScene::
+	random 3
+	copyvar VAR_0x8008, VAR_RESULT
+	call_if_eq VAR_0x8008, 0, kaizo_pickleft
+	call_if_eq VAR_0x8008, 1, kaizo_pickmiddle
+	call_if_eq VAR_0x8008, 2, kaizo_pickright
+	call PalletTown_ProfessorOaksLab_EventScript_ReadyOakForStarterScene
+	return
+
+kaizo_pickleft::
+	setobjectxyperm 11, 8, 3
+	return
+
+kaizo_pickmiddle::
+	setobjectxyperm 11, 9, 3
+	return
+
+kaizo_pickright::
+	setobjectxyperm 11, 10, 3
+	return
