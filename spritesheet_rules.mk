@@ -16,12 +16,6 @@ $(OBJEVENTGFXDIR)/misc/ss_anne.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/misc/town_map.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/misc/team-zaddy-1.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 4 -mheight 4
-
-$(OBJEVENTGFXDIR)/misc/team-zaddy-2.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 4 -mheight 4
-
 $(OBJEVENTGFXDIR)/people/agatha.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 

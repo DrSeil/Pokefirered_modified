@@ -1942,3 +1942,18 @@ static const struct SpriteFrameImage sPicTable_Mauso31[] = {
 static const struct SpriteFrameImage sPicTable_Mauso32[] = {
     overworld_frame(gObjectEventPic_Mauso32, 4, 16, 0),
 };
+
+//(face down, face up, face left, 2 walk down, 2 walk up, 2 walk left)
+
+static const struct SpriteFrameImage sPicTable_Zaddy[] = {
+    overworld_frame(gObjectEventPic_Zaddy1, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Zaddy1, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Zaddy2, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Zaddy2, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Zaddy2, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Zaddy2, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Zaddy2, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Zaddy2, 4, 16, 0),
+    overworld_frame(gObjectEventPic_Zaddy2, 4, 16, 0),
+
+};

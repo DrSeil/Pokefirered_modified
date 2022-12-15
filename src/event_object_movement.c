@@ -467,6 +467,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_MOM_SWIM                  0x112B
 #define OBJ_EVENT_PAL_TAG_MAUSO_GRAY                 0x112C
 #define OBJ_EVENT_PAL_TAG_MAUSO_GOLD                 0x112D
+#define OBJ_EVENT_PAL_TAG_ZADDY                      0x112E
 #define OBJ_EVENT_PAL_TAG_NONE                        0x11FF
 
 // Dynamic Overworld Palettes
@@ -553,6 +554,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_MomSwim,                     OBJ_EVENT_PAL_TAG_MOM_SWIM},
     {gObjectEventPal_MausoGray,                     OBJ_EVENT_PAL_TAG_MAUSO_GRAY},
     {gObjectEventPal_MausoGold,                     OBJ_EVENT_PAL_TAG_MAUSO_GOLD},
+    {gObjectEventPal_Zaddy,                     OBJ_EVENT_PAL_TAG_ZADDY},
 
     {},
 };

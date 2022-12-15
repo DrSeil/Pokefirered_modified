@@ -2,7 +2,7 @@
 
 
 kaizo_quickwarp1::
-    warp MAP_CELADON_CITY_GAME_CORNER, 255, 10, 8
+    warp MAP_PEWTER_CITY, 255, 24, 9
 	waitstate
 	release
 	end
@@ -47,6 +47,7 @@ kaizo_quickwarp7::
 PalletTown_MomToOak::
 	lock
 	faceplayer
+	call_if_unset FLAG_HIDE_OAK_IN_HIS_LAB, kaizo_home_date_mom
 	goto_if_set FLAG_BEAT_RIVAL_IN_OAKS_LAB, PalletTown_PlayersHouse_1F_EventScript_MomHeal
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale
@@ -667,6 +668,77 @@ kaizo_swim_date_mom::
 	release
 	end
 
+kaizo_safari_date_oak::
+	lock
+	faceplayer
+	msgbox kaizo_safari_oak_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_safari_date_mom::
+	lock
+	faceplayer
+	msgbox kaizo_safari_mom_text, MSGBOX_NPC
+	release
+	return
+
+kaizo_mansion_date_oak::
+	lock
+	faceplayer
+	msgbox kaizo_mansion_oak_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_mansion_date_mom::
+	lock
+	faceplayer
+	msgbox kaizo_mansion_mom_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_home_date_oak::
+	lock
+	faceplayer
+	msgbox kaizo_home_oak_text, MSGBOX_NPC
+	release
+	end
+
+kaizo_home_date_mom::
+	lock
+	faceplayer
+	msgbox kaizo_home_mom_text, MSGBOX_NPC
+	release
+	goto_if_set FLAG_BEAT_RIVAL_IN_OAKS_LAB, PalletTown_PlayersHouse_1F_EventScript_MomHeal
+	end
+
+kaizo_home_oak_text::
+	.string "Oak: The stress of raising you all\n"
+	.string "on her own has your mother so tense!$"
+
+kaizo_home_mom_text::
+	.string "Mom: Samuel has stronger hands\n"
+	.string "than you'd expect from a professor.$"
+
+kaizo_mansion_oak_text::
+	.string "Oak: We're camping here tonight, Poo.\n"
+	.string "Your mom is the best at\l{PAUSE 30}"
+	.string "pitchin' my tent.$"
+
+kaizo_mansion_mom_text::
+	.string "Mom: I'm so excited! I can't wait\n"
+	.string "to see the big Rhyhorn Samuel\l{PAUSE 30}"
+	.string  "told me about!$"
+
+kaizo_safari_oak_text::
+	.string "Oak: We're camping here tonight,\n"
+	.string "Poo. Your mom is the best at{PAUSE 30}\l"
+	.string "pitchin' my tent.$"
+
+kaizo_safari_mom_text::
+	.string "Mom: I'm so excited! I can't wait\n"
+	.string "to see the big Rhyhorn Samuel{PAUSE 30}\l"
+	.string "told me about!$"
+
 kaizo_game_corner_oak_text::
 	.string "Oak: Your mom is a natural,\n"
 	.string "{PLAYER}! She's got a keen eye{PAUSE 30}\l"
@@ -1231,3 +1303,10 @@ kaizo_pickmiddle::
 kaizo_pickright::
 	setobjectxyperm 11, 10, 3
 	return
+
+kaizo_zaddy::
+	msgbox kaizo_zaddy_text, MSGBOX_NPC
+	end
+
+kaizo_zaddy_text::
+	.string "Did we leave the engine running?$"
