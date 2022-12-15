@@ -342,5 +342,15 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_MAUSO30]                   = &gObjectEventGraphicsInfo_Mauso30,
     [OBJ_EVENT_GFX_MAUSO31]                   = &gObjectEventGraphicsInfo_Mauso31,
     [OBJ_EVENT_GFX_MAUSO32]                   = &gObjectEventGraphicsInfo_Mauso32,
-    [OBJ_EVENT_GFX_ZADDY]                   = &gObjectEventGraphicsInfo_Zaddy
+    [OBJ_EVENT_GFX_ZADDY]                   = &gObjectEventGraphicsInfo_Zaddy,
+    [OBJ_EVENT_GFX_BLOOD1]                   = &gObjectEventGraphicsInfo_Blood1,
+    [OBJ_EVENT_GFX_BLOOD21]                   = &gObjectEventGraphicsInfo_Blood21,
+    [OBJ_EVENT_GFX_BLOOD22]                   = &gObjectEventGraphicsInfo_Blood22,
+    [OBJ_EVENT_GFX_BLOOD23]                   = &gObjectEventGraphicsInfo_Blood23,
+    [OBJ_EVENT_GFX_BLOOD31]                   = &gObjectEventGraphicsInfo_Blood31,
+    [OBJ_EVENT_GFX_BLOOD32]                   = &gObjectEventGraphicsInfo_Blood32,
+    [OBJ_EVENT_GFX_BLOOD33]                   = &gObjectEventGraphicsInfo_Blood33,
+    [OBJ_EVENT_GFX_BLOOD41]                   = &gObjectEventGraphicsInfo_Blood41,
+    [OBJ_EVENT_GFX_BLOOD42]                   = &gObjectEventGraphicsInfo_Blood42,
+    [OBJ_EVENT_GFX_BLOOD43]                   = &gObjectEventGraphicsInfo_Blood43
 };

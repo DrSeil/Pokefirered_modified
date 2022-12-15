@@ -59,9 +59,12 @@ PalletTown_MomToOak::
 	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
 	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 1
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
+	setflag FLAG_HIDE_BLOOD1
+	setflag FLAG_HIDE_BLOOD2
+	setflag FLAG_HIDE_BLOOD3
+	setflag FLAG_HIDE_BLOOD4
 	setflag FLAG_DONT_TRANSITION_MUSIC
 	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
-	clearflag FLAG_0x0AF 
 	waitstate
 	return
 
@@ -600,7 +603,7 @@ kaizo_chad_text::
 	.string "teach you this lesson old man.$"
 
 kaizo_Text_WelcomeWantToHealPkmn::
-    .string "Welcome to our Healing KITCHEN!{PAUSE 60}\p"
+    .string "Welcome to our Healing KITCHEN!\p"
     .string "Rough journey? Y'all hungry?\n"
     .string "I've got NUGS and mini TACOS!$"
 
@@ -613,7 +616,7 @@ kaizo_Text_WeHopeToSeeYouAgain::
 
 kaizo_Text_RestoredPkmnToFullHealth::
     .string "Thank you for waiting.\n"
-    .string "We've restored you both to{PAUSE 30}\l"
+    .string "We've restored you both to\l"
     .string "full nourishment.$"
 
 kaizo_oak_house::

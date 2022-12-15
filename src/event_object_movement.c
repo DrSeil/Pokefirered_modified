@@ -468,6 +468,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_MAUSO_GRAY                 0x112C
 #define OBJ_EVENT_PAL_TAG_MAUSO_GOLD                 0x112D
 #define OBJ_EVENT_PAL_TAG_ZADDY                      0x112E
+#define OBJ_EVENT_PAL_TAG_BLOOD                      0x112F
 #define OBJ_EVENT_PAL_TAG_NONE                        0x11FF
 
 // Dynamic Overworld Palettes
@@ -555,6 +556,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_MausoGray,                     OBJ_EVENT_PAL_TAG_MAUSO_GRAY},
     {gObjectEventPal_MausoGold,                     OBJ_EVENT_PAL_TAG_MAUSO_GOLD},
     {gObjectEventPal_Zaddy,                     OBJ_EVENT_PAL_TAG_ZADDY},
+    {gObjectEventPal_Blood,                     OBJ_EVENT_PAL_TAG_BLOOD},
 
     {},
 };
@@ -1512,6 +1514,12 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
 
     SetObjectSubpriorityByZCoord(objectEvent->previousElevation, sprite, 1);
     UpdateObjectEventVisibility(objectEvent, sprite);
+    if (objectEvent->graphicsId >= OBJ_EVENT_GFX_BLOOD1 && objectEvent->graphicsId <= OBJ_EVENT_GFX_BLOOD43)
+    {
+        objectEvent->fixedPriority = TRUE;
+        sprite->subpriority = 0xFF;
+        sprite->y += 3;
+    }
     return objectEventId;
 }
 
@@ -4751,6 +4759,7 @@ static bool8 DoesObjectCollideWithObjectAt(struct ObjectEvent *objectEvent, s16 
         {
             if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))
             {
+                if (curObject->graphicsId >= OBJ_EVENT_GFX_BLOOD1 && curObject->graphicsId <= OBJ_EVENT_GFX_BLOOD43) continue; //HACK
                 if (AreZCoordsCompatible(objectEvent->currentElevation, curObject->currentElevation))
                 {
                     return TRUE;

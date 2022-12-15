@@ -35,6 +35,7 @@ static EWRAM_DATA u8 sWhichToReshow = 0;
 static EWRAM_DATA u8 sLastUsedBox = 0;
 static EWRAM_DATA u8 sReleaseText = 0;
 static EWRAM_DATA u8 sReleasedelay = 0;
+static EWRAM_DATA u8 sPivoted = 0;
 static EWRAM_DATA u16 sMovingItemId = ITEM_NONE;
 
 static void Task_InitPokeStorage(u8 taskId);
@@ -1487,6 +1488,11 @@ static void Task_ReleaseMon(u8 taskId)
         sReleaseText++;
         gStorage->state++;
         sReleasedelay = 120;
+        if(sPivoted <=3)
+        {
+            FlagClear(FLAG_HIDE_BLOOD1+sPivoted);
+            sPivoted++;
+        }
         break;
     case 4:
         if(StringLength(sReleaseMessages[sReleaseText].text)==0)

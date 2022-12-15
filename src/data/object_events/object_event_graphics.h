@@ -257,6 +257,18 @@ const u16 gObjectEventPic_Zaddy1[] = INCBIN_U16("graphics/object_events/pics/mis
 const u16 gObjectEventPic_Zaddy2[] = INCBIN_U16("graphics/object_events/pics/misc/team-zaddy-2.4bpp");
 const u16 gObjectEventPal_Zaddy[] = INCBIN_U16("graphics/object_events/palettes/zaddy.gbapal");
 
+const u16 gObjectEventPic_Blood1[] = INCBIN_U16("graphics/object_events/pics/misc/blood-1_small.4bpp");
+const u16 gObjectEventPic_Blood21[] = INCBIN_U16("graphics/object_events/pics/misc/blood-2-1.4bpp");
+const u16 gObjectEventPic_Blood22[] = INCBIN_U16("graphics/object_events/pics/misc/blood-2-2.4bpp");
+const u16 gObjectEventPic_Blood23[] = INCBIN_U16("graphics/object_events/pics/misc/blood-2-3.4bpp");
+const u16 gObjectEventPic_Blood31[] = INCBIN_U16("graphics/object_events/pics/misc/blood-3-1.4bpp");
+const u16 gObjectEventPic_Blood32[] = INCBIN_U16("graphics/object_events/pics/misc/blood-3-2.4bpp");
+const u16 gObjectEventPic_Blood33[] = INCBIN_U16("graphics/object_events/pics/misc/blood-3-3.4bpp");
+const u16 gObjectEventPic_Blood41[] = INCBIN_U16("graphics/object_events/pics/misc/blood-4-1.4bpp");
+const u16 gObjectEventPic_Blood42[] = INCBIN_U16("graphics/object_events/pics/misc/blood-4-2.4bpp");
+const u16 gObjectEventPic_Blood43[] = INCBIN_U16("graphics/object_events/pics/misc/blood-4-3.4bpp");
+const u16 gObjectEventPal_Blood[] = INCBIN_U16("graphics/object_events/palettes/blood.gbapal");
+
 const u16 gObjectEventPic_Mauso1[] = INCBIN_U16("graphics/object_events/pics/pokemon/1_buttmouth.4bpp");
 const u16 gObjectEventPic_Mauso2[] = INCBIN_U16("graphics/object_events/pics/pokemon/2_poo.4bpp");
 const u16 gObjectEventPic_Mauso3[] = INCBIN_U16("graphics/object_events/pics/pokemon/3_hopejr.4bpp");

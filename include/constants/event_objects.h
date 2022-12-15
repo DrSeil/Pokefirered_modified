@@ -191,9 +191,19 @@
 #define OBJ_EVENT_GFX_MAUSO31 187
 #define OBJ_EVENT_GFX_MAUSO32 188
 #define OBJ_EVENT_GFX_ZADDY   189
+#define OBJ_EVENT_GFX_BLOOD1  190
+#define OBJ_EVENT_GFX_BLOOD21  191
+#define OBJ_EVENT_GFX_BLOOD22  192
+#define OBJ_EVENT_GFX_BLOOD23  193
+#define OBJ_EVENT_GFX_BLOOD31  194
+#define OBJ_EVENT_GFX_BLOOD32  195
+#define OBJ_EVENT_GFX_BLOOD33  196
+#define OBJ_EVENT_GFX_BLOOD41  197
+#define OBJ_EVENT_GFX_BLOOD42  198
+#define OBJ_EVENT_GFX_BLOOD43  199
 
 
-#define NUM_OBJ_EVENT_GFX     190
+#define NUM_OBJ_EVENT_GFX     200
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

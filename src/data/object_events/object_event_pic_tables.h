@@ -1943,6 +1943,39 @@ static const struct SpriteFrameImage sPicTable_Mauso32[] = {
     overworld_frame(gObjectEventPic_Mauso32, 4, 16, 0),
 };
 
+static const struct SpriteFrameImage sPicTable_Blood1[] = {
+    overworld_frame(gObjectEventPic_Blood1, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Blood21[] = {
+    overworld_frame(gObjectEventPic_Blood21, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Blood22[] = {
+    overworld_frame(gObjectEventPic_Blood22, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Blood23[] = {
+    overworld_frame(gObjectEventPic_Blood23, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Blood31[] = {
+    overworld_frame(gObjectEventPic_Blood31, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Blood32[] = {
+    overworld_frame(gObjectEventPic_Blood32, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Blood33[] = {
+    overworld_frame(gObjectEventPic_Blood33, 4, 16, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Blood41[] = {
+    overworld_frame(gObjectEventPic_Blood41, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Blood42[] = {
+    overworld_frame(gObjectEventPic_Blood42, 4, 16, 0),
+};
+static const struct SpriteFrameImage sPicTable_Blood43[] = {
+    overworld_frame(gObjectEventPic_Blood43, 4, 16, 0),
+};
+
 //(face down, face up, face left, 2 walk down, 2 walk up, 2 walk left)
 
 static const struct SpriteFrameImage sPicTable_Zaddy[] = {
