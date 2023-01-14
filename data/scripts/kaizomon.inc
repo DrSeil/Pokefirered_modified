@@ -723,14 +723,15 @@ kaizo_home_mom_text::
 	.string "than you'd expect from a professor.$"
 
 kaizo_mansion_oak_text::
-	.string "Oak: We're camping here tonight, Poo.\n"
-	.string "Your mom is the best at\l{PAUSE 30}"
-	.string "pitchin' my tent.$"
+     .string "Oak: This place isn't as nice as\n"
+	 .string "I remember. We should go back to{PAUSE 30}\l"
+	 .string "the hotel.$" 
 
 kaizo_mansion_mom_text::
-	.string "Mom: I'm so excited! I can't wait\n"
-	.string "to see the big Rhyhorn Samuel\l{PAUSE 30}"
-	.string  "told me about!$"
+	.string "Mom: There's Muk and Grimer all\n"
+	.string "over the place in there. Reminds{PAUSE 30}\l"
+	.string "me of last night.$"
+
 
 kaizo_safari_oak_text::
 	.string "Oak: We're camping here tonight,\n"

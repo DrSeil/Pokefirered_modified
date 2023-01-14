@@ -42,6 +42,9 @@ static void ChooseMoveUsedParticle(u8 *textPtr);
 static void ChooseTypeOfMoveUsedString(u8 *textPtr);
 static void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst);
 
+static int use_twitchname __attribute__((section(".twitchnames"))) = 0;
+static u8 sText_TwitchName[] __attribute__((section(".twitchnames"))) = _("12345678901234567890");
+
 static const u8 sText_Empty1[] = _("");
 static const u8 sText_Trainer1LoseText[] = _("{B_TRAINER1_LOSE_TEXT}");
 static const u8 sText_Trainer2LoseText[] = _("{B_TRAINER2_LOSE_TEXT}");
@@ -2122,6 +2125,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                         toCpy = sky;
                     else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
                         toCpy = pie;
+                    else if(use_twitchname)
+                    {
+                        toCpy = sText_TwitchName;
+                    }
                     else {
                         toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;}
                 }
