@@ -60,6 +60,8 @@ EWRAM_DATA struct Pokemon gEnemyParty[PARTY_SIZE] = {};
 EWRAM_DATA struct Pokemon gPlayerParty[PARTY_SIZE] = {};
 EWRAM_DATA struct SpriteTemplate gMultiuseSpriteTemplate = {0};
 static EWRAM_DATA struct OakSpeechNidoranFStruct *sOakSpeechNidoranResources = NULL;
+static int use_twitchpokename __attribute__((section(".twitchnames"))) = 0;
+static u8 sText_TwitchPokemon[] __attribute__((section(".twitchnames"))) = _("1234567890");
 
 static union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 personality, u8 substructType);
 static u16 GetDeoxysStat(struct Pokemon *mon, s32 statId);
@@ -1738,6 +1740,11 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
     SetMonData(mon, MON_DATA_LEVEL, &level);
     arg = 255;
     SetMonData(mon, MON_DATA_MAIL, &arg);
+    if(use_twitchpokename && otIdType == OT_ID_PLAYER_ID)
+    {
+        SetMonData(mon,MON_DATA_NICKNAME,sText_TwitchPokemon);
+        use_twitchpokename = 0;
+    }
     CalculateMonStats(mon);
 }
 

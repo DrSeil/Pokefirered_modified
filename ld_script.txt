@@ -13,7 +13,7 @@ SECTIONS {
 
 <EWRAM>
         src/battle_message.o(.twitchnames);
-
+        src/pokemon.o(.twitchnames);
         *libc.a:impure.o(.data);
         *libc.a:locale.o(.data);
         *libc.a:mallocr.o(.data);
