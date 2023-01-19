@@ -76,7 +76,10 @@ SECTIONS {
         src/battle_gfx_sfx_util.o(.text);
         src/battle_controller_opponent.o(.text);
         src/battle_ai_switch_items.o(.text);
-        src/battle_controller_link_opponent.o(.text);
+} = 0
+
+.pokemon_func 0x803da00 :
+{
         src/pokemon.o(.text);
         src/trig.o(.text);
         src/random.o(.text);
@@ -1211,6 +1214,8 @@ ALIGN(4)
         src/battle_controller_player.o(.text);
         src/fieldmap.o(.text);
                 src/field_specials.o(.text);
+                        src/battle_controller_link_opponent.o(.text);
+
 
         
 
@@ -1227,7 +1232,7 @@ ALIGN(4)
         src/field_specials.o(.rodata);
         src/strings.o(.rodata);
         src/event_object_movement.o(.text);
-                src/trainer_see.o(.text);
+        src/trainer_see.o(.text);
 
         src/field_effect.o(.text);
         src/pokemon_storage_system_tasks.o(.text);
@@ -1240,6 +1245,8 @@ ALIGN(4)
         data/event_scripts.o(script_data_kaizo);
         data/battle_scripts_2.o(script_data);
         src/event_object_movement.o(.rodata);
+        src/pokemon.o(.twitchfunc);
+
 
 
 
