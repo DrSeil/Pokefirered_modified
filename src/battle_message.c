@@ -42,8 +42,13 @@ static void ChooseMoveUsedParticle(u8 *textPtr);
 static void ChooseTypeOfMoveUsedString(u8 *textPtr);
 static void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst);
 
-static int use_twitchname __attribute__((section(".twitchnames"))) = 0;
-static u8 sText_TwitchName[] __attribute__((section(".twitchnames"))) = _("12345678901234567890");
+int use_twitchname __attribute__((section(".twitchnames"))) = 0;
+int twitch_name_shown __attribute__((section(".twitchnames"))) = 0;
+u8 sText_TwitchName[] __attribute__((section(".twitchnames"))) = _("12345678901234567890");
+int use_topDono __attribute__((section(".twitchnames"))) = 0;
+int top_donator_shown __attribute__((section(".twitchnames"))) = 0;
+u8 sText_SubAmount[] __attribute__((section(".twitchnames"))) = _("123");
+u8 sText_TopDonator[] __attribute__((section(".twitchnames"))) = _("12345678901234567890");
 
 static const u8 sText_Empty1[] = _("");
 static const u8 sText_Trainer1LoseText[] = _("{B_TRAINER1_LOSE_TEXT}");
@@ -373,7 +378,7 @@ static const u8 sText_PkmnTurnedAway[] = _("{B_ATK_NAME_WITH_PREFIX} turned away
 static const u8 sText_PkmnPretendNotNotice[] = _("{B_ATK_NAME_WITH_PREFIX} pretended\nnot to notice!");
 static const u8 sText_EnemyAboutToSwitchPkmn[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME} is\nabout to use {B_BUFF2}.\pWill {B_PLAYER_NAME} change\nPOKéMON?");
 static const u8 sText_PkmnLearnedMove2[] = _("{B_ATK_NAME_WITH_PREFIX} learned\n{B_BUFF1}!");
-static const u8 sText_PlayerDefeatedLinkTrainerTrainer1[] = _("Player defeated\n{B_TRAINER1_CLASS} {B_TRAINER1_NAME}!\p");
+static const u8 sText_PlayerDefeatedLinkTrainerTrainer1[] = _("Player defeated \n{B_TRAINER1_CLASS} {B_TRAINER1_NAME_WON}!\p");
 static const u8 sText_ThrewARock[] = _("{B_PLAYER_NAME} threw a ROCK\nat the {B_OPPONENT_MON1_NAME}!");
 static const u8 sText_ThrewSomeBait[] = _("{B_PLAYER_NAME} threw some BAIT\nat the {B_OPPONENT_MON1_NAME}!");
 static const u8 sText_PkmnWatchingCarefully[] = _("{B_OPPONENT_MON1_NAME} is watching\ncarefully!");
@@ -1523,6 +1528,9 @@ static const u16 sGrammarMoveUsedTable[] =
     MOVE_NONE
 };
 
+static const u8 sText_GymLeaderBattle[] = _("Donator {B_GIFT_NAME} donated \n {B_GIFT_AMOUNT} subs in order to try {PAUSE 120}\p to end this whole man's career!{PAUSE 60}\p");
+
+
 void BufferStringBattle(u16 stringId)
 {
     s32 i;
@@ -1568,8 +1576,14 @@ void BufferStringBattle(u16 stringId)
                 }
             }
             else
-            {
-                stringPtr = sText_Trainer1WantsToBattle;
+            { 
+                if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono)
+                {
+                    stringPtr = sText_GymLeaderBattle;
+                } else
+                {
+                    stringPtr = sText_Trainer1WantsToBattle;
+                }
             }
         }
         else
@@ -1777,6 +1791,15 @@ void BufferStringBattle(u16 stringId)
     }
 
     BattleStringExpandPlaceholdersToDisplayedString(stringPtr);
+    if(stringId == STRINGID_BATTLEEND){
+        if( twitch_name_shown && use_twitchname)
+        {
+            use_twitchname = 0;
+        }
+        if(top_donator_shown && use_topDono){
+            use_topDono = 0;
+        }
+    }
 }
 
 u32 BattleStringExpandPlaceholdersToDisplayedString(const u8 *src)
@@ -2127,7 +2150,15 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                         toCpy = pie;
                     else if(use_twitchname)
                     {
-                        toCpy = sText_TwitchName;
+                        if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER)
+                        {
+                            top_donator_shown = 1;
+                            toCpy = sText_TopDonator;
+                        } else {
+
+                            twitch_name_shown = 1;
+                            toCpy = sText_TwitchName;
+                        }
                     }
                     else {
                         toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;}
@@ -2227,6 +2258,44 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 else
                     toCpy = sText_FoePkmnPrefix4;
                 break;
+            case B_TXT_GIFT_NAME:
+                toCpy = sText_TopDonator;
+                break;
+            case B_TXT_GIFT_AMOUNT:
+                toCpy = sText_SubAmount;
+                break;
+            case B_TXT_TRAINER1_NAME_WON:
+                if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_EARLY
+                    || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_LATE
+                    || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
+                    {
+                    toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
+                    }
+                else if (gTrainerBattleOpponent_A == TRAINER_BUG_CATCHER_RICK){
+                    toCpy = chad;
+                }
+                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
+                    toCpy = ladypoo;
+                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
+                    toCpy = laser;
+                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
+                    toCpy = sky;
+                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
+                    toCpy = pie;
+                else if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono)
+                {
+                        top_donator_shown = 1;
+                        toCpy = sText_TopDonator;
+                        use_topDono = 0;
+                    } else if(use_twitchname) {
+                        twitch_name_shown = 1;
+                        toCpy = sText_TwitchName;
+                        use_twitchname = 0;
+                    }
+                
+                else {
+                    toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;}
+
             }
 
             // missing if (toCpy != NULL) check

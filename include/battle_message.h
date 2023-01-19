@@ -55,6 +55,10 @@
 #define B_TXT_TRAINER2_LOSE_TEXT 0x2E
 #define B_TXT_TRAINER2_WIN_TEXT 0x2F
 #define B_TXT_BUFF3 0x30
+#define B_TXT_GIFT_NAME 0x31
+#define B_TXT_GIFT_AMOUNT 0x32
+#define B_TXT_TRAINER1_NAME_WON 0x33
+ 
 
 // for B_TXT_BUFF1, B_TXT_BUFF2 and B_TXT_BUFF3
 
@@ -225,6 +229,11 @@ extern u8 gDisplayedStringBattle[300];
 extern u8 gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT];
 extern u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT];
 extern u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT];
+
+extern int use_twitchname ;
+extern int twitch_name_shown ;
+extern int use_topDono ;
+extern int top_donator_shown ;
 
 extern const u8 *const gBattleStringsTable[];
 extern const u8 *const gStatNamesTable[];

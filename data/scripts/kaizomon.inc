@@ -2,7 +2,8 @@
 
 
 kaizo_quickwarp1::
-    warp MAP_PEWTER_CITY, 255, 24, 9
+	giveitem ITEM_SILPH_SCOPE
+    warp MAP_POKEMON_TOWER_6F, 255, 10, 14
 	waitstate
 	release
 	end
