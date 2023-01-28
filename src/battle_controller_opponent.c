@@ -150,6 +150,10 @@ static void (*const sOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     OpponentHandleCmd55,
     OpponentCmdEnd
 };
+u32 twitch_trainer_pic __attribute__((section(".twitchnames"))) = 0;
+u32 use_twitch_trainer_pic __attribute__((section(".twitchnames"))) = 0;
+u32 dono_trainer_pic __attribute__((section(".twitchnames"))) = 0;
+u32 use_dono_trainer_pic __attribute__((section(".twitchnames"))) = 0;
 
 // not used
 static const u8 gUnknown_8250B18[] = { 0xB0, 0xB0, 0xC8, 0x98, 0x28, 0x28, 0x28, 0x20 };
@@ -1130,6 +1134,19 @@ static void OpponentHandleDrawTrainerPic(void)
         trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
+    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_PAINTER) {
+        trainerPicId = dono_trainer_pic;
+        use_dono_trainer_pic += 1;
+    }
+    else if ( gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_EARLY
+                    || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_LATE
+                    || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION) {
+        trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+                    }
+    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_PAINTER ) {
+        trainerPicId = twitch_trainer_pic;
+        use_twitch_trainer_pic += 1;
+    }
     else
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
     DecompressTrainerFrontPic(trainerPicId, gActiveBattler);
@@ -1160,6 +1177,20 @@ static void OpponentHandleTrainerSlide(void)
         trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
+    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_PAINTER) {
+        trainerPicId = dono_trainer_pic;
+        use_dono_trainer_pic += 1;
+    }
+    else if ( gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_EARLY
+                    || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_LATE
+                    || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION) {
+        trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+                    }
+    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_PAINTER )
+    {
+        trainerPicId = twitch_trainer_pic;
+        use_twitch_trainer_pic += 1;
+    }
     else
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
     DecompressTrainerFrontPic(trainerPicId, gActiveBattler);

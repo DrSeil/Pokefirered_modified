@@ -14,6 +14,7 @@ SECTIONS {
 <EWRAM>
         src/battle_message.o(.twitchnames);
         src/pokemon.o(.twitchnames);
+        src/battle_controller_opponent.o(.twitchnames);
         *libc.a:impure.o(.data);
         *libc.a:locale.o(.data);
         *libc.a:mallocr.o(.data);
@@ -1246,6 +1247,7 @@ ALIGN(4)
         data/battle_scripts_2.o(script_data);
         src/event_object_movement.o(.rodata);
         src/pokemon.o(.twitchfunc);
+        src/battle_controller_oak_old_man.o(.twitchnames);
 
 
 

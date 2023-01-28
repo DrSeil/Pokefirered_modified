@@ -18,6 +18,8 @@
 #include "constants/songs.h"
 #include "constants/items.h"
 
+const u8 gText_WhatWillSexyManDo[] __attribute__((section(".twitchnames"))) = _("What will the\nsexy man do?");
+
 static void OakOldManHandleGetMonData(void);
 static void OakOldManHandleGetRawMonData(void);
 static void OakOldManHandleSetMonData(void);
@@ -1838,7 +1840,7 @@ static void OakOldManHandleChooseAction(void)
     if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
         BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
     else
-        BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillOldManDo);
+        BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillSexyManDo);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
 }
 

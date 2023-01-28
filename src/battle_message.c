@@ -393,7 +393,7 @@ static const u8 sText_GhostAppearedCantId[] = _("The GHOST appeared!\pDarn!\nThe
 static const u8 sText_TheGhostAppeared[] = _("The GHOST appeared!\p");
 static const u8 sText_SilphScopeUnveil[] = _("SILPH SCOPE unveiled the GHOST's\nidentity!");
 static const u8 sText_TheGhostWas[] = _("The GHOST was MAROWAK!\p\n");
-static const u8 sText_Trainer1WantsToBattle[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nwould like to battle!\p");
+static const u8 sText_Trainer1WantsToBattle[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nwould like to battle!{PAUSE 60}\p");
 static const u8 sText_LinkTrainerWantsToBattle[] = _("{B_LINK_OPPONENT1_NAME}\nwants to battle!");
 static const u8 sText_TwoLinkTrainersWantToBattle[] = _("{B_LINK_OPPONENT1_NAME} and {B_LINK_OPPONENT2_NAME}\nwant to battle!");
 static const u8 sText_Trainer1SentOutPkmn[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME} sent\nout {B_OPPONENT_MON1_NAME}!{PAUSE 60}");
@@ -466,9 +466,8 @@ const u8 *const gPokeblockWasTooXStringTable[] = {
     sText_PokeblockWasTooBitter,
     sText_PokeblockWasTooSour
 };
-
 static const u8 sText_PlayerUsedItem[] = _("{B_PLAYER_NAME} used\n{B_LAST_ITEM}!");
-static const u8 sText_OldManUsedItem[] = _("The old man used\n{B_LAST_ITEM}!");
+static const u8 sText_OldManUsedItem[] = _("The young spry sexy dashing \nBarbarousKing used {B_LAST_ITEM}!");
 static const u8 sText_PokedudeUsedItem[] = _("The POKé DUDE used\n{B_LAST_ITEM}!");
 static const u8 sText_Trainer1UsedItem[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nused {B_LAST_ITEM}!");
 static const u8 sText_TrainerBlockedBall[] = _("The TRAINER blocked the BALL!");
@@ -1577,7 +1576,7 @@ void BufferStringBattle(u16 stringId)
             }
             else
             { 
-                if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono)
+                if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono == 1)
                 {
                     stringPtr = sText_GymLeaderBattle;
                 } else
@@ -1792,11 +1791,11 @@ void BufferStringBattle(u16 stringId)
 
     BattleStringExpandPlaceholdersToDisplayedString(stringPtr);
     if(stringId == STRINGID_BATTLEEND){
-        if( twitch_name_shown && use_twitchname)
+        if(use_twitchname > 0)
         {
             use_twitchname = 0;
         }
-        if(top_donator_shown && use_topDono){
+        if(use_topDono > 0){
             use_topDono = 0;
         }
     }
@@ -2148,18 +2147,15 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                         toCpy = sky;
                     else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
                         toCpy = pie;
-                    else if(use_twitchname)
+                    else if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono == 1)
                     {
-                        if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER)
-                        {
-                            top_donator_shown = 1;
-                            toCpy = sText_TopDonator;
-                        } else {
-
-                            twitch_name_shown = 1;
-                            toCpy = sText_TwitchName;
-                        }
+                        top_donator_shown = 1;
+                        toCpy = sText_TopDonator;
+                    } else if(use_twitchname) {
+                        twitch_name_shown = 1;
+                        toCpy = sText_TwitchName;
                     }
+                    
                     else {
                         toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;}
                 }
@@ -2282,7 +2278,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     toCpy = sky;
                 else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
                     toCpy = pie;
-                else if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono)
+                else if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono == 1)
                 {
                         top_donator_shown = 1;
                         toCpy = sText_TopDonator;
