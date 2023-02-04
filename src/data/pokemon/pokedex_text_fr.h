@@ -2566,9 +2566,9 @@ const u8 gSealeoPokedexText[] = _(
 const u8 gSealeoPokedexTextUnused[] = _("");
 
 const u8 gWalreinPokedexText[] = _(
-    "It swims through icy seas while shattering\n"
-    "ice floes with its large tusks. It is\n"
-    "protected by its thick blubber.");
+    "It's said to be unable to tell time.\n"
+    "The sound of a clock expiring is said to\n"
+    "send it into an inspiring rage.");
 
 const u8 gWalreinPokedexTextUnused[] = _("");
 

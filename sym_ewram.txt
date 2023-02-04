@@ -5,8 +5,7 @@
 	.include "src/window_8bpp.o"
 	.include "src/sprite.o"
 	.include "src/string_util.o"
-	.include "src/link.o"
-	.space 8
+	.space 1104
 	.include "src/battle_controllers.o"
 	.include "src/battle_main.o"
 	.include "src/pokemon.o"

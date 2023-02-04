@@ -15,6 +15,7 @@ SECTIONS {
         src/battle_message.o(.twitchnames);
         src/pokemon.o(.twitchnames);
         src/battle_controller_opponent.o(.twitchnames);
+        src/link.o(ewram_data);
         *libc.a:impure.o(.data);
         *libc.a:locale.o(.data);
         *libc.a:mallocr.o(.data);
@@ -479,7 +480,7 @@ ALIGN(4)
 
     } =0
 
-    . = 0x8234708;
+    . = 0x82354E8;
 
     .rodatadata :
     SUBALIGN(4)
@@ -1248,6 +1249,7 @@ ALIGN(4)
         src/event_object_movement.o(.rodata);
         src/pokemon.o(.twitchfunc);
         src/battle_controller_oak_old_man.o(.twitchnames);
+        src/data.o(.new_twitch_pics);
 
 
 

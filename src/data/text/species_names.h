@@ -342,7 +342,7 @@ const u8 gSpeciesNames[][11] = {
     _("CAMERUPT"),
     _("SPHEAL"),
     _("SEALEO"),
-    _("WALREIN"),
+    _("ANDYREID"),
     _("CACNEA"),
     _("CACTURNE"),
     _("SNORUNT"),

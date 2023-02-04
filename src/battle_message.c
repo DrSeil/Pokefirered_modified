@@ -2136,9 +2136,6 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                      {
                         toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
                      }
-                    else if (gTrainerBattleOpponent_A == TRAINER_BUG_CATCHER_RICK){
-                        toCpy = chad;
-                    }
                     else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
                         toCpy = ladypoo;
                     else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
@@ -2267,9 +2264,6 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     {
                     toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
                     }
-                else if (gTrainerBattleOpponent_A == TRAINER_BUG_CATCHER_RICK){
-                    toCpy = chad;
-                }
                 else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
                     toCpy = ladypoo;
                 else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
@@ -2283,11 +2277,11 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                         top_donator_shown = 1;
                         toCpy = sText_TopDonator;
                         use_topDono = 0;
-                    } else if(use_twitchname) {
-                        twitch_name_shown = 1;
-                        toCpy = sText_TwitchName;
-                        use_twitchname = 0;
-                    }
+                } else if(use_twitchname) {
+                    twitch_name_shown = 1;
+                    toCpy = sText_TwitchName;
+                    use_twitchname = 0;
+                }
                 
                 else {
                     toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;}

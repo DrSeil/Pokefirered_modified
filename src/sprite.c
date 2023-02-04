@@ -37,6 +37,9 @@ struct OamDimensions
     s8 height;
 };
 
+
+
+
 static void UpdateOamCoords(void);
 static void BuildSpritePriorities(void);
 static void SortSprites(void);
@@ -196,7 +199,10 @@ static const struct Sprite sDummySprite =
     .sheetTileStart = 0,
     .subspriteTableNum = 0,
     .subspriteMode = 0,
-    .subpriority = 0xFF
+    .subpriority = 0xFF,
+    .parent = 0xFF,
+    .children = {0xFF, 0xFF, 0xFF, 0xFF},
+    .x3 = 0, .y3 0
 };
 
 const struct OamData gDummyOamData = DUMMY_OAM_DATA;
@@ -292,6 +298,25 @@ static const struct OamDimensions sOamDimensions[3][4] =
     },
 };
 
+static const s8 sOffsetVecTableChildren[5][2] =
+{
+    {   // upper left
+        -8,  -8
+    },
+    {   // bottom left
+        -8,  24
+    },
+    {   // upper right
+        32,  -24
+    },
+    {   // middle right
+        32,  0
+    },
+    {   // bottom right
+        32,  24
+    },
+};
+
 static u16 sSpriteTileRangeTags[MAX_SPRITES];
 static u16 sSpriteTileRanges[MAX_SPRITES * 2];
 static struct AffineAnimState sAffineAnimStates[OAM_MATRIX_COUNT];
@@ -301,6 +326,7 @@ u32 gOamMatrixAllocBitmap;
 u8 gReservedSpritePaletteCount;
 
 EWRAM_DATA struct Sprite gSprites[MAX_SPRITES + 1] = {0};
+// struct Sprite __attribute__((section(".new_trainer_pics"))) gSprites[MAX_SPRITES + 1] = {0};
 EWRAM_DATA u16 gSpritePriorities[MAX_SPRITES] = {0};
 EWRAM_DATA u8 gSpriteOrder[MAX_SPRITES] = {0};
 EWRAM_DATA bool8 gShouldProcessSpriteCopyRequests = 0;
@@ -339,7 +365,7 @@ void AnimateSprites(void)
         {
             sprite->callback(sprite);
 
-            if (sprite->inUse)
+            if (sprite->inUse && sprite->parent == 0xFF)
                 AnimateSprite(sprite);
         }
     }
@@ -361,7 +387,50 @@ void BuildOamBuffer(void)
 
 void UpdateOamCoords(void)
 {
-    u8 i;
+    u8 i, ic;
+    for (i = 0; i < MAX_SPRITES; i++){
+        struct Sprite *sprite = &gSprites[i];
+        if (sprite->inUse && sprite->parent == 0xFF && sprite->children[0] != 0xFF){
+            s32 x1 = (sOffsetVecTableChildren[0][0]);
+            s32 y1 = (sOffsetVecTableChildren[0][1]);
+            
+            sprite->x3 = x1;
+            if(sprite->oam.matrixNum & ST_OAM_HFLIP) sprite->x3 = -x1;
+            sprite->y3 = y1;
+            if(sprite->oam.matrixNum & ST_OAM_VFLIP) sprite->y3 = -y1;
+            for(ic = 0; ic < 4; ic++){
+                if(sprite->children[ic] != 0xFF){
+                    struct Sprite *childSprite = &gSprites[sprite->children[ic]];
+                    childSprite->coordOffsetEnabled = sprite->coordOffsetEnabled;
+                    childSprite->invisible = sprite->invisible;
+                    childSprite->oam.affineMode = sprite->oam.affineMode;
+                    childSprite->oam.objMode = sprite->oam.objMode;
+                    childSprite->oam.mosaic = sprite->oam.mosaic;
+                    childSprite->oam.bpp = sprite->oam.bpp;
+                    childSprite->oam.matrixNum = sprite->oam.matrixNum;
+                    childSprite->oam.priority = sprite->oam.priority;
+                    childSprite->oam.paletteNum = sprite->oam.paletteNum;
+                    childSprite->oam.affineParam = sprite->oam.affineParam;
+                    childSprite->animBeginning = sprite->animBeginning;
+                    childSprite->affineAnimBeginning = sprite->affineAnimBeginning;
+                    childSprite->subpriority = sprite->subpriority;
+                    childSprite->anims = sprite->anims;
+                    childSprite->affineAnims = sprite->affineAnims;
+                    childSprite->x = sprite->x;
+                    childSprite->y = sprite->y;
+                    childSprite->x2 = sprite->x2;
+                    childSprite->y2 = sprite->y2;
+                    x1 = (sOffsetVecTableChildren[ic + 1][0]);
+                    y1 = (sOffsetVecTableChildren[ic + 1][1]);
+                    childSprite->x3 = x1;
+                    if(childSprite->oam.matrixNum & ST_OAM_HFLIP) childSprite->x3 = -x1;
+                    childSprite->y3 = y1;
+                    if(childSprite->oam.matrixNum & ST_OAM_VFLIP) childSprite->y3 = -y1;
+                    
+                }
+            }
+        }
+    }
     for (i = 0; i < MAX_SPRITES; i++)
     {
         struct Sprite *sprite = &gSprites[i];
@@ -369,13 +438,13 @@ void UpdateOamCoords(void)
         {
             if (sprite->coordOffsetEnabled)
             {
-                sprite->oam.x = sprite->x + sprite->x2 + sprite->centerToCornerVecX + gSpriteCoordOffsetX;
-                sprite->oam.y = sprite->y + sprite->y2 + sprite->centerToCornerVecY + gSpriteCoordOffsetY;
+                sprite->oam.x = sprite->x + sprite->x2 + sprite->x3 + sprite->centerToCornerVecX + gSpriteCoordOffsetX;
+                sprite->oam.y = sprite->y + sprite->y2 + sprite->y3 + sprite->centerToCornerVecY + gSpriteCoordOffsetY;
             }
             else
             {
-                sprite->oam.x = sprite->x + sprite->x2 + sprite->centerToCornerVecX;
-                sprite->oam.y = sprite->y + sprite->y2 + sprite->centerToCornerVecY;
+                sprite->oam.x = sprite->x + sprite->x2 + sprite->x3 + sprite->centerToCornerVecX;
+                sprite->oam.y = sprite->y + sprite->y2 + sprite->y3 + sprite->centerToCornerVecY;
             }
         }
     }
@@ -576,6 +645,12 @@ u8 CreateSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y,
     sprite->x = x;
     sprite->y = y;
 
+    sprite->parent = 0xFF;
+    sprite->children[0] = 0xFF;
+    sprite->children[1] = 0xFF;
+    sprite->children[2] = 0xFF;
+    sprite->children[3] = 0xFF;
+
     CalcCenterToCornerVec(sprite, sprite->oam.shape, sprite->oam.size, sprite->oam.affineMode);
 
     if (template->tileTag == 0xFFFF)
@@ -642,6 +717,7 @@ void DestroySprite(struct Sprite *sprite)
         {
             u16 i;
             u16 tileEnd = (sprite->images->size / TILE_SIZE_4BPP) + sprite->oam.tileNum;
+            if(sprite->children[0] != 0xFF) tileEnd = (0xC80 / TILE_SIZE_4BPP) + sprite->oam.tileNum;
             for (i = sprite->oam.tileNum; i < tileEnd; i++)
                 FREE_SPRITE_TILE(i);
         }
@@ -704,6 +780,15 @@ void SetOamMatrix(u8 matrixNum, u16 a, u16 b, u16 c, u16 d)
 
 void ResetSprite(struct Sprite *sprite)
 {
+    u8 ic;
+
+    if(sprite->parent != 0xFF) return;
+    for(ic = 0; ic < 4; ic++){
+        if(sprite->children[ic] != 0xFF){
+            struct Sprite *childSprite = &gSprites[sprite->children[ic]];
+            *childSprite = sDummySprite;
+        }
+    }
     *sprite = sDummySprite;
 }
 
@@ -711,6 +796,8 @@ void CalcCenterToCornerVec(struct Sprite *sprite, u8 shape, u8 size, u8 affineMo
 {
     u8 x = sCenterToCornerVecTable[shape][size][0];
     u8 y = sCenterToCornerVecTable[shape][size][1];
+    u8 ic;
+
 
     if (affineMode & ST_OAM_AFFINE_DOUBLE_MASK)
     {
@@ -720,6 +807,22 @@ void CalcCenterToCornerVec(struct Sprite *sprite, u8 shape, u8 size, u8 affineMo
 
     sprite->centerToCornerVecX = x;
     sprite->centerToCornerVecY = y;
+    for(ic = 0; ic < 4; ic++){
+        if(sprite->children[ic] != 0xFF){
+            struct Sprite *childSprite = &gSprites[sprite->children[ic]];
+            u8 x = sCenterToCornerVecTable[childSprite->oam.shape][childSprite->oam.size][0];
+            u8 y = sCenterToCornerVecTable[childSprite->oam.shape][childSprite->oam.size][1];
+
+            if (affineMode & ST_OAM_AFFINE_DOUBLE_MASK)
+            {
+                x *= 2;
+                y *= 2;
+            }
+
+            childSprite->centerToCornerVecX = x;
+            childSprite->centerToCornerVecY = y;
+        }
+    }
 }
 
 s16 AllocSpriteTiles(u16 tileCount)
@@ -958,7 +1061,8 @@ void BeginAnim(struct Sprite *sprite)
 
         if (sprite->usingSheet)
             sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
-        else
+        else if(sprite->parent == 0xFF)
+
             RequestSpriteFrameImageCopy(imageValue, sprite->oam.tileNum, sprite->images);
     }
 }
@@ -1010,7 +1114,7 @@ void AnimCmd_frame(struct Sprite *sprite)
 
     if (sprite->usingSheet)
         sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
-    else
+    else if(sprite->parent == 0xFF)
         RequestSpriteFrameImageCopy(imageValue, sprite->oam.tileNum, sprite->images);
 }
 
@@ -1044,7 +1148,7 @@ void AnimCmd_jump(struct Sprite *sprite)
 
     if (sprite->usingSheet)
         sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
-    else
+    else if(sprite->parent == 0xFF)
         RequestSpriteFrameImageCopy(imageValue, sprite->oam.tileNum, sprite->images);
 }
 
@@ -1773,4 +1877,200 @@ bool8 AddSubspritesToOamBuffer(struct Sprite *sprite, struct OamData *destOam, u
     }
 
     return 0;
+}
+
+
+
+u8 CreateBigSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority)
+{
+    
+    u8 ic;
+    struct Sprite *spriteA = &gSprites[index];
+    struct Sprite *spriteB = &gSprites[index + 1];
+    struct Sprite *spriteC = &gSprites[index + 2];
+    struct Sprite *spriteD = &gSprites[index + 3];
+    struct Sprite *spriteE = &gSprites[index + 4];
+
+    ResetSprite(spriteA);
+    ResetSprite(spriteB);
+    ResetSprite(spriteC);
+    ResetSprite(spriteD);
+    ResetSprite(spriteE);
+
+    spriteA->inUse = TRUE;
+    spriteA->animBeginning = TRUE;
+    spriteA->affineAnimBeginning = TRUE;
+    spriteA->usingSheet = TRUE;
+
+    spriteA->subpriority = subpriority;
+    spriteA->oam = *template->oam;
+    spriteA->anims = template->anims;
+    spriteA->affineAnims = template->affineAnims;
+    spriteA->template = template;
+    spriteA->callback = template->callback;
+    spriteB->subpriority = subpriority;
+    spriteB->oam = *template->oam;
+    spriteB->anims = template->anims;
+    spriteB->affineAnims = template->affineAnims;
+    spriteB->template = template;
+    spriteB->callback = SpriteCallbackDummy;
+    spriteC->subpriority = subpriority;
+    spriteC->oam = *template->oam;
+    spriteC->anims = template->anims;
+    spriteC->affineAnims = template->affineAnims;
+    spriteC->template = template;
+    spriteC->callback = SpriteCallbackDummy;
+    spriteD->subpriority = subpriority;
+    spriteD->oam = *template->oam;
+    spriteD->anims = template->anims;
+    spriteD->affineAnims = template->affineAnims;
+    spriteD->template = template;
+    spriteD->callback = SpriteCallbackDummy;
+    spriteE->subpriority = subpriority;
+    spriteE->oam = *template->oam;
+    spriteE->anims = template->anims;
+    spriteE->affineAnims = template->affineAnims;
+    spriteE->template = template;
+    spriteE->callback = SpriteCallbackDummy;
+
+    spriteA->x = x;
+    spriteA->y = y;
+    for(ic = 0; ic < 4; ic++){
+        gSprites[index + ic + 1].x = x + sOffsetVecTableChildren[ic + 1][0];
+        gSprites[index + ic + 1].y = y + sOffsetVecTableChildren[ic + 1][1];
+    }
+
+    spriteA->oam.shape = 0; //square
+    spriteA->oam.size = 3; //64x64
+    spriteB->oam.shape = 1; //Horizantal
+    spriteB->oam.size = 3; //64x32
+    spriteC->oam.shape = 2; //vertical
+    spriteC->oam.size = 2; //16x32
+    spriteD->oam.shape = 0; //vertical
+    spriteD->oam.size = 1; //16x16
+    spriteE->oam.shape = 2; //vertical
+    spriteE->oam.size = 2; //16x32
+
+    spriteA->parent = 0xFF;
+    spriteB->parent = index;
+    spriteC->parent = index;
+    spriteD->parent = index;
+    spriteE->parent = index;
+    for(ic = 0; ic < 4; ic++){
+        spriteA->children[ic] = index + ic + 1;
+        spriteB->children[ic] = 0xFF;
+        spriteC->children[ic] = 0xFF;
+        spriteD->children[ic] = 0xFF;
+        spriteE->children[ic] = 0xFF;
+    }
+
+    CalcCenterToCornerVec(spriteA, spriteA->oam.shape, spriteA->oam.size, spriteA->oam.affineMode);
+    CalcCenterToCornerVec(spriteB, spriteB->oam.shape, spriteB->oam.size, spriteB->oam.affineMode);
+    CalcCenterToCornerVec(spriteC, spriteC->oam.shape, spriteC->oam.size, spriteC->oam.affineMode);
+    CalcCenterToCornerVec(spriteD, spriteD->oam.shape, spriteD->oam.size, spriteD->oam.affineMode);
+    CalcCenterToCornerVec(spriteE, spriteE->oam.shape, spriteE->oam.size, spriteE->oam.affineMode);
+
+    if (template->tileTag == 0xFFFF)
+    {
+        s16 tileNum;
+        spriteA->images = template->images;
+        tileNum = AllocSpriteTiles((u8)(0xC80 / TILE_SIZE_4BPP)); //allocate for a 80x80 sprite
+        if (tileNum == -1)
+        {
+            ResetSprite(spriteA);
+            ResetSprite(spriteB);
+            ResetSprite(spriteC);
+            ResetSprite(spriteD);
+            ResetSprite(spriteE);
+            return MAX_SPRITES;
+        }
+        spriteA->oam.tileNum = tileNum;
+        spriteA->usingSheet = FALSE;
+        spriteA->sheetTileStart = 0;
+    }
+    else
+    {
+        spriteA->sheetTileStart = GetSpriteTileStartByTag(template->tileTag);
+        SetSpriteSheetFrameTileNum(spriteA);
+    }
+    // s16 tilestart = spriteA->oam.tileNum - 100;
+        spriteB->usingSheet = spriteA->usingSheet;
+        spriteB->sheetTileStart = spriteA->sheetTileStart + 0x30;
+        spriteB->oam.tileNum = spriteA->oam.tileNum + 0x30;
+        spriteB->images = spriteA->images + 0x600;
+        spriteC->usingSheet = spriteA->usingSheet;
+        spriteC->sheetTileStart = spriteA->sheetTileStart + 0x50;
+        spriteC->oam.tileNum = spriteA->oam.tileNum + 0x50;
+        spriteC->images = spriteA->images + 0xA00;
+        spriteD->usingSheet = spriteA->usingSheet;
+        spriteD->sheetTileStart = spriteA->sheetTileStart + 0x58;
+        spriteD->oam.tileNum = spriteA->oam.tileNum + 0x58;
+        spriteD->images = spriteA->images + 0xB00;
+        spriteE->usingSheet = spriteA->usingSheet;
+        spriteE->sheetTileStart = spriteA->sheetTileStart + 0x5C;
+        spriteE->oam.tileNum = spriteA->oam.tileNum + 0x5C;
+        spriteE->images = spriteA->images + 0xB80;
+
+        spriteB->usingSheet = spriteA->usingSheet;
+        spriteB->sheetTileStart = spriteA->sheetTileStart + 0x30;
+        spriteB->oam.tileNum = spriteA->oam.tileNum - 100 + 0x30;
+        spriteB->images = spriteA->images + 0x600;
+        spriteC->usingSheet = spriteA->usingSheet;
+        spriteC->sheetTileStart = spriteA->sheetTileStart + 0x50;
+        spriteC->oam.tileNum = spriteA->oam.tileNum - 100 + 0x50;
+        spriteC->images = spriteA->images + 0xA00;
+        spriteD->usingSheet = spriteA->usingSheet;
+        spriteD->sheetTileStart = spriteA->sheetTileStart + 0x58;
+        spriteD->oam.tileNum = spriteA->oam.tileNum - 100 + 0x58;
+        spriteD->images = spriteA->images + 0xB00;
+        spriteE->usingSheet = spriteA->usingSheet;
+        spriteE->sheetTileStart = spriteA->sheetTileStart + 0x5C;
+        spriteE->oam.tileNum = spriteA->oam.tileNum - 100 + 0x5C;
+        spriteE->images = spriteA->images + 0xB80;
+
+        // spriteB->usingSheet = spriteA->usingSheet;
+        // spriteB->sheetTileStart = spriteA->sheetTileStart;
+        // spriteB->oam.tileNum = 400;
+        // spriteB->images = spriteA->images;
+        // spriteC->usingSheet = spriteA->usingSheet;
+        // spriteC->sheetTileStart = spriteA->sheetTileStart;
+        // spriteC->oam.tileNum = spriteA->oam.tileNum;
+        // spriteC->images = spriteA->images;
+        // spriteD->usingSheet = spriteA->usingSheet;
+        // spriteD->sheetTileStart = spriteA->sheetTileStart;
+        // spriteD->oam.tileNum = spriteA->oam.tileNum;
+        // spriteD->images = spriteA->images;
+        // spriteE->usingSheet = spriteA->usingSheet;
+        // spriteE->sheetTileStart = spriteA->sheetTileStart;
+        // spriteE->oam.tileNum = spriteA->oam.tileNum;
+        // spriteE->images = spriteA->images;
+
+    if (spriteA->oam.affineMode & ST_OAM_AFFINE_ON_MASK)
+        InitSpriteAffineAnim(spriteA);
+
+
+    if (template->paletteTag != 0xFFFF){
+        spriteA->oam.paletteNum = IndexOfSpritePaletteTag(template->paletteTag);
+    }
+    spriteB->inUse = TRUE;
+    spriteC->inUse = TRUE;
+    spriteD->inUse = TRUE;
+    spriteE->inUse = TRUE;
+    return index;
+}
+
+u8 CreateBigSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority)
+{
+    u8 i;
+    u8 ret = 0;
+    for (i = 0; i < MAX_SPRITES; i++){
+        if (!gSprites[i].inUse){
+            if(++ret == 5){
+                return CreateBigSpriteAt(i - 4, template, x, y, subpriority);
+            }
+        }else{
+            ret = 0;
+        }
+    }
+    return MAX_SPRITES;
 }

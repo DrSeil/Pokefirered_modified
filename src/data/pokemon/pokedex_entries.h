@@ -4747,7 +4747,7 @@ const struct PokedexEntry gPokedexEntries[] =
 
     [NATIONAL_DEX_WALREIN] =
     {
-        .categoryName = _("ICE BREAK"),
+        .categoryName = _("CHRONOPHOBC"),
         .height = 14,
         .weight = 1506,
         .description = gWalreinPokedexText,

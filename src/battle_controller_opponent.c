@@ -1134,7 +1134,7 @@ static void OpponentHandleDrawTrainerPic(void)
         trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
-    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_PAINTER) {
+    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_NEW_ZOSSIE) {
         trainerPicId = dono_trainer_pic;
         use_dono_trainer_pic += 1;
     }
@@ -1143,18 +1143,26 @@ static void OpponentHandleDrawTrainerPic(void)
                     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION) {
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
                     }
-    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_PAINTER ) {
+    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_NEW_ZOSSIE ) {
         trainerPicId = twitch_trainer_pic;
         use_twitch_trainer_pic += 1;
     }
     else
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        // trainerPicId = TRAINER_PIC_NEW_ZINZOLIN;
     DecompressTrainerFrontPic(trainerPicId, gActiveBattler);
     SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(gActiveBattler));
+    if (trainerPicId >= TRAINER_PIC_NEW_AARON ){
+gBattlerSpriteIds[gActiveBattler] = CreateBigSprite(&gMultiuseSpriteTemplate,
+                                                     176,
+                                                     (8 - gTrainerFrontPicCoords[trainerPicId].size) * 4 + 40,
+                                                     GetBattlerSpriteSubpriority(gActiveBattler));
+    }else{
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                      176,
                                                      (8 - gTrainerFrontPicCoords[trainerPicId].size) * 4 + 40,
                                                      GetBattlerSpriteSubpriority(gActiveBattler));
+    }
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = -DISPLAY_WIDTH;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 2;
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerFrontPicPaletteTable[trainerPicId].tag);
@@ -1177,7 +1185,7 @@ static void OpponentHandleTrainerSlide(void)
         trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
-    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_PAINTER) {
+    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_NEW_ZOSSIE) {
         trainerPicId = dono_trainer_pic;
         use_dono_trainer_pic += 1;
     }
@@ -1186,19 +1194,28 @@ static void OpponentHandleTrainerSlide(void)
                     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION) {
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
                     }
-    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_PAINTER )
+    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_NEW_ZOSSIE )
     {
         trainerPicId = twitch_trainer_pic;
         use_twitch_trainer_pic += 1;
     }
     else
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+      //  trainerPicId = TRAINER_PIC_NEW_ZINZOLIN;
+
     DecompressTrainerFrontPic(trainerPicId, gActiveBattler);
     SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(gActiveBattler));
+        if (trainerPicId >= TRAINER_PIC_NEW_AARON ){
+gBattlerSpriteIds[gActiveBattler] = CreateBigSprite(&gMultiuseSpriteTemplate,
+                                                     176,
+                                                     (8 - gTrainerFrontPicCoords[trainerPicId].size) * 4 + 40,
+                                                     GetBattlerSpriteSubpriority(gActiveBattler));
+    }else{
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                      176,
                                                      (8 - gTrainerFrontPicCoords[trainerPicId].size) * 4 + 40,
-                                                     30);
+                                                     GetBattlerSpriteSubpriority(gActiveBattler));
+    }
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = 96;
     gSprites[gBattlerSpriteIds[gActiveBattler]].x += 32;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -2;

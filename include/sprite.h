@@ -236,6 +236,10 @@ struct Sprite
              u8 subspriteMode:2;
 
     /*0x43*/ u8 subpriority;
+
+             u8 parent;
+             u8 children[4];
+    /*0x24*/ s16 x3, y3;
 };
 
 struct OamMatrix
@@ -317,5 +321,7 @@ void ResetAffineAnimData(void);
 void FreeSpriteTilesIfNotUsingSheet(struct Sprite *sprite);
 s16 AllocSpriteTiles(u16 tileCount);
 void obj_pos2_update_enable(struct Sprite* sprite, s16 xmod, s16 ymod);
+u8 CreateBigSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+
 
 #endif //GUARD_SPRITE_H

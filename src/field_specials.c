@@ -1650,9 +1650,9 @@ static void ChangeBoxPokemonNickname_CB(void)
 
 void NicknameIllegalRun(void)
 {
-        const u8 IllegalMon[] = _(
-    "ILLEGALRUN");
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, IllegalMon);
+    //     const u8 IllegalMon[] = _(
+    // "ILLEGALRUN");
+    // SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, IllegalMon);
 }
 
 void ChangePokemonNickname(void)
