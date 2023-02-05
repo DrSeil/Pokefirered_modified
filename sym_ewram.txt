@@ -5,6 +5,7 @@
 	.include "src/window_8bpp.o"
 	.include "src/sprite.o"
 	.include "src/string_util.o"
+	.include "src/battle_script_commands.o"
 	.set 0x02286c 
 	.include "src/battle_controllers.o"
 	.include "src/battle_main.o"

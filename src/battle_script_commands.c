@@ -36,6 +36,7 @@
 #include "constants/abilities.h"
 #include "constants/pokemon.h"
 #include "constants/maps.h"
+#include "constants/region_map_sections.h"
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 
@@ -45,6 +46,12 @@ extern const u8 *const gBattleScriptsForMoveEffects[];
 #define LEVEL_UP_BANNER_END   512
 
 #define TAG_LVLUP_BANNER_MON_ICON 55130
+
+EWRAM_DATA bool8 gRoute1Catch = FALSE;
+EWRAM_DATA bool8 gRoute2Catch = FALSE;
+EWRAM_DATA bool8 gRoute22Catch = FALSE;
+EWRAM_DATA bool8 gRouteVirForCatch = FALSE;
+EWRAM_DATA bool8 gRouteDigCaveCatch = FALSE;
 
 static bool8 IsTwoTurnsMove(u16 move);
 static void TrySetDestinyBondToHappen(void);
@@ -9460,6 +9467,44 @@ static void Cmd_removelightscreenreflect(void)
     gBattlescriptCurrInstr++;
 }
 
+bool8 CheckMapCatch(u8 mapid)
+{
+    switch(mapid){
+        case MAPSEC_ROUTE_1:
+            return gRoute1Catch;
+        case MAPSEC_ROUTE_2:
+            return gRoute2Catch;
+        case MAPSEC_ROUTE_22:
+            return gRoute22Catch;
+        case MAPSEC_VIRIDIAN_FOREST:
+            return gRouteVirForCatch;
+        case MAPSEC_DIGLETTS_CAVE:
+            return gRouteDigCaveCatch;
+    }
+    return TRUE; // Don't let player catch pokemon outside of pivot routes.
+}
+
+void SetMapCatch(u8 mapid)
+{
+    switch(mapid){
+        case MAPSEC_ROUTE_1:
+            gRoute1Catch = TRUE;
+            break;
+        case MAPSEC_ROUTE_2:
+            gRoute2Catch = TRUE;
+            break;
+        case MAPSEC_ROUTE_22:
+            gRoute22Catch = TRUE;
+            break;
+        case MAPSEC_VIRIDIAN_FOREST:
+            gRouteVirForCatch = TRUE;
+            break;
+        case MAPSEC_DIGLETTS_CAVE:
+            gRouteDigCaveCatch = TRUE;
+            break;
+    }
+}
+
 static void Cmd_handleballthrow(void)
 {
     u8 ballMultiplier = 0;
@@ -9499,8 +9544,17 @@ static void Cmd_handleballthrow(void)
     }
     else
     {
+        u8 mapLocation;
         u32 odds;
         u8 catchRate;
+        mapLocation = GetCurrentRegionMapSectionId();
+        if (CheckMapCatch(mapLocation) || (gBattleMons[gBattlerTarget].level > (gBattleMons[gActiveBattler].level + 4)))
+        {
+            BtlController_EmitBallThrowAnim(BUFFER_A, BALL_GHOST_DODGE);
+            MarkBattlerForControllerExec(gActiveBattler);
+            gBattlescriptCurrInstr = BattleScript_GhostBallDodge;
+            return;
+        } 
 
         if (gLastUsedItem == ITEM_SAFARI_BALL)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
@@ -9583,7 +9637,7 @@ static void Cmd_handleballthrow(void)
             MarkBattlerForControllerExec(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
-
+            SetMapCatch(mapLocation);
             if (CalculatePlayerPartyCount() == PARTY_SIZE)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
             else
@@ -9606,6 +9660,7 @@ static void Cmd_handleballthrow(void)
 
             if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above
             {
+                SetMapCatch(mapLocation);
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 
