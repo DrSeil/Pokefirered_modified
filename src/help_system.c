@@ -1918,12 +1918,12 @@ void HelpSystem_Enable(void)
 
 void HelpSystem_DisableToggleWithRButton(void)
 {
-    gHelpSystemToggleWithRButtonDisabled = TRUE;
+    // gHelpSystemToggleWithRButtonDisabled = TRUE;
 }
 
 void HelpSystem_EnableToggleWithRButton(void)
 {
-    gHelpSystemToggleWithRButtonDisabled = FALSE;
+    // gHelpSystemToggleWithRButtonDisabled = FALSE;
 }
 
 static void ResetHelpSystemListMenu(struct HelpSystemListMenu * helpListMenu, struct ListMenuItem * listMenuItemsBuffer)

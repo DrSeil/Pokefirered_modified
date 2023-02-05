@@ -25,181 +25,183 @@ struct HelpSystemVideoState
     /*0x15*/ u8 state;
 };
 
-static EWRAM_DATA u8 sMapTilesBackup[BG_CHAR_SIZE] = {0};
-EWRAM_DATA u8 gDisableHelpSystemVolumeReduce = 0;
-EWRAM_DATA bool8 gHelpSystemToggleWithRButtonDisabled = FALSE;
-static EWRAM_DATA u8 sDelayTimer = 0;
-static EWRAM_DATA u8 sInHelpSystem = 0;
-static EWRAM_DATA struct HelpSystemVideoState sVideoState = {0};
-EWRAM_DATA struct HelpSystemListMenu gHelpSystemListMenu = {0};
-EWRAM_DATA struct ListMenuItem gHelpSystemListMenuItems[52] = {0};
+// static EWRAM_DATA u8 sMapTilesBackup[BG_CHAR_SIZE] = {0};
+// EWRAM_DATA u8 gDisableHelpSystemVolumeReduce = 0;
+// EWRAM_DATA bool8 gHelpSystemToggleWithRButtonDisabled = FALSE;
+// static EWRAM_DATA u8 sDelayTimer = 0;
+// static EWRAM_DATA u8 sInHelpSystem = 0;
+// static EWRAM_DATA struct HelpSystemVideoState sVideoState = {0};
+// EWRAM_DATA struct HelpSystemListMenu gHelpSystemListMenu = {0};
+// EWRAM_DATA struct ListMenuItem gHelpSystemListMenuItems[52] = {0};
 
-static const u16 sTiles[] = INCBIN_U16("graphics/help_system/bg_tiles.4bpp");
-static const u16 sPals[] = INCBIN_U16("graphics/help_system/bg_tiles.gbapal");
+// static const u16 sTiles[] = INCBIN_U16("graphics/help_system/bg_tiles.4bpp");
+// static const u16 sPals[] = INCBIN_U16("graphics/help_system/bg_tiles.gbapal");
 
 u8 RunHelpSystemCallback(void)
 {
     s32 i;
 
-    switch (sVideoState.state)
-    {
-    case 0:
-        sInHelpSystem = 0;
-        if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_HELP)
-            return 0;
-        if (JOY_NEW(R_BUTTON) && gHelpSystemToggleWithRButtonDisabled == TRUE)
-            return 0;
-        if (JOY_NEW(L_BUTTON | R_BUTTON))
-        {
-            if (!HelpSystem_IsSinglePlayer() || !gHelpSystemEnabled)
-            {
-                PlaySE(SE_HELP_ERROR);
-                return 0;
-            }
-            m4aMPlayStop(&gMPlayInfo_SE1);
-            m4aMPlayStop(&gMPlayInfo_SE2);
-            PlaySE(SE_HELP_OPEN);
-            if (!gDisableHelpSystemVolumeReduce)
-                m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x80);
-            SaveCallbacks();
-            sInHelpSystem = 1;
-            sVideoState.state = 1;
-        }
-        break;
-    case 1:
-        SaveMapTiles();
-        SaveMapGPURegs();
-        SaveMapTextColors();
-        (*(vu16 *)PLTT) = sPals[15];
-        SetGpuReg(REG_OFFSET_DISPCNT, 0);
-        sVideoState.state = 2;
-        break;
-    case 2:
-        RequestDma3Fill(0, (void *)BG_CHAR_ADDR(3), BG_CHAR_SIZE, DMA3_16BIT);
-        RequestDma3Copy(sPals, (void *)PLTT, sizeof(sPals), DMA3_16BIT);
-        RequestDma3Copy(sTiles, gDecompressionBuffer + 0x3EE0, sizeof(sTiles), DMA3_16BIT);
-        sVideoState.state = 3;
-        break;
-    case 3:
-        HS_BufferFillMapWithTile1FF();
-        HelpSystem_FillPanel3();
-        HelpSystem_FillPanel2();
-        HelpSystem_PrintTextInTopLeftCorner(gString_Help);
-        HS_ShowOrHideWordHELPinTopLeft(1);
-        if (HelpSystem_UpdateHasntSeenIntro() == TRUE)
-            HelpSystemSubroutine_PrintWelcomeMessage(&gHelpSystemListMenu, gHelpSystemListMenuItems);
-        else
-            HelpSystemSubroutine_WelcomeEndGotoMenu(&gHelpSystemListMenu, gHelpSystemListMenuItems);
-        HS_ShowOrHideHeaderAndFooterLines_Lighter(1);
-        HS_ShowOrHideVerticalBlackBarsAlongSides(1);
-        CommitTilemap();
-        sVideoState.state = 4;
-        break;
-    case 4:
-        SetGpuReg(REG_OFFSET_BLDCNT, 0);
-        SetGpuReg(REG_OFFSET_BG0HOFS, 0);
-        SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-        SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0) | BGCNT_CHARBASE(3) | BGCNT_16COLOR | BGCNT_SCREENBASE(31));
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_BG0_ON);
-        sVideoState.state = 5;
-        break;
-    case 5:
-        if (!RunHelpMenuSubroutine(&gHelpSystemListMenu, gHelpSystemListMenuItems))
-        {
-            PlaySE(SE_HELP_CLOSE);
-            sVideoState.state = 6;
-        }
-        break;
-    case 6:
-        SetGpuReg(REG_OFFSET_DISPCNT, 0);
-        RestoreMapTiles();
-        for (i = 0; i < 0x200; i += 2)
-        {
-            *((vu16 *)(PLTT + 0x000 + i)) = sPals[15];
-            *((vu16 *)(PLTT + 0x200 + i)) = sPals[15];
-        }
-        sVideoState.state = 7;
-        break;
-    case 7:
-        if (!gDisableHelpSystemVolumeReduce)
-            m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
-        RestoreMapTextColors();
-        RestoreGPURegs();
-        sVideoState.state = 8;
-        break;
-    case 8:
-        RestoreCallbacks();
-        sInHelpSystem = 0;
-        sVideoState.state = 0;
-        break;
-    }
-    return sVideoState.state;
+    return 0;
+
+    // switch (sVideoState.state)
+    // {
+    // case 0:
+    //     sInHelpSystem = 0;
+    //     if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_HELP)
+    //         return 0;
+    //     if (JOY_NEW(R_BUTTON) && gHelpSystemToggleWithRButtonDisabled == TRUE)
+    //         return 0;
+    //     if (JOY_NEW(L_BUTTON | R_BUTTON))
+    //     {
+    //         if (!HelpSystem_IsSinglePlayer() || !gHelpSystemEnabled)
+    //         {
+    //             PlaySE(SE_HELP_ERROR);
+    //             return 0;
+    //         }
+    //         m4aMPlayStop(&gMPlayInfo_SE1);
+    //         m4aMPlayStop(&gMPlayInfo_SE2);
+    //         PlaySE(SE_HELP_OPEN);
+    //         if (!gDisableHelpSystemVolumeReduce)
+    //             m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x80);
+    //         SaveCallbacks();
+    //         sInHelpSystem = 1;
+    //         sVideoState.state = 1;
+    //     }
+    //     break;
+    // case 1:
+    //     SaveMapTiles();
+    //     SaveMapGPURegs();
+    //     SaveMapTextColors();
+    //     (*(vu16 *)PLTT) = sPals[15];
+    //     SetGpuReg(REG_OFFSET_DISPCNT, 0);
+    //     sVideoState.state = 2;
+    //     break;
+    // case 2:
+    //     RequestDma3Fill(0, (void *)BG_CHAR_ADDR(3), BG_CHAR_SIZE, DMA3_16BIT);
+    //     RequestDma3Copy(sPals, (void *)PLTT, sizeof(sPals), DMA3_16BIT);
+    //     RequestDma3Copy(sTiles, gDecompressionBuffer + 0x3EE0, sizeof(sTiles), DMA3_16BIT);
+    //     sVideoState.state = 3;
+    //     break;
+    // case 3:
+    //     HS_BufferFillMapWithTile1FF();
+    //     HelpSystem_FillPanel3();
+    //     HelpSystem_FillPanel2();
+    //     HelpSystem_PrintTextInTopLeftCorner(gString_Help);
+    //     HS_ShowOrHideWordHELPinTopLeft(1);
+    //     if (HelpSystem_UpdateHasntSeenIntro() == TRUE)
+    //         HelpSystemSubroutine_PrintWelcomeMessage(&gHelpSystemListMenu, gHelpSystemListMenuItems);
+    //     else
+    //         HelpSystemSubroutine_WelcomeEndGotoMenu(&gHelpSystemListMenu, gHelpSystemListMenuItems);
+    //     HS_ShowOrHideHeaderAndFooterLines_Lighter(1);
+    //     HS_ShowOrHideVerticalBlackBarsAlongSides(1);
+    //     CommitTilemap();
+    //     sVideoState.state = 4;
+    //     break;
+    // case 4:
+    //     SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    //     SetGpuReg(REG_OFFSET_BG0HOFS, 0);
+    //     SetGpuReg(REG_OFFSET_BG0VOFS, 0);
+    //     SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0) | BGCNT_CHARBASE(3) | BGCNT_16COLOR | BGCNT_SCREENBASE(31));
+    //     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_BG0_ON);
+    //     sVideoState.state = 5;
+    //     break;
+    // case 5:
+    //     if (!RunHelpMenuSubroutine(&gHelpSystemListMenu, gHelpSystemListMenuItems))
+    //     {
+    //         PlaySE(SE_HELP_CLOSE);
+    //         sVideoState.state = 6;
+    //     }
+    //     break;
+    // case 6:
+    //     SetGpuReg(REG_OFFSET_DISPCNT, 0);
+    //     RestoreMapTiles();
+    //     for (i = 0; i < 0x200; i += 2)
+    //     {
+    //         *((vu16 *)(PLTT + 0x000 + i)) = sPals[15];
+    //         *((vu16 *)(PLTT + 0x200 + i)) = sPals[15];
+    //     }
+    //     sVideoState.state = 7;
+    //     break;
+    // case 7:
+    //     if (!gDisableHelpSystemVolumeReduce)
+    //         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
+    //     RestoreMapTextColors();
+    //     RestoreGPURegs();
+    //     sVideoState.state = 8;
+    //     break;
+    // case 8:
+    //     RestoreCallbacks();
+    //     sInHelpSystem = 0;
+    //     sVideoState.state = 0;
+    //     break;
+    // }
+    // return sVideoState.state;
 }
 
 void SaveCallbacks(void)
 {
-    vu16 * dma;
-    sVideoState.savedVblankCb = gMain.vblankCallback;
-    sVideoState.savedHblankCb = gMain.hblankCallback;
-    gMain.vblankCallback = NULL;
-    gMain.hblankCallback = NULL;
+    // vu16 * dma;
+    // sVideoState.savedVblankCb = gMain.vblankCallback;
+    // sVideoState.savedHblankCb = gMain.hblankCallback;
+    // gMain.vblankCallback = NULL;
+    // gMain.hblankCallback = NULL;
 
-    dma = (void *)REG_ADDR_DMA0;
-    dma[5] &= ~(DMA_START_MASK | DMA_DREQ_ON | DMA_REPEAT);
-    dma[5] &= ~DMA_ENABLE;
-    dma[5];
+    // dma = (void *)REG_ADDR_DMA0;
+    // dma[5] &= ~(DMA_START_MASK | DMA_DREQ_ON | DMA_REPEAT);
+    // dma[5] &= ~DMA_ENABLE;
+    // dma[5];
 }
 
 void SaveMapGPURegs(void)
 {
-    sVideoState.savedDispCnt = GetGpuReg(REG_OFFSET_DISPCNT);
-    sVideoState.savedBg0Cnt = GetGpuReg(REG_OFFSET_BG0CNT);
-    sVideoState.savedBg0Hofs = GetGpuReg(REG_OFFSET_BG0HOFS);
-    sVideoState.savedBg0Vofs = GetGpuReg(REG_OFFSET_BG0VOFS);
-    sVideoState.savedBldCnt = GetGpuReg(REG_OFFSET_BLDCNT);
-}
+//     sVideoState.savedDispCnt = GetGpuReg(REG_OFFSET_DISPCNT);
+//     sVideoState.savedBg0Cnt = GetGpuReg(REG_OFFSET_BG0CNT);
+//     sVideoState.savedBg0Hofs = GetGpuReg(REG_OFFSET_BG0HOFS);
+//     sVideoState.savedBg0Vofs = GetGpuReg(REG_OFFSET_BG0VOFS);
+//     sVideoState.savedBldCnt = GetGpuReg(REG_OFFSET_BLDCNT);
+ }
 
 void SaveMapTiles(void)
 {
-    RequestDma3Copy((void *)BG_CHAR_ADDR(3), sMapTilesBackup, BG_CHAR_SIZE, DMA3_16BIT);
+    // RequestDma3Copy((void *)BG_CHAR_ADDR(3), sMapTilesBackup, BG_CHAR_SIZE, DMA3_16BIT);
 }
 
 void SaveMapTextColors(void)
 {
-    SaveTextColors(
-        &sVideoState.savedTextColor[0],
-        &sVideoState.savedTextColor[1],
-        &sVideoState.savedTextColor[2]
-    );
+    // SaveTextColors(
+    //     &sVideoState.savedTextColor[0],
+    //     &sVideoState.savedTextColor[1],
+    //     &sVideoState.savedTextColor[2]
+    // );
 }
 
 void RestoreCallbacks(void)
 {
-    gMain.vblankCallback = sVideoState.savedVblankCb;
-    gMain.hblankCallback = sVideoState.savedHblankCb;
+    // gMain.vblankCallback = sVideoState.savedVblankCb;
+    // gMain.hblankCallback = sVideoState.savedHblankCb;
 }
 
 void RestoreGPURegs(void)
 {
-    SetGpuReg(REG_OFFSET_BLDCNT, sVideoState.savedBldCnt);
-    SetGpuReg(REG_OFFSET_BG0HOFS, sVideoState.savedBg0Hofs);
-    SetGpuReg(REG_OFFSET_BG0VOFS, sVideoState.savedBg0Vofs);
-    SetGpuReg(REG_OFFSET_BG0CNT, sVideoState.savedBg0Cnt);
-    SetGpuReg(REG_OFFSET_DISPCNT, sVideoState.savedDispCnt);
+    // SetGpuReg(REG_OFFSET_BLDCNT, sVideoState.savedBldCnt);
+    // SetGpuReg(REG_OFFSET_BG0HOFS, sVideoState.savedBg0Hofs);
+    // SetGpuReg(REG_OFFSET_BG0VOFS, sVideoState.savedBg0Vofs);
+    // SetGpuReg(REG_OFFSET_BG0CNT, sVideoState.savedBg0Cnt);
+    // SetGpuReg(REG_OFFSET_DISPCNT, sVideoState.savedDispCnt);
 }
 
 void RestoreMapTiles(void)
 {
-    RequestDma3Copy(sMapTilesBackup, (void *)BG_CHAR_ADDR(3), BG_CHAR_SIZE, DMA3_16BIT);
+    // RequestDma3Copy(sMapTilesBackup, (void *)BG_CHAR_ADDR(3), BG_CHAR_SIZE, DMA3_16BIT);
 }
 
 void RestoreMapTextColors(void)
 {
-    RestoreTextColors(
-        &sVideoState.savedTextColor[0],
-        &sVideoState.savedTextColor[1],
-        &sVideoState.savedTextColor[2]
-    );
+    // RestoreTextColors(
+    //     &sVideoState.savedTextColor[0],
+    //     &sVideoState.savedTextColor[1],
+    //     &sVideoState.savedTextColor[2]
+    // );
 }
 
 void CommitTilemap(void)
@@ -623,226 +625,227 @@ void HelpSystem_FillPanel1(void)
 
 void HelpSystem_InitListMenuController(struct HelpSystemListMenu * a0, u8 a1, u8 a2)
 {
-    gHelpSystemListMenu.sub = a0->sub;
-    gHelpSystemListMenu.itemsAbove = a1;
-    gHelpSystemListMenu.cursorPos = a2;
-    gHelpSystemListMenu.state = 0;
-    if (gHelpSystemListMenu.sub.totalItems < gHelpSystemListMenu.sub.maxShowed)
-        gHelpSystemListMenu.sub.maxShowed = gHelpSystemListMenu.sub.totalItems;
-    HS_ShowOrHideMainWindowText(0);
-    HelpSystem_FillPanel1();
-    PrintListMenuItems();
-    PlaceListMenuCursor();
+    // gHelpSystemListMenu.sub = a0->sub;
+    // gHelpSystemListMenu.itemsAbove = a1;
+    // gHelpSystemListMenu.cursorPos = a2;
+    // gHelpSystemListMenu.state = 0;
+    // if (gHelpSystemListMenu.sub.totalItems < gHelpSystemListMenu.sub.maxShowed)
+    //     gHelpSystemListMenu.sub.maxShowed = gHelpSystemListMenu.sub.totalItems;
+    // HS_ShowOrHideMainWindowText(0);
+    // HelpSystem_FillPanel1();
+    // PrintListMenuItems();
+    // PlaceListMenuCursor();
 }
 
 void HelpSystem_SetInputDelay(u8 a0)
 {
-    sDelayTimer = a0;
+    // sDelayTimer = a0;
 }
 
 s32 HelpSystem_GetMenuInput(void)
 {
-    if (sDelayTimer != 0)
-    {
-        sDelayTimer--;
-        return -1;
-    }
-    else if (JOY_NEW(A_BUTTON))
-    {
-        PlaySE(SE_SELECT);
-        return gHelpSystemListMenu.sub.items[gHelpSystemListMenu.itemsAbove + gHelpSystemListMenu.cursorPos].index;
-    }
-    else if (JOY_NEW(B_BUTTON))
-    {
-        PlaySE(SE_SELECT);
-        return -2;
-    }
-    else if (JOY_NEW(L_BUTTON | R_BUTTON))
-    {
-        return -6;
-    }
-    else if (JOY_REPT(DPAD_UP))
-    {
-        if (!MoveCursor(1, 0))
-            PlaySE(SE_SELECT);
-        return -4;
-    }
-    else if (JOY_REPT(DPAD_DOWN))
-    {
-        if (!MoveCursor(1, 1))
-            PlaySE(SE_SELECT);
-        return -5;
-    }
-    else if (JOY_REPT(DPAD_LEFT))
-    {
-        if (!MoveCursor(7, 0))
-            PlaySE(SE_SELECT);
-        return -4;
-    }
-    else if (JOY_REPT(DPAD_RIGHT))
-    {
-        if (!MoveCursor(7, 1))
-            PlaySE(SE_SELECT);
-        return -5;
-    }
-    else
+    // if (sDelayTimer != 0)
+    // {
+    //     sDelayTimer--;
+    //     return -1;
+    // }
+    // else if (JOY_NEW(A_BUTTON))
+    // {
+    //     PlaySE(SE_SELECT);
+    //     return gHelpSystemListMenu.sub.items[gHelpSystemListMenu.itemsAbove + gHelpSystemListMenu.cursorPos].index;
+    // }
+    // else if (JOY_NEW(B_BUTTON))
+    // {
+    //     PlaySE(SE_SELECT);
+    //     return -2;
+    // }
+    // else if (JOY_NEW(L_BUTTON | R_BUTTON))
+    // {
+    //     return -6;
+    // }
+    // else if (JOY_REPT(DPAD_UP))
+    // {
+    //     if (!MoveCursor(1, 0))
+    //         PlaySE(SE_SELECT);
+    //     return -4;
+    // }
+    // else if (JOY_REPT(DPAD_DOWN))
+    // {
+    //     if (!MoveCursor(1, 1))
+    //         PlaySE(SE_SELECT);
+    //     return -5;
+    // }
+    // else if (JOY_REPT(DPAD_LEFT))
+    // {
+    //     if (!MoveCursor(7, 0))
+    //         PlaySE(SE_SELECT);
+    //     return -4;
+    // }
+    // else if (JOY_REPT(DPAD_RIGHT))
+    // {
+    //     if (!MoveCursor(7, 1))
+    //         PlaySE(SE_SELECT);
+    //     return -5;
+    // }
+    // else
         return -1;
 }
 
 void HS_UpdateMenuScrollArrows(void)
 {
-    u8 topItemIdx = gHelpSystemListMenu.sub.totalItems - 7;
-    if (gHelpSystemListMenu.sub.totalItems > 7)
-    {
-        s32 cursorPos = gHelpSystemListMenu.itemsAbove + gHelpSystemListMenu.cursorPos;
-        HS_ShowOrHideScrollArrows(0, 0); // Hide both
-        if (cursorPos == 0)
-            HS_ShowOrHideScrollArrows(1, 1); // Show bottom
-        else if (gHelpSystemListMenu.itemsAbove == 0 && gHelpSystemListMenu.cursorPos != 0)
-            HS_ShowOrHideScrollArrows(1, 1); // Show bottom
-        else if (gHelpSystemListMenu.itemsAbove == topItemIdx)
-            HS_ShowOrHideScrollArrows(0, 1); // Show top
-        else if (gHelpSystemListMenu.itemsAbove != 0)
-        {
-            // Show both
-            HS_ShowOrHideScrollArrows(0, 1);
-            HS_ShowOrHideScrollArrows(1, 1);
-        }
-    }
+    // u8 topItemIdx = gHelpSystemListMenu.sub.totalItems - 7;
+    // if (gHelpSystemListMenu.sub.totalItems > 7)
+    // {
+    //     s32 cursorPos = gHelpSystemListMenu.itemsAbove + gHelpSystemListMenu.cursorPos;
+    //     HS_ShowOrHideScrollArrows(0, 0); // Hide both
+    //     if (cursorPos == 0)
+    //         HS_ShowOrHideScrollArrows(1, 1); // Show bottom
+    //     else if (gHelpSystemListMenu.itemsAbove == 0 && gHelpSystemListMenu.cursorPos != 0)
+    //         HS_ShowOrHideScrollArrows(1, 1); // Show bottom
+    //     else if (gHelpSystemListMenu.itemsAbove == topItemIdx)
+    //         HS_ShowOrHideScrollArrows(0, 1); // Show top
+    //     else if (gHelpSystemListMenu.itemsAbove != 0)
+    //     {
+    //         // Show both
+    //         HS_ShowOrHideScrollArrows(0, 1);
+    //         HS_ShowOrHideScrollArrows(1, 1);
+    //     }
+    // }
 }
 
 void PrintListMenuItems(void)
 {
-    u8 glyphHeight = GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT) + 1;
-    s32 i;
-    s32 r5 = gHelpSystemListMenu.itemsAbove;
+    // u8 glyphHeight = GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT) + 1;
+    // s32 i;
+    // s32 r5 = gHelpSystemListMenu.itemsAbove;
 
-    for (i = 0; i < gHelpSystemListMenu.sub.maxShowed; i++)
-    {
-        u8 x = gHelpSystemListMenu.sub.left + 8;
-        u8 y = gHelpSystemListMenu.sub.top + glyphHeight * i;
-        HelpSystem_PrintTextAt(gHelpSystemListMenu.sub.items[r5].label, x, y);
-        r5++;
-    }
+    // for (i = 0; i < gHelpSystemListMenu.sub.maxShowed; i++)
+    // {
+    //     u8 x = gHelpSystemListMenu.sub.left + 8;
+    //     u8 y = gHelpSystemListMenu.sub.top + glyphHeight * i;
+    //     HelpSystem_PrintTextAt(gHelpSystemListMenu.sub.items[r5].label, x, y);
+    //     r5++;
+    // }
 }
 
 void PlaceListMenuCursor(void)
 {
-    u8 glyphHeight = GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT) + 1;
-    u8 x = gHelpSystemListMenu.sub.left;
-    u8 y = gHelpSystemListMenu.sub.top + glyphHeight * gHelpSystemListMenu.cursorPos;
-    HelpSystem_PrintTextAt(gText_SelectorArrow2, x, y);
+    // u8 glyphHeight = GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT) + 1;
+    // u8 x = gHelpSystemListMenu.sub.left;
+    // u8 y = gHelpSystemListMenu.sub.top + glyphHeight * gHelpSystemListMenu.cursorPos;
+    // HelpSystem_PrintTextAt(gText_SelectorArrow2, x, y);
 }
 
 void HS_RemoveSelectionCursorAt(u8 i)
 {
-    u8 glyphHeight = GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT) + 1;
-    u8 x = gHelpSystemListMenu.sub.left;
-    u8 y = gHelpSystemListMenu.sub.top + i * glyphHeight;
-    HelpSystem_PrintTextAt(gString_HelpSystem_ClearTo8, x, y);
+    // u8 glyphHeight = GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT) + 1;
+    // u8 x = gHelpSystemListMenu.sub.left;
+    // u8 y = gHelpSystemListMenu.sub.top + i * glyphHeight;
+    // HelpSystem_PrintTextAt(gString_HelpSystem_ClearTo8, x, y);
 }
 
 u8 TryMoveCursor1(u8 dirn)
 {
-    u16 midPoint;
-    if (dirn == 0)
-    {
-        if (gHelpSystemListMenu.sub.maxShowed == 1)
-            midPoint = 0;
-        else
-            midPoint = gHelpSystemListMenu.sub.maxShowed - (gHelpSystemListMenu.sub.maxShowed / 2 + (gHelpSystemListMenu.sub.maxShowed & 1)) - 1;
-        if (gHelpSystemListMenu.itemsAbove == 0)
-        {
-            if (gHelpSystemListMenu.cursorPos != 0)
-            {
-                gHelpSystemListMenu.cursorPos--;
-                return 1;
-            }
-            else
-                return 0;
-        }
-        if (gHelpSystemListMenu.cursorPos > midPoint)
-        {
-            gHelpSystemListMenu.cursorPos--;
-            return 1;
-        }
-        else
-        {
-            gHelpSystemListMenu.itemsAbove--;
-            return 2;
-        }
-    }
-    else
-    {
-        if (gHelpSystemListMenu.sub.maxShowed == 1)
-            midPoint = 0;
-        else
-            midPoint = gHelpSystemListMenu.sub.maxShowed / 2 + (gHelpSystemListMenu.sub.maxShowed & 1);
-        if (gHelpSystemListMenu.itemsAbove == gHelpSystemListMenu.sub.totalItems - gHelpSystemListMenu.sub.maxShowed)
-        {
-            if (gHelpSystemListMenu.cursorPos < gHelpSystemListMenu.sub.maxShowed - 1)
-            {
-                gHelpSystemListMenu.cursorPos++;
-                return 1;
-            }
-            else
-                return 0;
-        }
-        else if (gHelpSystemListMenu.cursorPos < midPoint)
-        {
-            gHelpSystemListMenu.cursorPos++;
-            return 1;
-        }
-        else
-        {
-            gHelpSystemListMenu.itemsAbove++;
-            return 2;
-        }
-    }
+    // u16 midPoint;
+    // if (dirn == 0)
+    // {
+    //     if (gHelpSystemListMenu.sub.maxShowed == 1)
+    //         midPoint = 0;
+    //     else
+    //         midPoint = gHelpSystemListMenu.sub.maxShowed - (gHelpSystemListMenu.sub.maxShowed / 2 + (gHelpSystemListMenu.sub.maxShowed & 1)) - 1;
+    //     if (gHelpSystemListMenu.itemsAbove == 0)
+    //     {
+    //         if (gHelpSystemListMenu.cursorPos != 0)
+    //         {
+    //             gHelpSystemListMenu.cursorPos--;
+    //             return 1;
+    //         }
+    //         else
+    //             return 0;
+    //     }
+    //     if (gHelpSystemListMenu.cursorPos > midPoint)
+    //     {
+    //         gHelpSystemListMenu.cursorPos--;
+    //         return 1;
+    //     }
+    //     else
+    //     {
+    //         gHelpSystemListMenu.itemsAbove--;
+    //         return 2;
+    //     }
+    // }
+    // else
+    // {
+    //     if (gHelpSystemListMenu.sub.maxShowed == 1)
+    //         midPoint = 0;
+    //     else
+    //         midPoint = gHelpSystemListMenu.sub.maxShowed / 2 + (gHelpSystemListMenu.sub.maxShowed & 1);
+    //     if (gHelpSystemListMenu.itemsAbove == gHelpSystemListMenu.sub.totalItems - gHelpSystemListMenu.sub.maxShowed)
+    //     {
+    //         if (gHelpSystemListMenu.cursorPos < gHelpSystemListMenu.sub.maxShowed - 1)
+    //         {
+    //             gHelpSystemListMenu.cursorPos++;
+    //             return 1;
+    //         }
+    //         else
+    //             return 0;
+    //     }
+    //     else if (gHelpSystemListMenu.cursorPos < midPoint)
+    //     {
+    //         gHelpSystemListMenu.cursorPos++;
+    //         return 1;
+    //     }
+    //     else
+    //     {
+    //         gHelpSystemListMenu.itemsAbove++;
+    //         return 2;
+    //     }
+    // }
+    return 0;
 }
 
 bool8 MoveCursor(u8 by, u8 dirn)
 {
-    u8 r7 = gHelpSystemListMenu.cursorPos;
-    u8 flags = 0;
-    s32 i;
-    for (i = 0; i < by; i++)
-        flags |= TryMoveCursor1(dirn);
+    // u8 r7 = gHelpSystemListMenu.cursorPos;
+    // u8 flags = 0;
+    // s32 i;
+    // for (i = 0; i < by; i++)
+    //     flags |= TryMoveCursor1(dirn);
 
-    switch (flags)
-    {
-    case 0:
-    default:
-        // neither changed
-        return TRUE;
-    case 1:
-        // changed cursorPos only
-        HS_RemoveSelectionCursorAt(r7);
-        PlaceListMenuCursor();
-        CommitTilemap();
-        break;
-    case 2:
-    case 3:
-        // changed itemsAbove
-        if (GetHelpSystemMenuLevel() == 1)
-        {
-            HelpSystem_SetInputDelay(2);
-            HelpSystem_FillPanel1();
-            PrintListMenuItems();
-            PlaceListMenuCursor();
-            HelpSystem_PrintTopicLabel();
-            HS_UpdateMenuScrollArrows();
-        }
-        else
-        {
-            HS_ShowOrHideMainWindowText(0);
-            HelpSystem_FillPanel1();
-            PrintListMenuItems();
-            PlaceListMenuCursor();
-            HS_ShowOrHideMainWindowText(1);
-        }
-        CommitTilemap();
-        break;
-    }
+    // switch (flags)
+    // {
+    // case 0:
+    // default:
+    //     // neither changed
+    //     return TRUE;
+    // case 1:
+    //     // changed cursorPos only
+    //     HS_RemoveSelectionCursorAt(r7);
+    //     PlaceListMenuCursor();
+    //     CommitTilemap();
+    //     break;
+    // case 2:
+    // case 3:
+    //     // changed itemsAbove
+    //     if (GetHelpSystemMenuLevel() == 1)
+    //     {
+    //         HelpSystem_SetInputDelay(2);
+    //         HelpSystem_FillPanel1();
+    //         PrintListMenuItems();
+    //         PlaceListMenuCursor();
+    //         HelpSystem_PrintTopicLabel();
+    //         HS_UpdateMenuScrollArrows();
+    //     }
+    //     else
+    //     {
+    //         HS_ShowOrHideMainWindowText(0);
+    //         HelpSystem_FillPanel1();
+    //         PrintListMenuItems();
+    //         PlaceListMenuCursor();
+    //         HS_ShowOrHideMainWindowText(1);
+    //     }
+    //     CommitTilemap();
+    //     break;
+    // }
     return FALSE;
 }
