@@ -255,6 +255,7 @@ static void SetShopItemsForSale(const u16 *items)
 
     while (gShopData.itemList[gShopData.itemCount])
     {
+        
         ++gShopData.itemCount;
     }
 }
@@ -995,7 +996,8 @@ static void BuyMenuTryMakePurchase(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     PutWindowTilemap(4);
-    if (AddBagItem(tItemId, tItemCount) == TRUE)
+    if (AddBagItem(tItemId, tItemCount) == TRUE && !((tItemId >= ITEM_POTION && tItemId <ITEM_SUPER_REPEL) ||
+        (tItemId == ITEM_ESCAPE_ROPE) || (tItemId > ITEM_REPEL) ))
     {
         BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
         DebugFunc_PrintPurchaseDetails(taskId);
