@@ -193,6 +193,8 @@ Directive SymFile::GetDirective()
         return Directive::Space;
     else if (CheckForDirective(".align"))
         return Directive::Align;
+    else if (CheckForDirective(".set"))
+        return Directive::Set;
     else
         return Directive::Unknown;
 }

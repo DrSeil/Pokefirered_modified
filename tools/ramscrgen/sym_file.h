@@ -31,6 +31,7 @@ enum class Directive
     Include,
     Space,
     Align,
+    Set,
     Unknown
 };
 

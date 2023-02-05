@@ -123,6 +123,15 @@ void ConvertSymFile(std::string filename, std::string sectionName, std::string l
             printf(". = ALIGN(%lu);\n", amount);
             break;
         }
+        case Directive::Set:
+        {
+            unsigned long length;
+            if (!symFile.ReadInteger(length))
+                symFile.RaiseError("expected integer after .space directive");
+            symFile.ExpectEmptyRestOfLine();
+            printf(". = 0x%lX;\n", length);
+            break;
+        }
         case Directive::Unknown:
         {
             std::string label = symFile.GetLabel();
