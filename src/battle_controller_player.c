@@ -2545,7 +2545,7 @@ static void PlayerHandleExpUpdate(void)
 {
     u8 monId = gBattleBufferA[gActiveBattler][1];
 
-    if (GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL) >= MAX_LEVEL)
+    if (GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL) >= MAX_LEVEL || (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && !IsMonShiny(&gPlayerParty[monId])))
     {
         PlayerBufferExecCompleted();
     }
@@ -2553,7 +2553,7 @@ static void PlayerHandleExpUpdate(void)
     {
         s16 expPointsToGive;
         u8 taskId;
-
+ 
         LoadBattleBarGfx(1);
         GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);  // Unused return value.
         expPointsToGive = T1_READ_16(&gBattleBufferA[gActiveBattler][2]);
