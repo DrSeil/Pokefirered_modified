@@ -7,6 +7,8 @@
 #include "load_save.h"
 #include "quest_log.h"
 #include "strings.h"
+#include "money.h"
+
 #include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/maps.h"
@@ -198,6 +200,18 @@ bool8 CheckBagHasSpace(u16 itemId, u16 count)
     return FALSE;
 }
 
+bool8 IsItemBanned(u16 itemId) {
+    return itemId == ITEM_REVIVE ||
+            itemId == ITEM_MAX_REVIVE ||
+            itemId == ITEM_REVIVAL_HERB ||
+            (itemId >= ITEM_BLUE_FLUTE && itemId <= ITEM_WHITE_FLUTE) ||
+            (itemId >= ITEM_SACRED_ASH && itemId <= ITEM_03E) ||
+            (itemId >= ITEM_TINY_MUSHROOM && itemId <= ITEM_RETRO_MAIL) ||
+            (itemId == ITEM_BRIGHT_POWDER) ||
+            (itemId >= ITEM_MACHO_BRACE && itemId <= ITEM_SOOTHE_BELL) ||
+            (itemId >= ITEM_CHOICE_BAND && itemId <= ITEM_YELLOW_SCARF);
+}
+
 bool8 AddBagItem(u16 itemId, u16 count)
 {
     u8 i;
@@ -206,6 +220,12 @@ bool8 AddBagItem(u16 itemId, u16 count)
 
     if (ItemId_GetPocket(itemId) == 0)
         return FALSE;
+
+    if (IsItemBanned(itemId))
+    {
+        AddMoney(&gSaveBlock1Ptr->money, itemid_get_market_price(itemId) / 2 * count);
+        return TRUE;
+    }
 
     pocket = ItemId_GetPocket(itemId) - 1;
     for (i = 0; i < gBagPockets[pocket].capacity; i++)
