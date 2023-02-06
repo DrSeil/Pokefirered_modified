@@ -9548,7 +9548,7 @@ static void Cmd_handleballthrow(void)
         u32 odds;
         u8 catchRate;
         mapLocation = GetCurrentRegionMapSectionId();
-        if ((CheckMapCatch(mapLocation) || (gBattleMons[gBattlerTarget].level > (gBattleMons[gActiveBattler].level + 4))) && VarGet(VAR_KILL_CATCH) == 0)
+        if ((CheckMapCatch(mapLocation) || (gBattleMons[gBattlerTarget].level > (gBattleMons[gActiveBattler].level + 4)) || GetMonBST(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]]) >= 580) && VarGet(VAR_KILL_CATCH) == 0)
         {
             BtlController_EmitBallThrowAnim(BUFFER_A, BALL_GHOST_DODGE);
             MarkBattlerForControllerExec(gActiveBattler);

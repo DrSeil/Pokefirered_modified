@@ -5444,6 +5444,24 @@ u16 GetMonEVCount(struct Pokemon *mon)
     return count;
 }
 
+
+u16 GetMonBST(struct Pokemon *mon)
+{
+    int i;
+    u16 count = 0;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    
+    count += gBaseStats[species].baseHP;
+    count += gBaseStats[species].baseAttack;
+    count += gBaseStats[species].baseDefense;
+    count += gBaseStats[species].baseSpeed;
+    count += gBaseStats[species].baseSpAttack;
+    count += gBaseStats[species].baseSpDefense;
+
+    return count;
+
+
+}
 // This function was stubbed from RS, but it is stubbed badly.
 // This variable is likely the u8 passed to SetMonData in RSE.
 // The pointer reference causes agbcc to reserve it on the stack before even checking
