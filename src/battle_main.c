@@ -3619,6 +3619,8 @@ static void SetActionsAndBattlersTurnOrder(void)
 
                     if (gActionsByTurnOrder[i] != B_ACTION_USE_ITEM
                      && gActionsByTurnOrder[j] != B_ACTION_USE_ITEM
+                     && gActionsByTurnOrder[i] != B_ACTION_THROW_BALL
+                     && gActionsByTurnOrder[j] != B_ACTION_THROW_BALL
                      && gActionsByTurnOrder[i] != B_ACTION_SWITCH
                      && gActionsByTurnOrder[j] != B_ACTION_SWITCH)
                         if (GetWhoStrikesFirst(battler1, battler2, FALSE))

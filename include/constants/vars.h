@@ -203,7 +203,7 @@
 #define VAR_0x4097                 0x4097
 #define VAR_0x4098                 0x4098
 #define VAR_0x4099                 0x4099
-#define VAR_0x409A                 0x409A
+#define VAR_KILL_CATCH               0x409A
 #define VAR_0x409B                 0x409B
 #define VAR_0x409C                 0x409C
 #define VAR_0x409D                 0x409D

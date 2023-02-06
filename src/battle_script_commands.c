@@ -9548,7 +9548,7 @@ static void Cmd_handleballthrow(void)
         u32 odds;
         u8 catchRate;
         mapLocation = GetCurrentRegionMapSectionId();
-        if (CheckMapCatch(mapLocation) || (gBattleMons[gBattlerTarget].level > (gBattleMons[gActiveBattler].level + 4)))
+        if ((CheckMapCatch(mapLocation) || (gBattleMons[gBattlerTarget].level > (gBattleMons[gActiveBattler].level + 4))) && VarGet(VAR_KILL_CATCH) == 0)
         {
             BtlController_EmitBallThrowAnim(BUFFER_A, BALL_GHOST_DODGE);
             MarkBattlerForControllerExec(gActiveBattler);
@@ -9637,7 +9637,8 @@ static void Cmd_handleballthrow(void)
             MarkBattlerForControllerExec(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
-            SetMapCatch(mapLocation);
+            if(VarGet(VAR_KILL_CATCH) == 0)
+                SetMapCatch(mapLocation);
             if (CalculatePlayerPartyCount() == PARTY_SIZE)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
             else
@@ -9660,7 +9661,8 @@ static void Cmd_handleballthrow(void)
 
             if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above
             {
-                SetMapCatch(mapLocation);
+                if(VarGet(VAR_KILL_CATCH) == 0)
+                    SetMapCatch(mapLocation);
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 

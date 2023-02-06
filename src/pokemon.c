@@ -3664,9 +3664,14 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
 
     if (i >= PARTY_SIZE)
         return SendMonToPC(mon);
-    i=0;
-    CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
-    gPlayerPartyCount = i + 1;
+    if ( VarGet(VAR_KILL_CATCH) == 0)
+    {
+        i=0;
+        CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
+        gPlayerPartyCount = i + 1;
+    }
+    VarSet(VAR_KILL_CATCH,0);
+
     return MON_GIVEN_TO_PARTY;
 }
 

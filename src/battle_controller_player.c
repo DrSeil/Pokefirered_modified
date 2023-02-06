@@ -6,6 +6,8 @@
 #include "link.h"
 #include "m4a.h"
 #include "party_menu.h"
+#include "event_data.h"
+
 #include "pokeball.h"
 #include "strings.h"
 #include "pokemon_special_anim.h"
@@ -232,6 +234,7 @@ static void HandleInputChooseAction(void)
             BtlController_EmitTwoReturnValues(1, B_ACTION_USE_MOVE, 0);
             break;
         case 1:
+            VarSet(VAR_KILL_CATCH,0);
             BtlController_EmitTwoReturnValues(1, B_ACTION_USE_ITEM, 0);
             break;
         case 2:
@@ -315,6 +318,7 @@ static void HandleInputChooseAction(void)
         {
             if(CheckBagHasItem(ITEM_POKE_BALL,1))
             {
+                VarSet(VAR_KILL_CATCH,1);
                 gLastUsedItem = ITEM_POKE_BALL;
                 BtlController_EmitTwoReturnValues(1, B_ACTION_THROW_BALL, 0);
                 PlayerBufferExecCompleted();
@@ -328,6 +332,7 @@ static void HandleInputChooseAction(void)
         {
             if(CheckBagHasItem(ITEM_POKE_BALL,1))
             {
+                VarSet(VAR_KILL_CATCH,0);
                 gLastUsedItem = ITEM_POKE_BALL;
                 BtlController_EmitTwoReturnValues(1, B_ACTION_THROW_BALL, 0);
                 PlayerBufferExecCompleted();
