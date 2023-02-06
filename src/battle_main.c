@@ -52,6 +52,7 @@ static void HandleAction_WatchesCarefully(void);
 static void HandleAction_SafariZoneBallThrow(void);
 static void HandleAction_ThrowBait(void);
 static void HandleAction_ThrowRock(void);
+void HandleAction_ThrowBall(void);
 static void HandleAction_SafariZoneRun(void);
 static void HandleAction_OldManBallThrow(void);
 static void HandleAction_TryFinish(void);
@@ -579,6 +580,8 @@ static void (*const sTurnActionsFuncsTable[])(void) =
     [B_ACTION_TRY_FINISH]             = HandleAction_TryFinish,
     [B_ACTION_FINISHED]               = HandleAction_ActionFinished,
     [B_ACTION_NOTHING_FAINTED]        = HandleAction_NothingIsFainted,
+    [B_ACTION_THROW_BALL]             = HandleAction_ThrowBall,
+
 };
 
 static void (*const sEndTurnFuncsTable[])(void) =
@@ -3224,6 +3227,16 @@ static void HandleTurnActionSelectionState(void)
                         return;
                     }
                     break;
+                case B_ACTION_THROW_BALL:
+                    if (IsPlayerPartyAndPokemonStorageFull())
+                    {
+                        gSelectionBattleScripts[gActiveBattler] = BattleScript_PrintFullBox;
+                        gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
+                        *(gBattleStruct->selectionScriptFinished + gActiveBattler) = FALSE;
+                        *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
+                        return;
+                    }
+                    break;
                 case B_ACTION_CANCEL_PARTNER:
                     gBattleCommunication[gActiveBattler] = STATE_WAIT_SET_BEFORE_ACTION;
                     gBattleCommunication[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))] = STATE_BEFORE_ACTION_CHOSEN;
@@ -3326,6 +3339,9 @@ static void HandleTurnActionSelectionState(void)
                     gBattleCommunication[gActiveBattler]++;
                     break;
                 case B_ACTION_SAFARI_BALL:
+                    gBattleCommunication[gActiveBattler]++;
+                    break;
+                case B_ACTION_THROW_BALL:
                     gBattleCommunication[gActiveBattler]++;
                     break;
                 case B_ACTION_SAFARI_BAIT:
@@ -4403,6 +4419,16 @@ static void HandleAction_ThrowRock(void)
     if (gBattleStruct->safariCatchFactor > 20)
         gBattleStruct->safariCatchFactor = 20;
     gBattlescriptCurrInstr = gBattlescriptsForSafariActions[1];
+    gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+}
+
+void HandleAction_ThrowBall(void)
+{
+    gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+    gBattle_BG0_X = 0;
+    gBattle_BG0_Y = 0;
+    RemoveBagItem(gLastUsedItem, 1);
+    gBattlescriptCurrInstr = gBattlescriptsForBallThrow[gLastUsedItem];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 

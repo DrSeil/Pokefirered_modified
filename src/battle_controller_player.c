@@ -310,6 +310,32 @@ static void HandleInputChooseAction(void)
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
         }
     }
+    else if (JOY_NEW(L_BUTTON)){
+        if(!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        {
+            if(CheckBagHasItem(ITEM_POKE_BALL,1))
+            {
+                gLastUsedItem = ITEM_POKE_BALL;
+                BtlController_EmitTwoReturnValues(1, B_ACTION_THROW_BALL, 0);
+                PlayerBufferExecCompleted();
+
+
+            }
+        }
+    }
+    else if (JOY_NEW(R_BUTTON)){
+                if(!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        {
+            if(CheckBagHasItem(ITEM_POKE_BALL,1))
+            {
+                gLastUsedItem = ITEM_POKE_BALL;
+                BtlController_EmitTwoReturnValues(1, B_ACTION_THROW_BALL, 0);
+                PlayerBufferExecCompleted();
+
+
+            }
+        }
+    }
     else if (JOY_NEW(START_BUTTON))
     {
         SwapHpBarsWithHpText();
