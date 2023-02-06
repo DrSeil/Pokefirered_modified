@@ -8,6 +8,8 @@
 #include "party_menu.h"
 #include "pokedex.h"
 #include "script_pokemon_util.h"
+#include "random.h"
+
 #include "constants/items.h"
 #include "constants/pokemon.h"
 
@@ -53,6 +55,13 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
 
     CreateMon(mon, species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+    while (GetMonBST(mon) >= 580)
+    {
+        u16 new_species = (Random() % (SPECIES_CHIMECHO - 1)) + 1;
+        if (new_species > SPECIES_CELEBI && new_species < SPECIES_TREECKO)
+            continue;
+        CreateMon(mon, new_species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+    }
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, heldItem);
