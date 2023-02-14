@@ -1364,6 +1364,8 @@
 #define TRAINER_PIC_NEW_ZINZOLIN               1343
 #define TRAINER_PIC_NEW_ZISU               1344
 #define TRAINER_PIC_NEW_ZOSSIE               1345
+#define TRAINER_PIC_NEW_PALPATINE               1346
+#define TRAINER_PIC_MAX_NUMBER               1346
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_RED                    0

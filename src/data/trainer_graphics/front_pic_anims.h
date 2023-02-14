@@ -2086,4 +2086,5 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_NEW_ZINZOLIN]    = sAnims_AquaLeaderArchie,
     [TRAINER_PIC_NEW_ZISU]    = sAnims_AquaLeaderArchie,
     [TRAINER_PIC_NEW_ZOSSIE]    = sAnims_AquaLeaderArchie,
+    [TRAINER_PIC_NEW_PALPATINE]    = sAnims_AquaLeaderArchie,
 };

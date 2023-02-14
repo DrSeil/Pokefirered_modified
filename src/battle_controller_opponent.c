@@ -1134,7 +1134,7 @@ static void OpponentHandleDrawTrainerPic(void)
         trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
-    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_NEW_ZOSSIE) {
+    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_MAX_NUMBER) {
         trainerPicId = dono_trainer_pic;
         use_dono_trainer_pic += 1;
     }
@@ -1143,7 +1143,7 @@ static void OpponentHandleDrawTrainerPic(void)
                     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION) {
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
                     }
-    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_NEW_ZOSSIE ) {
+    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_MAX_NUMBER ) {
         trainerPicId = twitch_trainer_pic;
         use_twitch_trainer_pic += 1;
     }
@@ -1185,7 +1185,7 @@ static void OpponentHandleTrainerSlide(void)
         trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
-    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_NEW_ZOSSIE) {
+    else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_dono_trainer_pic != 0 && dono_trainer_pic <= TRAINER_PIC_MAX_NUMBER) {
         trainerPicId = dono_trainer_pic;
         use_dono_trainer_pic += 1;
     }
@@ -1194,7 +1194,7 @@ static void OpponentHandleTrainerSlide(void)
                     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION) {
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
                     }
-    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_NEW_ZOSSIE )
+    else if (use_twitch_trainer_pic != 0 && twitch_trainer_pic <= TRAINER_PIC_MAX_NUMBER )
     {
         trainerPicId = twitch_trainer_pic;
         use_twitch_trainer_pic += 1;
