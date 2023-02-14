@@ -98,12 +98,12 @@ static const struct RenewableHiddenItemData sRenewableHiddenItems[] = {
             0xFF
         },
         .uncommon = {
-            HIDDEN_ITEM_UNDERGROUND_PATH_NORTH_SOUTH_TUNNEL_POTION,
-            HIDDEN_ITEM_UNDERGROUND_PATH_NORTH_SOUTH_TUNNEL_ANTIDOTE,
-            HIDDEN_ITEM_UNDERGROUND_PATH_NORTH_SOUTH_TUNNEL_PARALYZE_HEAL,
-            HIDDEN_ITEM_UNDERGROUND_PATH_NORTH_SOUTH_TUNNEL_AWAKENING,
-            HIDDEN_ITEM_UNDERGROUND_PATH_NORTH_SOUTH_TUNNEL_BURN_HEAL,
-            HIDDEN_ITEM_UNDERGROUND_PATH_NORTH_SOUTH_TUNNEL_ICE_HEAL,
+            0xFF,
+            0xFF,
+            0xFF,
+            0xFF,
+            0xFF,
+            0xFF,
             0xFF,
             0xFF
         },
@@ -132,12 +132,12 @@ static const struct RenewableHiddenItemData sRenewableHiddenItems[] = {
             0xFF
         },
         .uncommon = {
-            HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_POTION,
-            HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_ANTIDOTE,
-            HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_PARALYZE_HEAL,
-            HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_AWAKENING,
-            HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_BURN_HEAL,
-            HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_ICE_HEAL,
+            0xFF,
+            0xFF,
+            0xFF,
+            0xFF,
+            0xFF,
+            0xFF,
             0xFF,
             0xFF
         },

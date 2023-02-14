@@ -2,13 +2,14 @@
 
 
 kaizo_quickwarp1::
-	giveitem ITEM_SILPH_SCOPE
-    warp MAP_POKEMON_TOWER_6F, 255, 10, 14
-	waitstate
-	release
+
 	end
 	
 kaizo_quickwarp2::
+	giveitem ITEM_SILPH_SCOPE
+    warp MAP_UNDERGROUND_PATH_NORTH_ENTRANCE, 255, 3, 3
+	waitstate
+	release
     warp MAP_SSANNE_B1F_ROOM5, 255, 4, 5
 	waitstate
 	release
