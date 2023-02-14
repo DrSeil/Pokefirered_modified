@@ -2697,6 +2697,7 @@ TRAINER_SPRITE(NEW_ZINNIA, gTrainerFrontPic_new_zinnia, 0xC80),
 TRAINER_SPRITE(NEW_ZINZOLIN, gTrainerFrontPic_new_zinzolin, 0xC80),
 TRAINER_SPRITE(NEW_ZISU, gTrainerFrontPic_new_zisu, 0xC80),
 TRAINER_SPRITE(NEW_ZOSSIE, gTrainerFrontPic_new_zossie, 0xC80),
+TRAINER_SPRITE(NEW_PALPATINE, gTrainerFrontPic_new_palpatine, 0xC80),
 };
 
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
@@ -4047,4 +4048,5 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(NEW_ZINZOLIN, gTrainerPalette_new_zinzolin),
     TRAINER_PAL(NEW_ZISU, gTrainerPalette_new_zisu),
     TRAINER_PAL(NEW_ZOSSIE, gTrainerPalette_new_zossie),
+    TRAINER_PAL(NEW_PALPATINE, gTrainerPalette_new_palpatine),
 };

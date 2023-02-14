@@ -4049,3 +4049,6 @@ const u32 gTrainerPalette_new_zisu[] = INCBIN_U32("graphics/trainers/palettes/80
 
 const u32 gTrainerFrontPic_new_zossie[] = INCBIN_U32("graphics/trainers/front_pics/80/zossie.4bpp.lz");
 const u32 gTrainerPalette_new_zossie[] = INCBIN_U32("graphics/trainers/palettes/80/zossie.gbapal.lz");
+
+const u32 gTrainerFrontPic_new_palpatine[] = INCBIN_U32("graphics/trainers/front_pics/80/Palpatine.4bpp.lz");
+const u32 gTrainerPalette_new_palpatine[] = INCBIN_U32("graphics/trainers/palettes/80/Palpatine.gbapal.lz");

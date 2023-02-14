@@ -6138,6 +6138,7 @@ extern const u32 gTrainerFrontPic_new_zinnia[];
 extern const u32 gTrainerFrontPic_new_zinzolin[];
 extern const u32 gTrainerFrontPic_new_zisu[];
 extern const u32 gTrainerFrontPic_new_zossie[];
+extern const u32 gTrainerFrontPic_new_palpatine[];
 
 extern const u32 gTrainerPalette_new_aaron[];
 extern const u32 gTrainerPalette_new_acerola_masters[];
@@ -7337,5 +7338,6 @@ extern const u32 gTrainerPalette_new_zinnia[];
 extern const u32 gTrainerPalette_new_zinzolin[];
 extern const u32 gTrainerPalette_new_zisu[];
 extern const u32 gTrainerPalette_new_zossie[];
+extern const u32 gTrainerPalette_new_palpatine[];
 
 #endif //GUARD_GRAPHICS_H
