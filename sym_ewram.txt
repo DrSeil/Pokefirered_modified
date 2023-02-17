@@ -115,7 +115,6 @@
 	.include "src/tm_case.o"
 	.include "src/menu_indicators.o"
 	.include "src/pokemon_summary_screen.o"
-	.include "src/help_system_util.o"
 	.include "src/dynamic_placeholder_text_util.o"
 	.include "src/berry_pouch.o"
 	.include "src/slot_machine.o"
