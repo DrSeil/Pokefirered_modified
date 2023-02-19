@@ -49,6 +49,12 @@ int use_topDono __attribute__((section(".twitchnames"))) = 0;
 int top_donator_shown __attribute__((section(".twitchnames"))) = 0;
 u8 sText_SubAmount[] __attribute__((section(".twitchnames"))) = _("123");
 u8 sText_TopDonator[] __attribute__((section(".twitchnames"))) = _("12345678901234567890");
+int use_eliteNames __attribute__((section(".elite"))) = 0;
+int elite_name_shown __attribute__((section(".elite"))) = 0;
+u8 sText_Elite1[] __attribute__((section(".elite"))) = _("12345678901234567890");
+u8 sText_Elite2[] __attribute__((section(".elite"))) = _("12345678901234567890");
+u8 sText_Elite3[] __attribute__((section(".elite"))) = _("12345678901234567890");
+u8 sText_Elite4[] __attribute__((section(".elite"))) = _("12345678901234567890");
 
 static const u8 sText_Empty1[] = _("");
 static const u8 sText_Trainer1LoseText[] = _("{B_TRAINER1_LOSE_TEXT}");
@@ -1864,16 +1870,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
     u8 text[30];
     u8 multiplayerId;
     s32 i;
-    u8 chad[] = _("Chad");
     u8 legendary[] = _("Legendary");
-    u8 wife[] = _("Wife");
-    u8 ladypoo[] = _("LADYPOO");
-    u8 powerlifter[] = _("Powerlifter");
-    u8 laser[] = _("LASERBELCH");
-    u8 coach[] = _("Coach");
-    u8 sky[] = _("SKYBILZ");
-    u8 trailblazer[] = _("Trailblazer");
-    u8 pie[] = _("IATEYOURPIE");
     u8 streamer[] = _("Streamer");
 
 
@@ -2089,14 +2086,6 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     toCpy = gTrainerClassNames[GetEreaderTrainerClassId()];
                 else if (gTrainerBattleOpponent_A == TRAINER_BUG_CATCHER_RICK)
                     toCpy = legendary;
-                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
-                    toCpy = wife;
-                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
-                    toCpy = powerlifter;
-                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
-                    toCpy = coach;
-                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
-                    toCpy = trailblazer;
                 else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
                     toCpy = streamer;
                  else
@@ -2136,14 +2125,26 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                      {
                         toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
                      }
-                    else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
-                        toCpy = ladypoo;
-                    else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
-                        toCpy = laser;
-                    else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
-                        toCpy = sky;
-                    else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
-                        toCpy = pie;
+                    else if (use_eliteNames == 1 && gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
+                    {
+                        elite_name_shown = 1;
+                        toCpy = sText_Elite1;
+                    }
+                    else if (use_eliteNames == 1 && gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
+                        {
+                        elite_name_shown = 2;
+                        toCpy = sText_Elite2;
+                    }
+                    else if (use_eliteNames == 1 && gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
+                        {
+                        elite_name_shown = 3;
+                        toCpy = sText_Elite3;
+                    }
+                    else if (use_eliteNames == 1 && gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
+                        {
+                        elite_name_shown = 4;
+                        toCpy = sText_Elite4;
+                    }
                     else if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono == 1)
                     {
                         top_donator_shown = 1;
@@ -2264,14 +2265,26 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     {
                     toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
                     }
-                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
-                    toCpy = ladypoo;
-                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
-                    toCpy = laser;
-                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
-                    toCpy = sky;
-                else if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
-                    toCpy = pie;
+                    else if (use_eliteNames == 1 && gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
+                    {
+                        elite_name_shown = 1;
+                        toCpy = sText_Elite1;
+                    }
+                    else if (use_eliteNames == 1 && gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
+                        {
+                        elite_name_shown = 2;
+                        toCpy = sText_Elite2;
+                    }
+                    else if (use_eliteNames == 1 && gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
+                        {
+                        elite_name_shown = 3;
+                        toCpy = sText_Elite3;
+                    }
+                    else if (use_eliteNames == 1 && gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
+                        {
+                        elite_name_shown = 4;
+                        toCpy = sText_Elite4;
+                    }
                 else if(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER && use_topDono == 1)
                 {
                         top_donator_shown = 1;
