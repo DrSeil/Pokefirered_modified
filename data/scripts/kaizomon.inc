@@ -2,7 +2,6 @@
 
 
 kaizo_quickwarp1::
-
 	end
 	
 kaizo_quickwarp2::
