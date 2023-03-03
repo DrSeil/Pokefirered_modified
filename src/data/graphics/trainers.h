@@ -4052,3 +4052,18 @@ const u32 gTrainerPalette_new_zossie[] = INCBIN_U32("graphics/trainers/palettes/
 
 const u32 gTrainerFrontPic_new_palpatine[] = INCBIN_U32("graphics/trainers/front_pics/80/Palpatine.4bpp.lz");
 const u32 gTrainerPalette_new_palpatine[] = INCBIN_U32("graphics/trainers/palettes/80/Palpatine.gbapal.lz");
+
+const u32 gTrainerFrontPic_new_zelda[] = INCBIN_U32("graphics/trainers/front_pics/80/trainer-zelda.4bpp.lz");
+const u32 gTrainerPalette_new_zelda[] = INCBIN_U32("graphics/trainers/palettes/80/trainer-zelda.gbapal.lz");
+
+const u32 gTrainerFrontPic_new_link[] = INCBIN_U32("graphics/trainers/front_pics/80/trainer-link.4bpp.lz");
+const u32 gTrainerPalette_new_link[] = INCBIN_U32("graphics/trainers/palettes/80/trainer-link.gbapal.lz");
+
+const u32 gTrainerFrontPic_new_ganondorf[] = INCBIN_U32("graphics/trainers/front_pics/80/trainer-ganondorf.4bpp.lz");
+const u32 gTrainerPalette_new_ganondorf[] = INCBIN_U32("graphics/trainers/palettes/80/trainer-ganondorf.gbapal.lz");
+
+const u32 gTrainerFrontPic_new_deku[] = INCBIN_U32("graphics/trainers/front_pics/80/trainer-deku.4bpp.lz");
+const u32 gTrainerPalette_new_deku[] = INCBIN_U32("graphics/trainers/palettes/80/trainer-deku.gbapal.lz");
+
+const u32 gTrainerFrontPic_new_uraraka[] = INCBIN_U32("graphics/trainers/front_pics/80/trainer-uraraka.4bpp.lz");
+const u32 gTrainerPalette_new_uraraka[] = INCBIN_U32("graphics/trainers/palettes/80/trainer-uraraka.gbapal.lz");

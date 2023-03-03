@@ -5,6 +5,9 @@ kaizo_quickwarp1::
 	end
 	
 kaizo_quickwarp2::
+    warp MAP_POKEMON_LEAGUE_LORELEIS_ROOM, 255, 5, 11
+	waitstate
+	release
 	giveitem ITEM_SILPH_SCOPE
     warp MAP_UNDERGROUND_PATH_NORTH_ENTRANCE, 255, 3, 3
 	waitstate

@@ -1347,6 +1347,11 @@ const struct MonCoords gTrainerFrontPicCoords[] =
 {.size = 8, .y_offset = 1},
 {.size = 8, .y_offset = 1},
 {.size = 8, .y_offset = 1},
+{.size = 8, .y_offset = 1},
+{.size = 8, .y_offset = 1},
+{.size = 8, .y_offset = 1},
+{.size = 8, .y_offset = 1},
+{.size = 8, .y_offset = 1},
 };
 
 const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
@@ -2699,6 +2704,11 @@ TRAINER_SPRITE(NEW_ZINZOLIN, gTrainerFrontPic_new_zinzolin, 0xC80),
 TRAINER_SPRITE(NEW_ZISU, gTrainerFrontPic_new_zisu, 0xC80),
 TRAINER_SPRITE(NEW_ZOSSIE, gTrainerFrontPic_new_zossie, 0xC80),
 TRAINER_SPRITE(NEW_PALPATINE, gTrainerFrontPic_new_palpatine, 0xC80),
+TRAINER_SPRITE(NEW_ZELDA, gTrainerFrontPic_new_zelda, 0xC80),
+TRAINER_SPRITE(NEW_LINK, gTrainerFrontPic_new_link, 0xC80),
+TRAINER_SPRITE(NEW_GANONDORF, gTrainerFrontPic_new_ganondorf, 0xC80),
+TRAINER_SPRITE(NEW_DEKU, gTrainerFrontPic_new_deku, 0xC80),
+TRAINER_SPRITE(NEW_URARAKA, gTrainerFrontPic_new_uraraka, 0xC80),
 };
 
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
@@ -4050,4 +4060,10 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(NEW_ZISU, gTrainerPalette_new_zisu),
     TRAINER_PAL(NEW_ZOSSIE, gTrainerPalette_new_zossie),
     TRAINER_PAL(NEW_PALPATINE, gTrainerPalette_new_palpatine),
+    TRAINER_PAL(NEW_ZELDA, gTrainerPalette_new_zelda),
+    TRAINER_PAL(NEW_LINK, gTrainerPalette_new_link),
+    TRAINER_PAL(NEW_GANONDORF, gTrainerPalette_new_ganondorf),
+    TRAINER_PAL(NEW_DEKU, gTrainerPalette_new_deku),
+    TRAINER_PAL(NEW_URARAKA, gTrainerPalette_new_uraraka),
+    
 };
