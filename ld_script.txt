@@ -18,6 +18,7 @@ SECTIONS {
         src/pokemon.o(.twitchnames);
         src/battle_controller_opponent.o(.twitchnames);
         src/battle_message.o(.elite);
+        src/battle_controller_opponent.o(.elite);
 
 
         *libc.a:impure.o(.data);

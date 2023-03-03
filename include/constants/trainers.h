@@ -1365,7 +1365,13 @@
 #define TRAINER_PIC_NEW_ZISU               1344
 #define TRAINER_PIC_NEW_ZOSSIE               1345
 #define TRAINER_PIC_NEW_PALPATINE               1346
-#define TRAINER_PIC_MAX_NUMBER               1346
+#define TRAINER_PIC_NEW_ZELDA              1347
+#define TRAINER_PIC_NEW_LINK              1348
+#define TRAINER_PIC_NEW_GANONDORF         1349
+#define TRAINER_PIC_NEW_DEKU              1350
+#define TRAINER_PIC_NEW_URARAKA           1351
+
+#define TRAINER_PIC_MAX_NUMBER               1352
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_RED                    0

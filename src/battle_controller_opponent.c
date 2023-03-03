@@ -154,6 +154,10 @@ u32 twitch_trainer_pic __attribute__((section(".twitchnames"))) = 0;
 u32 use_twitch_trainer_pic __attribute__((section(".twitchnames"))) = 0;
 u32 dono_trainer_pic __attribute__((section(".twitchnames"))) = 0;
 u32 use_dono_trainer_pic __attribute__((section(".twitchnames"))) = 0;
+u32 elite_pic_1 __attribute__((section(".elite"))) = 0;
+u32 elite_pic_2 __attribute__((section(".elite"))) = 0;
+u32 elite_pic_3 __attribute__((section(".elite"))) = 0;
+u32 elite_pic_4 __attribute__((section(".elite"))) = 0;
 
 // not used
 static const u8 gUnknown_8250B18[] = { 0xB0, 0xB0, 0xC8, 0x98, 0x28, 0x28, 0x28, 0x20 };
@@ -1138,6 +1142,39 @@ static void OpponentHandleDrawTrainerPic(void)
         trainerPicId = dono_trainer_pic;
         use_dono_trainer_pic += 1;
     }
+    else if ( gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI)
+    {
+        if(elite_pic_1 <= TRAINER_PIC_MAX_NUMBER  && elite_pic_1 > 0){
+            trainerPicId = elite_pic_1;
+        }else {
+            trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        }
+
+    }
+    else if ( gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO)
+        {
+        if(elite_pic_2 <= TRAINER_PIC_MAX_NUMBER && elite_pic_2 > 0){
+            trainerPicId = elite_pic_2;
+        }else {
+            trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        }
+    }
+    else if ( gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA)
+        {
+        if(elite_pic_3 <= TRAINER_PIC_MAX_NUMBER && elite_pic_3 > 0){
+            trainerPicId = elite_pic_3;
+        }else {
+            trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        }
+    }
+    else if ( gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE)
+        {
+        if(elite_pic_4 <= TRAINER_PIC_MAX_NUMBER && elite_pic_4 > 0){
+            trainerPicId = elite_pic_4;
+        }else {
+            trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        }
+    }
     else if ( gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_EARLY
                     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL_LATE
                     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION) {
@@ -1149,7 +1186,6 @@ static void OpponentHandleDrawTrainerPic(void)
     }
     else
         trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
-        // trainerPicId = TRAINER_PIC_NEW_ZINZOLIN;
     DecompressTrainerFrontPic(trainerPicId, gActiveBattler);
     SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(gActiveBattler));
     if (trainerPicId >= TRAINER_PIC_NEW_AARON ){
